@@ -1,22 +1,23 @@
-// src/app/_layout.tsx
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useFonts } from "expo-font";
+import { PixelifySans_700Bold } from "@expo-google-fonts/pixelify-sans";
 import {
-  useFonts,
-  Inter_400Regular,
-  Inter_600SemiBold,
-} from "@expo-google-fonts/inter";
-import { Silkscreen_700Bold } from "@expo-google-fonts/silkscreen";
-import { colores } from "@/constants/tema";
+  SourceSans3_400Regular,
+  SourceSans3_600SemiBold,
+} from "@expo-google-fonts/source-sans-3";
+import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 
-export default function Layout() {
-  const [cargadas] = useFonts({
-    Inter_400Regular,
+export default function RootLayout() {
+  // lista de fuentes que se van a cargar
+  const [fontsLoaded] = useFonts({
+    PixelifySans_700Bold,
+    SourceSans3_400Regular,
+    SourceSans3_600SemiBold,
     Inter_600SemiBold,
-    Silkscreen_700Bold,
   });
 
-  if (!cargadas) return null; // espera a que carguen las fuentes
+  if (!fontsLoaded) return null; // si las fuentes no se han cargado, no renderiza nada
 
   return (
     <>
@@ -24,7 +25,7 @@ export default function Layout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: colores.fondo },
+          contentStyle: { backgroundColor: "0D0D14" },
         }}
       />
     </>
