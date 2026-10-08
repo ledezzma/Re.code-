@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   logoWrap: {
-    marginTop: 200,
+    marginTop: 285,
   },
   logo: {
     fontFamily: "PixelifySans_700Bold",
-    fontSize: 40,
+    fontSize: 87,
     letterSpacing: 2,
     color: "#D9D9DE",
   },
@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
     color: "#7C5CFF",
   },
   textBlock: {
-    marginTop: 64,
+    marginTop: 74,
     alignItems: "center",
   },
   title: {
     fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 36,
+    fontSize: 38,
     lineHeight: 44,
     textAlign: "center",
     color: "#F2F2F7",
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   subtitle: {
     marginTop: 16,
     fontFamily: "SourceSans3_400Regular",
-    fontSize: 15,
+    fontSize: 18,
     lineHeight: 22,
     textAlign: "center",
     color: "#8A8AA3",
