@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import Boton from "../components/Boton";
 
 export default function WelcomeScreen() {
+  const router = useRouter();
   return (
     <LinearGradient
       colors={["#171526", "#0C0C14", "#0C0C14"]}
@@ -23,6 +26,22 @@ export default function WelcomeScreen() {
           Evalúa tus conocimientos técnicos en rondas rápidas. Compite, falla,
           aprende y vuelve a intentarlo
         </Text>
+      </View>
+
+      <View style={styles.botones}>
+        {/*Inicio de sesion*/}
+        <Boton
+          texto="Iniciar Sesión"
+          conFlecha
+          onPress={() => router.push("/login")}
+        />
+
+        {/*Registro*/}
+        <Boton
+          texto="Crear Cuenta"
+          variante="secundario"
+          onPress={() => router.push("/registro")}
+        />
       </View>
     </LinearGradient>
   );
@@ -67,5 +86,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#8A8AA3",
     maxWidth: 320,
+  },
+  botones: {
+    width: "100%",
+    marginTop: 48,
+    gap: 25,
   },
 });
