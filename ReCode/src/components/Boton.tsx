@@ -30,7 +30,6 @@ export default function Boton({
     </Pressable>
   );
 }
-
 const styles = StyleSheet.create({
   base: {
     width: "100%",
@@ -43,16 +42,12 @@ const styles = StyleSheet.create({
   },
   primario: {
     backgroundColor: "#7C5CFF",
-    shadowColor: "#7C5CFF",
-    shadowOpacity: 0.5,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 8,
+    elevation: 20,
   },
   secundario: {
     backgroundColor: "#15132A",
     borderWidth: 1,
-    borderColor: "#3A2F7A",
+    //borderColor: "#3A2F7A",
   },
   presionado: {
     opacity: 0.85,

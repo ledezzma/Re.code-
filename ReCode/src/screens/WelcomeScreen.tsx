@@ -6,10 +6,7 @@ import Boton from "../components/Boton";
 export default function WelcomeScreen() {
   const router = useRouter();
   return (
-    <LinearGradient
-      colors={["#171526", "#0C0C14", "#0C0C14"]}
-      style={styles.container}
-    >
+    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
       <View style={styles.logoWrap}>
         <Text style={styles.logo}>
           Re<Text style={styles.logoAccent}>.code()</Text>
@@ -58,19 +55,19 @@ const styles = StyleSheet.create({
   logo: {
     fontFamily: "PixelifySans_700Bold",
     fontSize: 87,
-    letterSpacing: 2,
+    letterSpacing: 1,
     color: "#D9D9DE",
   },
   logoAccent: {
     color: "#7C5CFF",
   },
   textBlock: {
-    marginTop: 74,
+    marginTop: 56,
     alignItems: "center",
   },
   title: {
     fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 38,
+    fontSize: 39,
     lineHeight: 44,
     textAlign: "center",
     color: "#F2F2F7",
