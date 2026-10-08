@@ -1,7 +1,5 @@
-import Home from "../screens/home";
-import Login from "../screens/login";
-import Registro from "../screens/registro";
+import WelcomeScreen from "../screens/WelcomeScreen";
 
 export default function Index() {
-  return <Login />;
+  return <WelcomeScreen />;
 }
