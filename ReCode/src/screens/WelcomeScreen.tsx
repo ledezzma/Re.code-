@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import Boton from "../components/Boton";
+import Constants from 'expo-constants';
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -20,8 +21,8 @@ export default function WelcomeScreen() {
         </Text>
 
         <Text style={styles.subtitle}>
-          Evalúa tus conocimientos técnicos en rondas rápidas. Compite, falla,
-          aprende y vuelve a intentarlo
+          Evalúa tus conocimientos técnicos en rondas rápidas. Intenta, falla,
+          aprende y vuelve a intentarlo.
         </Text>
       </View>
 
@@ -50,11 +51,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   logoWrap: {
-    marginTop: 285,
+    marginTop: Constants.statusBarHeight + 100,
   },
   logo: {
     fontFamily: "PixelifySans_700Bold",
-    fontSize: 87,
+    fontSize: 50,
     letterSpacing: 1,
     color: "#D9D9DE",
   },
