@@ -1,11 +1,13 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import type { ReactNode } from "react";
 
 type Props = {
   texto: string;
   onPress: () => void;
   variante?: "primario" | "secundario";
   conFlecha?: boolean;
+  icono?: ReactNode;
 };
 
 export default function Boton({
@@ -13,6 +15,7 @@ export default function Boton({
   onPress,
   variante = "primario",
   conFlecha = false,
+  icono,
 }: Props) {
   const esPrimario = variante === "primario";
 
@@ -25,6 +28,7 @@ export default function Boton({
         pressed && styles.presionado,
       ]}
     >
+      {icono}
       <Text style={styles.texto}>{texto}</Text>
       {conFlecha && <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />}
     </Pressable>

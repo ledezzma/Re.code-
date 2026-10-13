@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import Constants from 'expo-constants';
-import Zocial from '@expo/vector-icons/Zocial';
+import Constants from "expo-constants";
+import Zocial from "@expo/vector-icons/Zocial";
+import Boton from "../components/Boton";
 
 export default function Login() {
   const router = useRouter();
@@ -16,42 +17,53 @@ export default function Login() {
 
       <View style={styles.formContainer}>
         <Text style={styles.title}>Bienvenido de nuevo</Text>
-        <Text style={styles.subtitle}>Ingresa a tu cuenta para continuar{"\n"}</Text>
-        
+        <Text style={styles.subtitle}>
+          Ingresa a tu cuenta para continuar{"\n"}
+        </Text>
+
         <Text style={styles.subtitle}>CORREO ELECTRÓNICO</Text>
-        <TextInput style={styles.input} placeholder="tu@correo.com" placeholderTextColor={"#ababc0"}></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="tu@correo.com"
+          placeholderTextColor={"#ababc0"}
+        ></TextInput>
 
         <Text style={styles.subtitle}>CONTRASEÑA</Text>
-        <TextInput style={styles.input} placeholder="·····················" placeholderTextColor={"#ababc0"} secureTextEntry={true}></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="·····················"
+          placeholderTextColor={"#ababc0"}
+          secureTextEntry={true}
+        ></TextInput>
 
-        <Pressable style={styles.button} onPress={() => router.push("/home")}>
-          <Text style={styles.textBlock}>Iniciar sesión</Text>
-        </Pressable>
+        <View style={styles.buttons}>
+          <Boton texto="Iniciar sesión" onPress={() => router.push("/home")} />
+          <Boton
+            texto="Ingresar como invitado"
+            variante="secundario"
+            icono={<Zocial name="guest" size={24} color="white" />}
+            onPress={() => router.push("/home")}
+          />
+        </View>
 
-        <Pressable style={[styles.button, {backgroundColor: "#50418a", flexDirection: "row", justifyContent: "center"}]} onPress={() => router.push("/home")}>
-          <Zocial style={[{marginBottom: 5}]}name="guest" size={24} color="white" />
-          <Text style={styles.textBlock}>Ingresar como invitado</Text>
-        </Pressable>
-
-        <Text style={[styles.subtitle, {marginTop:8, textAlign: "center"}]}>¿No tienes cuenta?
-          <Pressable style={[{marginTop: 5}]} onPress={() => router.push("/registro")}>
-            <Text style={[{color:"#8567ff", fontSize: 16}]}>  Regístrate</Text>
+        <View style={styles.loginRow}>
+          <Text style={styles.subtitle}>¿No tienes cuenta?</Text>
+          <Pressable onPress={() => router.push("/registro")}>
+            <Text style={styles.loginLink}> Regístrate</Text>
           </Pressable>
-        </Text>
-        
+        </View>
       </View>
-
     </LinearGradient>
   );
 }
 const styles = StyleSheet.create({
   formContainer: {
     padding: 24,
-    backgroundColor: '#1A1A28',
+    backgroundColor: "#1A1A28",
     width: "93%",
     borderRadius: 30,
     borderColor: "#2c2c33",
-    borderWidth: 1
+    borderWidth: 1,
   },
   container: {
     flex: 1,
@@ -60,7 +72,7 @@ const styles = StyleSheet.create({
   },
   logoWrap: {
     marginTop: Constants.statusBarHeight + 100,
-    marginBottom: 20
+    marginBottom: 20,
   },
   logo: {
     fontFamily: "PixelifySans_700Bold",
@@ -70,11 +82,6 @@ const styles = StyleSheet.create({
   },
   logoAccent: {
     color: "#7C5CFF",
-  },
-  textBlock: {
-    margin: 10,
-    fontSize: 16,
-    color: "#fff",
   },
   title: {
     fontFamily: "SourceSans3_600SemiBold",
@@ -93,11 +100,15 @@ const styles = StyleSheet.create({
     color: "#8A8AA3",
     maxWidth: 320,
   },
-  button: {
+  buttons: {
+    gap: 8,
     marginVertical: 8,
+  },
+  loginRow: {
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#8567ff",
-    borderRadius: 10
+    marginTop: 8,
   },
   input: {
     marginTop: 5,
@@ -109,6 +120,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 12,
     borderColor: "#2c2c33",
-    borderWidth: 1
-  }
+    borderWidth: 1,
+  },
+  loginLink: {
+    color: "#8567ff",
+    fontSize: 16,
+    fontFamily: "SourceSans3_400Regular",
+  },
 });
