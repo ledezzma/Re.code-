@@ -58,7 +58,7 @@ export default function Login() {
 }
 const styles = StyleSheet.create({
   formContainer: {
-    padding: 24,
+    padding: 28,
     backgroundColor: "#1A1A28",
     width: "93%",
     borderRadius: 30,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     fontFamily: "PixelifySans_700Bold",
-    fontSize: 50,
+    fontSize: 65,
     letterSpacing: 1,
     color: "#D9D9DE",
   },

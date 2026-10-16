@@ -41,7 +41,8 @@ export default function Registro() {
     }
     try {
       await registrarUsuario(db, correo, password);
-      //console.log(await db.getAllAsync("Select * from usuario"));
+      console.log(await db.getAllAsync("Select * from usuario"));
+
       router.replace("/home");
     } catch (e: any) {
       if (e.message === "CORREO_DUPLICADO") {
@@ -113,7 +114,7 @@ export default function Registro() {
 
 const styles = StyleSheet.create({
   formContainer: {
-    padding: 24,
+    padding: 28,
     backgroundColor: "#1A1A28",
     width: "93%",
     borderRadius: 30,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     fontFamily: "PixelifySans_700Bold",
-    fontSize: 50,
+    fontSize: 65,
     letterSpacing: 1,
     color: "#D9D9DE",
   },
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     backgroundColor: "#13131E",
     color: "#ababc0",
-    marginBottom: 10,
+    marginBottom: 13,
     borderRadius: 10,
     height: 45,
     fontSize: 16,

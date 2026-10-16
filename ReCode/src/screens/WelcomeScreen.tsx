@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import Boton from "../components/Boton";
-import Constants from 'expo-constants';
+import Constants from "expo-constants";
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   logoWrap: {
-    marginTop: Constants.statusBarHeight + 100,
+    marginTop: Constants.statusBarHeight + 200,
   },
   logo: {
     fontFamily: "PixelifySans_700Bold",
-    fontSize: 50,
+    fontSize: 65,
     letterSpacing: 1,
     color: "#D9D9DE",
   },
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     color: "#7C5CFF",
   },
   textBlock: {
-    marginTop: 56,
+    marginTop: 48,
     alignItems: "center",
   },
   title: {
@@ -83,11 +83,11 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textAlign: "center",
     color: "#8A8AA3",
-    maxWidth: 320,
+    maxWidth: 300,
   },
   botones: {
-    width: "100%",
-    marginTop: 48,
+    width: "80%",
+    marginTop: 40,
     gap: 25,
   },
 });

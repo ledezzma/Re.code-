@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 10,
+    gap: 8,
   },
   primario: {
     backgroundColor: "#7C5CFF",
     elevation: 20,
   },
   secundario: {
-    backgroundColor: "#15132A",
+    backgroundColor: "#252247",
     borderWidth: 1,
     //borderColor: "#3A2F7A",
   },
