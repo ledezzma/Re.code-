@@ -7,7 +7,7 @@ import Feather from '@expo/vector-icons/Feather';
 export default function Home() {
   const router = useRouter();
   return (
-    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
+    <LinearGradient colors={["#0C0C14", "#2f224b"]} style={styles.container}>
       <View style={styles.logoWrap}>
         <Text style={styles.logo}>
           Re<Text style={styles.logoAccent}>.code()</Text>
@@ -22,18 +22,31 @@ export default function Home() {
       </View>
 
       <View>
-        <Text style={[styles.logoAccent, {fontSize: 20, marginTop: 20}]}>Modos de Juego</Text>
-        
-      </View>
+        <Text style={[styles.logoAccent, {fontSize: 24, marginTop: 20, textAlign:"center"}]}>Modos de Juego{"\n"}</Text>
+        <Pressable style={styles.formContainer} onPress={() => router.push("/pregunta")}>
+          <View style={[{flexDirection:"row"}]}>
+            <Text style={[{color: "white", fontSize: 18}]}>Contrareloj</Text>
+            <Text style={[{color: "#e2b544", marginTop: 3, marginLeft: 15, fontWeight: "condensed"}]}>VELOCIDAD{"\n"}</Text>
+          </View>
+          <Text style={[styles.subtitle]}>15 preguntas al azar, 30 segundos para cada una. Pon a prueba tus conocimientos</Text>
+        </Pressable>
 
+        <Pressable style={[styles.formContainer, {marginTop:18}]} onPress={() => router.push("/pregunta")}>
+          <View style={[{flexDirection:"row"}]}>
+            <Text style={[{color: "white", fontSize: 18}]}>Previsor</Text>
+            <Text style={[{color: "#71ec66", marginTop: 3, marginLeft: 15}]}>CONTROL{"\n"}</Text>
+          </View>
+          <Text style={[styles.subtitle]}>10 preguntas, elige entre 3, conociendo el lenguaje y la dificultad</Text>
+        </Pressable>
+      </View>
     </LinearGradient>
   );
 }
 const styles = StyleSheet.create({
   formContainer: {
-    padding: 24,
+    padding: 26,
     backgroundColor: '#1A1A28',
-    width: "93%",
+    width: "96%",
     borderRadius: 30,
     borderColor: "#2c2c33",
     borderWidth: 1
@@ -72,7 +85,7 @@ const styles = StyleSheet.create({
   subtitle: {
     marginTop: 2,
     fontFamily: "SourceSans3_400Regular",
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 22,
     color: "#8A8AA3",
     maxWidth: 320,
