@@ -1,11 +1,57 @@
-import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  Alert,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import { useSQLiteContext } from "expo-sqlite";
 import Constants from "expo-constants";
 import Boton from "../components/Boton";
+import { registrarUsuario } from "../database/users";
 
 export default function Registro() {
   const router = useRouter();
+  const db = useSQLiteContext();
+
+  const [correo, setCorreo] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmar, setConfirmar] = useState("");
+
+  const registrar = async () => {
+    if (!correo.trim() || !password || !confirmar) {
+      Alert.alert("Datos incompletos", "Llena todos los campos");
+      return;
+    }
+    if (!correo.includes("@")) {
+      Alert.alert("Correo invalido", "Revisa el formato de tu correo");
+      return;
+    }
+    if (password.length < 8) {
+      Alert.alert("La contraseña debe tener minimo 8 caracteres");
+      return;
+    }
+    if (password !== confirmar) {
+      Alert.alert("Las contraseñas no coinciden");
+      return;
+    }
+    try {
+      await registrarUsuario(db, correo, password);
+      //console.log(await db.getAllAsync("Select * from usuario"));
+      router.replace("/home");
+    } catch (e: any) {
+      if (e.message === "CORREO_DUPLICADO") {
+        Alert.alert("Error", "Ese correo ya está registrado");
+      } else {
+        Alert.alert("Error", "No se pudo crear la cuenta. Intenta de nuevo.");
+        console.log(e);
+      }
+    }
+  };
 
   return (
     <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
@@ -25,6 +71,9 @@ export default function Registro() {
         <TextInput
           style={styles.input}
           placeholder="tu@correo.com"
+          value={correo}
+          onChangeText={setCorreo}
+          autoCapitalize="none"
           placeholderTextColor={"#ababc0"}
         />
 
@@ -34,6 +83,8 @@ export default function Registro() {
           placeholder="Mínimo 8 caracteres"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}
+          value={password}
+          onChangeText={setPassword}
         />
 
         <Text style={styles.subtitle}>CONFIRMAR CONTRASEÑA</Text>
@@ -42,10 +93,12 @@ export default function Registro() {
           placeholder="Repite tu contraseña"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}
+          value={confirmar}
+          onChangeText={setConfirmar}
         />
 
         {/*Boton*/}
-        <Boton texto="Crear Cuenta" onPress={() => router.push("/home")} />
+        <Boton texto="Crear Cuenta" onPress={registrar} />
 
         <View style={styles.loginRow}>
           <Text style={styles.subtitle}>¿Ya tienes cuenta?</Text>
