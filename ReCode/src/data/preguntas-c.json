@@ -1,0 +1,355 @@
+{
+  "lenguaje": "C",
+  "preguntas": [
+    {
+      "id": "c-1",
+      "pregunta": "¿Cuál de estos no es un tipo de dato primitivo en C?",
+      "opciones": [
+        { "id": "1", "texto": "int", "esCorrecta": false },
+        { "id": "2", "texto": "char", "esCorrecta": false },
+        { "id": "3", "texto": "float", "esCorrecta": false },
+        { "id": "4", "texto": "struct", "esCorrecta": true }
+      ]
+    },
+    {
+      "id": "c-2",
+      "pregunta": "¿Cuál es el operador correcto para obtener la dirección de memoria de una variable?",
+      "opciones": [
+        { "id": "1", "texto": "&", "esCorrecta": true },
+        { "id": "2", "texto": "*", "esCorrecta": false },
+        { "id": "3", "texto": "->", "esCorrecta": false },
+        { "id": "4", "texto": ".", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-3",
+      "pregunta": "¿Qué función se usa para reservar memoria dinámicamente?",
+      "opciones": [
+        { "id": "1", "texto": "malloc()", "esCorrecta": true },
+        { "id": "2", "texto": "alloc()", "esCorrecta": false },
+        { "id": "3", "texto": "memory()", "esCorrecta": false },
+        { "id": "4", "texto": "new()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-4",
+      "pregunta": "¿Cómo se declara un puntero a entero?",
+      "opciones": [
+        { "id": "1", "texto": "int *ptr;", "esCorrecta": true },
+        { "id": "2", "texto": "ptr int*;", "esCorrecta": false },
+        { "id": "3", "texto": "*int ptr;", "esCorrecta": false },
+        { "id": "4", "texto": "int ptr*;", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-5",
+      "pregunta": "¿Cuál es el tamaño típico de un 'int' en sistemas de 32 bits?",
+      "opciones": [
+        { "id": "1", "texto": "2 bytes", "esCorrecta": false },
+        { "id": "2", "texto": "4 bytes", "esCorrecta": true },
+        { "id": "3", "texto": "8 bytes", "esCorrecta": false },
+        { "id": "4", "texto": "Depende del compilador", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-6",
+      "pregunta": "¿Qué hace la función 'free()'?",
+      "opciones": [
+        { "id": "1", "texto": "Libera memoria asignada dinámicamente", "esCorrecta": true },
+        { "id": "2", "texto": "Inicializa una variable a cero", "esCorrecta": false },
+        { "id": "3", "texto": "Cierra un archivo", "esCorrecta": false },
+        { "id": "4", "texto": "Termina el programa", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-7",
+      "pregunta": "¿Cuál es la salida de: printf(\"%d\", 5/2);?",
+      "opciones": [
+        { "id": "1", "texto": "2.5", "esCorrecta": false },
+        { "id": "2", "texto": "2", "esCorrecta": true },
+        { "id": "3", "texto": "3", "esCorrecta": false },
+        { "id": "4", "texto": "Error de compilación", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-8",
+      "pregunta": "¿Qué header se necesita para usar printf y scanf?",
+      "opciones": [
+        { "id": "1", "texto": "<stdio.h>", "esCorrecta": true },
+        { "id": "2", "texto": "<stdlib.h>", "esCorrecta": false },
+        { "id": "3", "texto": "<string.h>", "esCorrecta": false },
+        { "id": "4", "texto": "<math.h>", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-9",
+      "pregunta": "¿Cómo se define una constante en C?",
+      "opciones": [
+        { "id": "1", "texto": "#define PI 3.14", "esCorrecta": true },
+        { "id": "2", "texto": "const PI = 3.14;", "esCorrecta": false },
+        { "id": "3", "texto": "final PI = 3.14;", "esCorrecta": false },
+        { "id": "4", "texto": "let PI = 3.14;", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-10",
+      "pregunta": "¿Qué significa 'static' en una variable local?",
+      "opciones": [
+        { "id": "1", "texto": "La variable mantiene su valor entre llamadas", "esCorrecta": true },
+        { "id": "2", "texto": "La variable es global", "esCorrecta": false },
+        { "id": "3", "texto": "La variable es de solo lectura", "esCorrecta": false },
+        { "id": "4", "texto": "La variable se inicializa en cero", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-11",
+      "pregunta": "¿Cuál es el operador de módulo en C?",
+      "opciones": [
+        { "id": "1", "texto": "%", "esCorrecta": true },
+        { "id": "2", "texto": "/", "esCorrecta": false },
+        { "id": "3", "texto": "//", "esCorrecta": false },
+        { "id": "4", "texto": "MOD", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-12",
+      "pregunta": "¿Qué hace 'strlen()'?",
+      "opciones": [
+        { "id": "1", "texto": "Devuelve la longitud de una cadena (sin contar el '\\0')", "esCorrecta": true },
+        { "id": "2", "texto": "Compara dos cadenas", "esCorrecta": false },
+        { "id": "3", "texto": "Copia una cadena", "esCorrecta": false },
+        { "id": "4", "texto": "Concatena dos cadenas", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-13",
+      "pregunta": "¿Cómo se accede a un miembro de una estructura usando un puntero?",
+      "opciones": [
+        { "id": "1", "texto": "ptr->miembro", "esCorrecta": true },
+        { "id": "2", "texto": "ptr.miembro", "esCorrecta": false },
+        { "id": "3", "texto": "*ptr.miembro", "esCorrecta": false },
+        { "id": "4", "texto": "&ptr.miembro", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-14",
+      "pregunta": "¿Qué valor devuelve 'main()' al sistema operativo al terminar correctamente?",
+      "opciones": [
+        { "id": "1", "texto": "0", "esCorrecta": true },
+        { "id": "2", "texto": "1", "esCorrecta": false },
+        { "id": "3", "texto": "-1", "esCorrecta": false },
+        { "id": "4", "texto": "NULL", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-15",
+      "pregunta": "¿Cuál de estos bucles garantiza al menos una ejecución?",
+      "opciones": [
+        { "id": "1", "texto": "do-while", "esCorrecta": true },
+        { "id": "2", "texto": "while", "esCorrecta": false },
+        { "id": "3", "texto": "for", "esCorrecta": false },
+        { "id": "4", "texto": "Todos los anteriores", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-16",
+      "pregunta": "¿Qué hace 'sizeof(int)'?",
+      "opciones": [
+        { "id": "1", "texto": "Devuelve el tamaño en bytes del tipo int", "esCorrecta": true },
+        { "id": "2", "texto": "Devuelve el valor máximo de un int", "esCorrecta": false },
+        { "id": "3", "texto": "Reserva memoria para un int", "esCorrecta": false },
+        { "id": "4", "texto": "Convierte a int", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-17",
+      "pregunta": "¿Qué es un 'memory leak' en C?",
+      "opciones": [
+        { "id": "1", "texto": "Memoria reservada con malloc() que no se libera con free()", "esCorrecta": true },
+        { "id": "2", "texto": "Un error de sintaxis", "esCorrecta": false },
+        { "id": "3", "texto": "Desbordamiento de pila", "esCorrecta": false },
+        { "id": "4", "texto": "Acceso a memoria no inicializada", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-18",
+      "pregunta": "¿Cómo se declara un array de 10 enteros?",
+      "opciones": [
+        { "id": "1", "texto": "int arr[10];", "esCorrecta": true },
+        { "id": "2", "texto": "int[10] arr;", "esCorrecta": false },
+        { "id": "3", "texto": "array int arr[10];", "esCorrecta": false },
+        { "id": "4", "texto": "int arr(10);", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-19",
+      "pregunta": "¿Qué hace la directiva '#include'?",
+      "opciones": [
+        { "id": "1", "texto": "Incluye el contenido de un archivo de cabecera", "esCorrecta": true },
+        { "id": "2", "texto": "Define una macro", "esCorrecta": false },
+        { "id": "3", "texto": "Declara una función", "esCorrecta": false },
+        { "id": "4", "texto": "Importa una librería dinámica", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-20",
+      "pregunta": "¿Cuál es la forma correcta de comparar cadenas en C?",
+      "opciones": [
+        { "id": "1", "texto": "strcmp(str1, str2) == 0", "esCorrecta": true },
+        { "id": "2", "texto": "str1 == str2", "esCorrecta": false },
+        { "id": "3", "texto": "str1.equals(str2)", "esCorrecta": false },
+        { "id": "4", "texto": "compare(str1, str2)", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-21",
+      "pregunta": "¿Qué significa 'const int *ptr'?",
+      "opciones": [
+        { "id": "1", "texto": "Puntero a un entero constante (no se puede modificar el valor apuntado)", "esCorrecta": true },
+        { "id": "2", "texto": "Puntero constante a entero", "esCorrecta": false },
+        { "id": "3", "texto": "Entero constante", "esCorrecta": false },
+        { "id": "4", "texto": "Puntero a puntero constante", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-22",
+      "pregunta": "¿Para qué sirve 'realloc()'?",
+      "opciones": [
+        { "id": "1", "texto": "Redimensionar un bloque de memoria previamente asignado", "esCorrecta": true },
+        { "id": "2", "texto": "Liberar memoria", "esCorrecta": false },
+        { "id": "3", "texto": "Asignar memoria inicial", "esCorrecta": false },
+        { "id": "4", "texto": "Copiar memoria", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-23",
+      "pregunta": "¿Qué hace 'fflush(stdin)'?",
+      "opciones": [
+        { "id": "1", "texto": "Comportamiento indefinido (no estándar)", "esCorrecta": true },
+        { "id": "2", "texto": "Limpia el buffer de entrada", "esCorrecta": false },
+        { "id": "3", "texto": "Cierra la entrada estándar", "esCorrecta": false },
+        { "id": "4", "texto": "Vacía el buffer de salida", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-24",
+      "pregunta": "¿Cómo se pasa un array a una función?",
+      "opciones": [
+        { "id": "1", "texto": "Se pasa la dirección del primer elemento (puntero)", "esCorrecta": true },
+        { "id": "2", "texto": "Se pasa una copia del array completo", "esCorrecta": false },
+        { "id": "3", "texto": "No se puede pasar arrays a funciones", "esCorrecta": false },
+        { "id": "4", "texto": "Se pasa por referencia automáticamente", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-25",
+      "pregunta": "¿Qué es 'NULL' en C?",
+      "opciones": [
+        { "id": "1", "texto": "Un puntero que no apunta a ninguna dirección válida", "esCorrecta": true },
+        { "id": "2", "texto": "El valor 0 para enteros", "esCorrecta": false },
+        { "id": "3", "texto": "Una cadena vacía", "esCorrecta": false },
+        { "id": "4", "texto": "Un carácter nulo", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-26",
+      "pregunta": "¿Qué operador se usa para acceso a miembros en estructuras?",
+      "opciones": [
+        { "id": "1", "texto": ".", "esCorrecta": true },
+        { "id": "2", "texto": "->", "esCorrecta": false },
+        { "id": "3", "texto": "::", "esCorrecta": false },
+        { "id": "4", "texto": ":", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-27",
+      "pregunta": "¿Qué header contiene 'malloc' y 'free'?",
+      "opciones": [
+        { "id": "1", "texto": "<stdlib.h>", "esCorrecta": true },
+        { "id": "2", "texto": "<stdio.h>", "esCorrecta": false },
+        { "id": "3", "texto": "<memory.h>", "esCorrecta": false },
+        { "id": "4", "texto": "<alloc.h>", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-28",
+      "pregunta": "¿Qué es un 'dangling pointer'?",
+      "opciones": [
+        { "id": "1", "texto": "Un puntero que apunta a memoria ya liberada", "esCorrecta": true },
+        { "id": "2", "texto": "Un puntero nulo", "esCorrecta": false },
+        { "id": "3", "texto": "Un puntero sin inicializar", "esCorrecta": false },
+        { "id": "4", "texto": "Un puntero a función", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-29",
+      "pregunta": "¿Cuál es la precedencia correcta (de mayor a menor)?",
+      "opciones": [
+        { "id": "1", "texto": "() -> .  ! ++ --  * / %  + -  < > <= >=  == !=  &&  ||  ?:", "esCorrecta": true },
+        { "id": "2", "texto": "* / %  + -  < > <= >=  == !=  &&  ||  ?:  () -> .  ! ++ --", "esCorrecta": false },
+        { "id": "3", "texto": "?:  &&  ||  == !=  < > <= >=  + -  * / %  ! ++ --  () -> .", "esCorrecta": false },
+        { "id": "4", "texto": "Todas tienen la misma precedencia", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-30",
+      "pregunta": "¿Qué hace 'calloc()' a diferencia de 'malloc()'?",
+      "opciones": [
+        { "id": "1", "texto": "Inicializa la memoria a cero", "esCorrecta": true },
+        { "id": "2", "texto": "Reserva el doble de memoria", "esCorrecta": false },
+        { "id": "3", "texto": "Es más rápido", "esCorrecta": false },
+        { "id": "4", "texto": "No necesita free()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-31",
+      "pregunta": "¿Qué significa 'volatile' en una variable?",
+      "opciones": [
+        { "id": "1", "texto": "El valor puede cambiar en cualquier momento sin intervención del programa", "esCorrecta": true },
+        { "id": "2", "texto": "La variable es de solo lectura", "esCorrecta": false },
+        { "id": "3", "texto": "La variable es global", "esCorrecta": false },
+        { "id": "4", "texto": "La variable está en memoria volátil", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-32",
+      "pregunta": "¿Cómo se define una función que recibe un array?",
+      "opciones": [
+        { "id": "1", "texto": "void func(int arr[])", "esCorrecta": true },
+        { "id": "2", "texto": "void func(int[] arr)", "esCorrecta": false },
+        { "id": "3", "texto": "void func(array int arr)", "esCorrecta": false },
+        { "id": "4", "texto": "void func(int *arr[])", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-33",
+      "pregunta": "¿Qué es 'typedef'?",
+      "opciones": [
+        { "id": "1", "texto": "Crea un alias para un tipo de dato existente", "esCorrecta": true },
+        { "id": "2", "texto": "Define un nuevo tipo de dato", "esCorrecta": false },
+        { "id": "3", "texto": "Convierte entre tipos", "esCorrecta": false },
+        { "id": "4", "texto": "Define una plantilla", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-34",
+      "pregunta": "¿Qué hace 'strcpy(dest, src)'?",
+      "opciones": [
+        { "id": "1", "texto": "Copia la cadena src en dest (incluyendo '\\0')", "esCorrecta": true },
+        { "id": "2", "texto": "Compara dos cadenas", "esCorrecta": false },
+        { "id": "3", "texto": "Concatena src a dest", "esCorrecta": false },
+        { "id": "4", "texto": "Busca un carácter en src", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "c-35",
+      "pregunta": "¿Cuál es el problema de usar 'gets()'?",
+      "opciones": [
+        { "id": "1", "texto": "No verifica límites del buffer (desbordamiento)", "esCorrecta": true },
+        { "id": "2", "texto": "No lee espacios en blanco", "esCorrecta": false },
+        { "id": "3", "texto": "Solo lee un carácter", "esCorrecta": false },
+        { "id": "4", "texto": "Es muy lenta", "esCorrecta": false }
+      ]
+    }
+  ]
+}

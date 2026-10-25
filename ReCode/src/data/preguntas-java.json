@@ -1,0 +1,355 @@
+{
+  "lenguaje": "Java",
+  "preguntas": [
+    {
+      "id": "java-1",
+      "pregunta": "¿Cuál de estos no es un tipo de dato primitivo en Java?",
+      "opciones": [
+        { "id": "1", "texto": "int", "esCorrecta": false },
+        { "id": "2", "texto": "boolean", "esCorrecta": false },
+        { "id": "3", "texto": "String", "esCorrecta": true },
+        { "id": "4", "texto": "double", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-2",
+      "pregunta": "¿Cuál es el tamaño de un 'int' en Java?",
+      "opciones": [
+        { "id": "1", "texto": "4 bytes (32 bits)", "esCorrecta": true },
+        { "id": "2", "texto": "2 bytes", "esCorrecta": false },
+        { "id": "3", "texto": "8 bytes", "esCorrecta": false },
+        { "id": "4", "texto": "Depende de la arquitectura", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-3",
+      "pregunta": "¿Qué palabra clave se usa para heredar una clase?",
+      "opciones": [
+        { "id": "1", "texto": "extends", "esCorrecta": true },
+        { "id": "2", "texto": "implements", "esCorrecta": false },
+        { "id": "3", "texto": "inherits", "esCorrecta": false },
+        { "id": "4", "texto": "super", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-4",
+      "pregunta": "¿Qué palabra clave se usa para implementar una interfaz?",
+      "opciones": [
+        { "id": "1", "texto": "implements", "esCorrecta": true },
+        { "id": "2", "texto": "extends", "esCorrecta": false },
+        { "id": "3", "texto": "implements interface", "esCorrecta": false },
+        { "id": "4", "texto": "interface", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-5",
+      "pregunta": "¿Cuál es la clase base de todas las clases en Java?",
+      "opciones": [
+        { "id": "1", "texto": "Object", "esCorrecta": true },
+        { "id": "2", "texto": "Class", "esCorrecta": false },
+        { "id": "3", "texto": "Base", "esCorrecta": false },
+        { "id": "4", "texto": "Root", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-6",
+      "pregunta": "¿Qué es 'static' en Java?",
+      "opciones": [
+        { "id": "1", "texto": "Miembro de la clase (no de instancia), compartido", "esCorrecta": true },
+        { "id": "2", "texto": "Constante", "esCorrecta": false },
+        { "id": "3", "texto": "Inmutable", "esCorrecta": false },
+        { "id": "4", "texto": "Final", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-7",
+      "pregunta": "¿Qué hace 'final' en una variable?",
+      "opciones": [
+        { "id": "1", "texto": "La hace inmutable (constante)", "esCorrecta": true },
+        { "id": "2", "texto": "La hace estática", "esCorrecta": false },
+        { "id": "3", "texto": "La hace privada", "esCorrecta": false },
+        { "id": "4", "texto": "La hace pública", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-8",
+      "pregunta": "¿Cómo se crea un objeto en Java?",
+      "opciones": [
+        { "id": "1", "texto": "new MiClase()", "esCorrecta": true },
+        { "id": "2", "texto": "MiClase obj = MiClase()", "esCorrecta": false },
+        { "id": "3", "texto": "create MiClase()", "esCorrecta": false },
+        { "id": "4", "texto": "obj = MiClase.new()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-9",
+      "pregunta": "¿Qué es un constructor?",
+      "opciones": [
+        { "id": "1", "texto": "Método especial para inicializar objetos (mismo nombre que la clase)", "esCorrecta": true },
+        { "id": "2", "texto": "Método que construye arrays", "esCorrecta": false },
+        { "id": "3", "texto": "Clase base", "esCorrecta": false },
+        { "id": "4", "texto": "Destructor", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-10",
+      "pregunta": "¿Qué es 'super()' en un constructor?",
+      "opciones": [
+        { "id": "1", "texto": "Llama al constructor de la clase padre", "esCorrecta": true },
+        { "id": "2", "texto": "Referencia a superclase", "esCorrecta": false },
+        { "id": "3", "texto": "Método estático", "esCorrecta": false },
+        { "id": "4", "texto": "Constructor por defecto", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-11",
+      "pregunta": "¿Qué es 'this' en Java?",
+      "opciones": [
+        { "id": "1", "texto": "Referencia al objeto actual", "esCorrecta": true },
+        { "id": "2", "texto": "Referencia a clase padre", "esCorrecta": false },
+        { "id": "3", "texto": "Palabra clave para estáticos", "esCorrecta": false },
+        { "id": "4", "texto": "Variable global", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-12",
+      "pregunta": "¿Qué es 'abstract' en una clase?",
+      "opciones": [
+        { "id": "1", "texto": "No se puede instanciar, puede tener métodos abstractos", "esCorrecta": true },
+        { "id": "2", "texto": "Clase base", "esCorrecta": false },
+        { "id": "3", "texto": "Clase sin métodos", "esCorrecta": false },
+        { "id": "4", "texto": "Clase final", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-13",
+      "pregunta": "¿Qué es una interfaz en Java?",
+      "opciones": [
+        { "id": "1", "texto": "Contrato con métodos abstractos (y default/static desde Java 8)", "esCorrecta": true },
+        { "id": "2", "texto": "Clase abstracta", "esCorrecta": false },
+        { "id": "3", "texto": "Clase sin implementación", "esCorrecta": false },
+        { "id": "4", "texto": "Tipo de dato", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-14",
+      "pregunta": "¿Qué es 'override' (@Override)?",
+      "opciones": [
+        { "id": "1", "texto": "Anotación que indica sobrescritura de método padre", "esCorrecta": true },
+        { "id": "2", "texto": "Sobrescribe variable", "esCorrecta": false },
+        { "id": "3", "texto": "Fuerza herencia", "esCorrecta": false },
+        { "id": "4", "texto": "Método final", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-15",
+      "pregunta": "¿Qué es 'polimorfismo'?",
+      "opciones": [
+        { "id": "1", "texto": "Mismo método, comportamiento diferente según objeto real", "esCorrecta": true },
+        { "id": "2", "texto": "Múltiples formas de una clase", "esCorrecta": false },
+        { "id": "3", "texto": "Herencia múltiple", "esCorrecta": false },
+        { "id": "4", "texto": "Sobrecarga de métodos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-16",
+      "pregunta": "¿Diferencia entre 'ArrayList' y 'LinkedList'?",
+      "opciones": [
+        { "id": "1", "texto": "ArrayList: array dinámico (rápido acceso). LinkedList: lista doblemente enlazada (rápido inserción/borrado)", "esCorrecta": true },
+        { "id": "2", "texto": "Son iguales", "esCorrecta": false },
+        { "id": "3", "texto": "ArrayList es para primitivos", "esCorrecta": false },
+        { "id": "4", "texto": "LinkedList es más rápido siempre", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-17",
+      "pregunta": "¿Qué es 'HashMap'?",
+      "opciones": [
+        { "id": "1", "texto": "Mapa clave-valor basado en tabla hash (O(1) promedio)", "esCorrecta": true },
+        { "id": "2", "texto": "Array de hashes", "esCorrecta": false },
+        { "id": "3", "texto": "Lista hasheada", "esCorrecta": false },
+        { "id": "4", "texto": "Mapa ordenado", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-18",
+      "pregunta": "¿Qué es 'HashSet'?",
+      "opciones": [
+        { "id": "1", "texto": "Conjunto sin duplicados, sin orden (usa HashMap internamente)", "esCorrecta": true },
+        { "id": "2", "texto": "Set con hash", "esCorrecta": false },
+        { "id": "3", "texto": "Array único", "esCorrecta": false },
+        { "id": "4", "texto": "Lista sin repetidos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-19",
+      "pregunta": "¿Qué hace 'equals()' vs '=='?",
+      "opciones": [
+        { "id": "1", "texto": "'==' compara referencias, 'equals()' compara contenido (si sobrescrito)", "esCorrecta": true },
+        { "id": "2", "texto": "Son iguales", "esCorrecta": false },
+        { "id": "3", "texto": "'equals' es para primitivos", "esCorrecta": false },
+        { "id": "4", "texto": "'==' es para objetos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-20",
+      "pregunta": "¿Qué es 'hashCode()'?",
+      "opciones": [
+        { "id": "1", "texto": "Entero que identifica objeto (debe ser consistente con equals)", "esCorrecta": true },
+        { "id": "2", "texto": "Código hash de la clase", "esCorrecta": false },
+        { "id": "3", "texto": "Dirección de memoria", "esCorrecta": false },
+        { "id": "4", "texto": "ID único", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-21",
+      "pregunta": "¿Qué es 'try-with-resources' (Java 7+)?",
+      "opciones": [
+        { "id": "1", "texto": "Auto-cierra recursos (AutoCloseable) al salir del bloque", "esCorrecta": true },
+        { "id": "2", "texto": "Try con recursos extra", "esCorrecta": false },
+        { "id": "3", "texto": "Manejo de recursos", "esCorrecta": false },
+        { "id": "4", "texto": "Try para archivos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-22",
+      "pregunta": "¿Diferencia entre 'checked' y 'unchecked' exceptions?",
+      "opciones": [
+        { "id": "1", "texto": "Checked: se deben atrapar/declarar (Exception). Unchecked: RuntimeException, no obligatorio", "esCorrecta": true },
+        { "id": "2", "texto": "Checked son errores", "esCorrecta": false },
+        { "id": "3", "texto": "Unchecked son warnings", "esCorrecta": false },
+        { "id": "4", "texto": "No hay diferencia", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-23",
+      "pregunta": "¿Qué es 'throw' vs 'throws'?",
+      "opciones": [
+        { "id": "1", "texto": "'throw' lanza excepción, 'throws' declara en firma del método", "esCorrecta": true },
+        { "id": "2", "texto": "Son iguales", "esCorrecta": false },
+        { "id": "3", "texto": "'throws' lanza, 'throw' declara", "esCorrecta": false },
+        { "id": "4", "texto": "Solo 'throw' existe", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-24",
+      "pregunta": "¿Qué es 'Generics' (genéricos)?",
+      "opciones": [
+        { "id": "1", "texto": "Tipos parametrizados: List<String> (type safety en compile time)", "esCorrecta": true },
+        { "id": "2", "texto": "Clases genéricas", "esCorrecta": false },
+        { "id": "3", "texto": "Métodos generales", "esCorrecta": false },
+        { "id": "4", "texto": "Generación de código", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-25",
+      "pregunta": "¿Qué es 'type erasure' (borrado de tipos)?",
+      "opciones": [
+        { "id": "1", "texto": "Info de genéricos se elimina en runtime (compatibilidad)", "esCorrecta": true },
+        { "id": "2", "texto": "Error de tipos", "esCorrecta": false },
+        { "id": "3", "texto": "Borrado de variables", "esCorrecta": false },
+        { "id": "4", "texto": "Tipos borrosos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-26",
+      "pregunta": "¿Qué es 'Stream API' (Java 8)?",
+      "opciones": [
+        { "id": "1", "texto": "Procesamiento funcional de colecciones (map, filter, reduce)", "esCorrecta": true },
+        { "id": "2", "texto": "Stream de entrada/salida", "esCorrecta": false },
+        { "id": "3", "texto": "Flujo de datos", "esCorrecta": false },
+        { "id": "4", "texto": "API de streaming", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-27",
+      "pregunta": "¿Qué es 'Optional' (Java 8)?",
+      "opciones": [
+        { "id": "1", "texto": "Contenedor que puede o no tener valor (evita NullPointerException)", "esCorrecta": true },
+        { "id": "2", "texto": "Parámetro opcional", "esCorrecta": false },
+        { "id": "3", "texto": "Valor por defecto", "esCorrecta": false },
+        { "id": "4", "texto": "Opcional en métodos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-28",
+      "pregunta": "¿Qué son 'lambda expressions' (Java 8)?",
+      "opciones": [
+        { "id": "1", "texto": "Funciones anónimas: (x) -> x * 2 (implementan functional interfaces)", "esCorrecta": true },
+        { "id": "2", "texto": "Expresiones lambda matemáticas", "esCorrecta": false },
+        { "id": "3", "texto": "Funciones flecha", "esCorrecta": false },
+        { "id": "4", "texto": "Lambdas de cálculo", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-29",
+      "pregunta": "¿Qué es 'functional interface'?",
+      "opciones": [
+        { "id": "1", "texto": "Interfaz con un solo método abstracto (ej: Runnable, Comparator)", "esCorrecta": true },
+        { "id": "2", "texto": "Interfaz funcional", "esCorrecta": false },
+        { "id": "3", "texto": "Interfaz con funciones", "esCorrecta": false },
+        { "id": "4", "texto": "Interface function", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-30",
+      "pregunta": "¿Qué es 'method reference' (::)?",
+      "opciones": [
+        { "id": "1", "texto": "Referencia a método: Class::method (shortcut para lambda)", "esCorrecta": true },
+        { "id": "2", "texto": "Referencia de método", "esCorrecta": false },
+        { "id": "3", "texto": "Doble dos puntos", "esCorrecta": false },
+        { "id": "4", "texto": "Llamada estática", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-31",
+      "pregunta": "¿Qué es 'var' (Java 10+)?",
+      "opciones": [
+        { "id": "1", "texto": "Inferencia de tipo local: var list = new ArrayList<String>()", "esCorrecta": true },
+        { "id": "2", "texto": "Variable variante", "esCorrecta": false },
+        { "id": "3", "texto": "Tipo variable", "esCorrecta": false },
+        { "id": "4", "texto": "Variable automática", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-32",
+      "pregunta": "¿Qué son 'records' (Java 14+)?",
+      "opciones": [
+        { "id": "1", "texto": "Clases inmutables compactas para datos: record Point(int x, int y) {}", "esCorrecta": true },
+        { "id": "2", "texto": "Registros de base de datos", "esCorrecta": false },
+        { "id": "3", "texto": "Registros de logs", "esCorrecta": false },
+        { "id": "4", "texto": "Clases record", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-33",
+      "pregunta": "¿Qué es 'sealed class' (Java 17+)?",
+      "opciones": [
+        { "id": "1", "texto": "Restringe qué clases pueden heredar: sealed class Shape permits Circle, Square", "esCorrecta": true },
+        { "id": "2", "texto": "Clase sellada", "esCorrecta": false },
+        { "id": "3", "texto": "Clase final", "esCorrecta": false },
+        { "id": "4", "texto": "Clase cerrada", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-34",
+      "pregunta": "¿Qué es 'pattern matching' para instanceof (Java 16+)?",
+      "opciones": [
+        { "id": "1", "texto": "if (obj instanceof String s) { s.length() } - cast automático", "esCorrecta": true },
+        { "id": "2", "texto": "Coincidencia de patrones", "esCorrecta": false },
+        { "id": "3", "texto": "Matching de instancias", "esCorrecta": false },
+        { "id": "4", "texto": "Regex instanceof", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "java-35",
+      "pregunta": "¿Qué es 'JVM', 'JRE', 'JDK'?",
+      "opciones": [
+        { "id": "1", "texto": "JVM: máquina virtual. JRE: JVM + librerías. JDK: JRE + herramientas desarrollo", "esCorrecta": true },
+        { "id": "2", "texto": "Son lo mismo", "esCorrecta": false },
+        { "id": "3", "texto": "JVM es el compilador", "esCorrecta": false },
+        { "id": "4", "texto": "JDK es solo para producción", "esCorrecta": false }
+      ]
+    }
+  ]
+}

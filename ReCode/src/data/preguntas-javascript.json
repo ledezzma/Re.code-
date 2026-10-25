@@ -1,0 +1,355 @@
+{
+  "lenguaje": "JavaScript",
+  "preguntas": [
+    {
+      "id": "js-1",
+      "pregunta": "¿Cuál de estos no es un tipo de dato primitivo en JavaScript?",
+      "opciones": [
+        { "id": "1", "texto": "string", "esCorrecta": false },
+        { "id": "2", "texto": "number", "esCorrecta": false },
+        { "id": "3", "texto": "array", "esCorrecta": true },
+        { "id": "4", "texto": "boolean", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-2",
+      "pregunta": "¿Cómo se declara una variable que no cambiará su referencia?",
+      "opciones": [
+        { "id": "1", "texto": "const", "esCorrecta": true },
+        { "id": "2", "texto": "let", "esCorrecta": false },
+        { "id": "3", "texto": "var", "esCorrecta": false },
+        { "id": "4", "texto": "final", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-3",
+      "pregunta": "¿Cuál es la diferencia entre '==' y '==='?",
+      "opciones": [
+        { "id": "1", "texto": "'===' compara valor y tipo (estricto), '==' hace coerción", "esCorrecta": true },
+        { "id": "2", "texto": "Son iguales", "esCorrecta": false },
+        { "id": "3", "texto": "'==' es más rápido", "esCorrecta": false },
+        { "id": "4", "texto": "'===' solo para objetos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-4",
+      "pregunta": "¿Qué devuelve typeof null?",
+      "opciones": [
+        { "id": "1", "texto": "\"object\"", "esCorrecta": true },
+        { "id": "2", "texto": "\"null\"", "esCorrecta": false },
+        { "id": "3", "texto": "\"undefined\"", "esCorrecta": false },
+        { "id": "4", "texto": "\"primitive\"", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-5",
+      "pregunta": "¿Cómo se crea un array en JavaScript?",
+      "opciones": [
+        { "id": "1", "texto": "[] o new Array()", "esCorrecta": true },
+        { "id": "2", "texto": "{}", "esCorrecta": false },
+        { "id": "3", "texto": "array()", "esCorrecta": false },
+        { "id": "4", "texto": "new array[]", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-6",
+      "pregunta": "¿Qué hace 'push()' en un array?",
+      "opciones": [
+        { "id": "1", "texto": "Añade elementos al final", "esCorrecta": true },
+        { "id": "2", "texto": "Elimina el último elemento", "esCorrecta": false },
+        { "id": "3", "texto": "Añade al principio", "esCorrecta": false },
+        { "id": "4", "texto": "Ordena el array", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-7",
+      "pregunta": "¿Qué es 'undefined'?",
+      "opciones": [
+        { "id": "1", "texto": "Variable declarada sin valor asignado", "esCorrecta": true },
+        { "id": "2", "texto": "Valor nulo", "esCorrecta": false },
+        { "id": "3", "texto": "Error de sintaxis", "esCorrecta": false },
+        { "id": "4", "texto": "Cero", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-8",
+      "pregunta": "¿Cómo se define una función flecha (arrow function)?",
+      "opciones": [
+        { "id": "1", "texto": "const fn = () => {}", "esCorrecta": true },
+        { "id": "2", "texto": "function => () {}", "esCorrecta": false },
+        { "id": "3", "texto": "fn = () -> {}", "esCorrecta": false },
+        { "id": "4", "texto": "arrow fn() {}", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-9",
+      "pregunta": "¿Qué es 'this' en una arrow function?",
+      "opciones": [
+        { "id": "1", "texto": "Hereda 'this' del ámbito léxico (no tiene el suyo)", "esCorrecta": true },
+        { "id": "2", "texto": "Apunta al objeto global", "esCorrecta": false },
+        { "id": "3", "texto": "Es undefined", "esCorrecta": false },
+        { "id": "4", "texto": "Apunta a la función", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-10",
+      "pregunta": "¿Qué es el 'hoisting'?",
+      "opciones": [
+        { "id": "1", "texto": "Declaraciones de var/function suben al inicio del scope", "esCorrecta": true },
+        { "id": "2", "texto": "Elevación de variables a memoria", "esCorrecta": false },
+        { "id": "3", "texto": "Optimización de código", "esCorrecta": false },
+        { "id": "4", "texto": "Hosting de servidores", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-11",
+      "pregunta": "¿Qué es un 'closure' (cierre)?",
+      "opciones": [
+        { "id": "1", "texto": "Función que recuerda variables de su ámbito externo", "esCorrecta": true },
+        { "id": "2", "texto": "Cierre de navegador", "esCorrecta": false },
+        { "id": "3", "texto": "Función que se autoejecuta", "esCorrecta": false },
+        { "id": "4", "texto": "Bloque de código", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-12",
+      "pregunta": "¿Qué hace 'map()' en arrays?",
+      "opciones": [
+        { "id": "1", "texto": "Crea nuevo array aplicando función a cada elemento", "esCorrecta": true },
+        { "id": "2", "texto": "Mapea claves a valores", "esCorrecta": false },
+        { "id": "3", "texto": "Filtra elementos", "esCorrecta": false },
+        { "id": "4", "texto": "Ordena el array", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-13",
+      "pregunta": "¿Qué hace 'filter()'?",
+      "opciones": [
+        { "id": "1", "texto": "Crea nuevo array con elementos que pasan la prueba", "esCorrecta": true },
+        { "id": "2", "texto": "Elimina duplicados", "esCorrecta": false },
+        { "id": "3", "texto": "Busca un elemento", "esCorrecta": false },
+        { "id": "4", "texto": "Transforma elementos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-14",
+      "pregunta": "¿Qué es 'reduce()'?",
+      "opciones": [
+        { "id": "1", "texto": "Reduce array a un solo valor (acumulador)", "esCorrecta": true },
+        { "id": "2", "texto": "Reduce tamaño del array", "esCorrecta": false },
+        { "id": "3", "texto": "Elimina elementos", "esCorrecta": false },
+        { "id": "4", "texto": "Comprime array", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-15",
+      "pregunta": "¿Qué es una Promise?",
+      "opciones": [
+        { "id": "1", "texto": "Objeto que representa valor futuro (async)", "esCorrecta": true },
+        { "id": "2", "texto": "Promesa de código", "esCorrecta": false },
+        { "id": "3", "texto": "Función asíncrona", "esCorrecta": false },
+        { "id": "4", "texto": "Tipo de dato", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-16",
+      "pregunta": "¿Cómo se maneja una Promise resuelta?",
+      "opciones": [
+        { "id": "1", "texto": ".then(result => {})", "esCorrecta": true },
+        { "id": "2", "texto": ".done()", "esCorrecta": false },
+        { "id": "3", "texto": ".resolve()", "esCorrecta": false },
+        { "id": "4", "texto": ".success()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-17",
+      "pregunta": "¿Qué hace 'async/await'?",
+      "opciones": [
+        { "id": "1", "texto": "Sintaxis para trabajar con Promises de forma síncrona", "esCorrecta": true },
+        { "id": "2", "texto": "Ejecución paralela", "esCorrecta": false },
+        { "id": "3", "texto": "Espera obligatoria", "esCorrecta": false },
+        { "id": "4", "texto": "Nueva Promise", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-18",
+      "pregunta": "¿Qué es el 'Event Loop'?",
+      "opciones": [
+        { "id": "1", "texto": "Mecanismo que maneja código asíncrono (call stack + callback queue)", "esCorrecta": true },
+        { "id": "2", "texto": "Bucle de eventos del usuario", "esCorrecta": false },
+        { "id": "3", "texto": "Loop infinito", "esCorrecta": false },
+        { "id": "4", "texto": "Eventos del DOM", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-19",
+      "pregunta": "¿Qué es 'prototype' en JavaScript?",
+      "opciones": [
+        { "id": "1", "texto": "Objeto del que heredan instancias (herencia prototípica)", "esCorrecta": true },
+        { "id": "2", "texto": "Prototipo de función", "esCorrecta": false },
+        { "id": "3", "texto": "Versión beta", "esCorrecta": false },
+        { "id": "4", "texto": "Plantilla de objeto", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-20",
+      "pregunta": "¿Cómo se crea herencia con class (ES6)?",
+      "opciones": [
+        { "id": "1", "texto": "class Hija extends Padre {}", "esCorrecta": true },
+        { "id": "2", "texto": "class Hija : Padre {}", "esCorrecta": false },
+        { "id": "3", "texto": "Hija.prototype = Padre", "esCorrecta": false },
+        { "id": "4", "texto": "inherit Hija from Padre", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-21",
+      "pregunta": "¿Qué es 'super()' en una clase?",
+      "opciones": [
+        { "id": "1", "texto": "Llama al constructor de la clase padre", "esCorrecta": true },
+        { "id": "2", "texto": "Método superior", "esCorrecta": false },
+        { "id": "3", "texto": "Accede a prototype", "esCorrecta": false },
+        { "id": "4", "texto": "Superclase", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-22",
+      "pregunta": "¿Qué es 'destructuring'?",
+      "opciones": [
+        { "id": "1", "texto": "Extraer valores de arrays/objetos en variables: const {a} = obj", "esCorrecta": true },
+        { "id": "2", "texto": "Destruir objetos", "esCorrecta": false },
+        { "id": "3", "texto": "Desestructurar clases", "esCorrecta": false },
+        { "id": "4", "texto": "Romper arrays", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-23",
+      "pregunta": "¿Qué es 'spread operator' (...)?",
+      "opciones": [
+        { "id": "1", "texto": "Expande elementos: [...arr, nuevo]", "esCorrecta": true },
+        { "id": "2", "texto": "Operador de propagación", "esCorrecta": false },
+        { "id": "3", "texto": "Tres puntos", "esCorrecta": false },
+        { "id": "4", "texto": "Rest parameters", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-24",
+      "pregunta": "¿Qué son 'rest parameters'?",
+      "opciones": [
+        { "id": "1", "texto": "const fn = (...args) => {} - agrupa argumentos en array", "esCorrecta": true },
+        { "id": "2", "texto": "Parámetros restantes", "esCorrecta": false },
+        { "id": "3", "texto": "Parámetros por defecto", "esCorrecta": false },
+        { "id": "4", "texto": "Argumentos opcionales", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-25",
+      "pregunta": "¿Qué es 'JSON'?",
+      "opciones": [
+        { "id": "1", "texto": "JavaScript Object Notation - formato de intercambio de datos", "esCorrecta": true },
+        { "id": "2", "texto": "JavaScript Object Network", "esCorrecta": false },
+        { "id": "3", "texto": "JavaScript Oriented Notation", "esCorrecta": false },
+        { "id": "4", "texto": "JavaScript Object Node", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-26",
+      "pregunta": "¿Cómo se parsea JSON?",
+      "opciones": [
+        { "id": "1", "texto": "JSON.parse(string)", "esCorrecta": true },
+        { "id": "2", "texto": "JSON.parseJSON()", "esCorrecta": false },
+        { "id": "3", "texto": "parse.JSON()", "esCorrecta": false },
+        { "id": "4", "texto": "string.toJSON()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-27",
+      "pregunta": "¿Qué es 'localStorage'?",
+      "opciones": [
+        { "id": "1", "texto": "Almacenamiento persistente en navegador (key-value)", "esCorrecta": true },
+        { "id": "2", "texto": "Variable local", "esCorrecta": false },
+        { "id": "3", "texto": "Storage local de servidor", "esCorrecta": false },
+        { "id": "4", "texto": "Cache local", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-28",
+      "pregunta": "¿Qué es 'fetch()'?",
+      "opciones": [
+        { "id": "1", "texto": "API moderna para peticiones HTTP (retorna Promise)", "esCorrecta": true },
+        { "id": "2", "texto": "Obtener datos", "esCorrecta": false },
+        { "id": "3", "texto": "Función de array", "esCorrecta": false },
+        { "id": "4", "texto": "Método de Promise", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-29",
+      "pregunta": "¿Qué es 'DOM'?",
+      "opciones": [
+        { "id": "1", "texto": "Document Object Model - representación del HTML como árbol", "esCorrecta": true },
+        { "id": "2", "texto": "Data Object Model", "esCorrecta": false },
+        { "id": "3", "texto": "Dynamic Object Model", "esCorrecta": false },
+        { "id": "4", "texto": "Document Oriented Model", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-30",
+      "pregunta": "¿Cómo se selecciona un elemento por ID?",
+      "opciones": [
+        { "id": "1", "texto": "document.getElementById('id')", "esCorrecta": true },
+        { "id": "2", "texto": "document.querySelector('#id')", "esCorrecta": false },
+        { "id": "3", "texto": "document.findById('id')", "esCorrecta": false },
+        { "id": "4", "texto": "document.id('id')", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-31",
+      "pregunta": "¿Qué es 'event delegation'?",
+      "opciones": [
+        { "id": "1", "texto": "Un listener en padre maneja eventos de hijos (burbujeo)", "esCorrecta": true },
+        { "id": "2", "texto": "Delegar eventos a funciones", "esCorrecta": false },
+        { "id": "3", "texto": "Eventos delegados", "esCorrecta": false },
+        { "id": "4", "texto": "Delegación de eventos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-32",
+      "pregunta": "¿Qué es 'debounce'?",
+      "opciones": [
+        { "id": "1", "texto": "Retrasa ejecución hasta que deja de llamarse (ej: input)", "esCorrecta": true },
+        { "id": "2", "texto": "Rebote de eventos", "esCorrecta": false },
+        { "id": "3", "texto": "Función rebotada", "esCorrecta": false },
+        { "id": "4", "texto": "Eliminar rebotes", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-33",
+      "pregunta": "¿Qué es 'throttle'?",
+      "opciones": [
+        { "id": "1", "texto": "Limita ejecución a una vez cada X ms", "esCorrecta": true },
+        { "id": "2", "texto": "Acelerador", "esCorrecta": false },
+        { "id": "3", "texto": "Control de flujo", "esCorrecta": false },
+        { "id": "4", "texto": "Throttling de red", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-34",
+      "pregunta": "¿Qué es 'module' (ES6 modules)?",
+      "opciones": [
+        { "id": "1", "texto": "import/export para código modular", "esCorrecta": true },
+        { "id": "2", "texto": "Módulo de Node", "esCorrecta": false },
+        { "id": "3", "texto": "Paquete npm", "esCorrecta": false },
+        { "id": "4", "texto": "Archivo módulo", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "js-35",
+      "pregunta": "¿Qué es 'strict mode' ('use strict')?",
+      "opciones": [
+        { "id": "1", "texto": "Modo estricto: más errores, mejor optimización", "esCorrecta": true },
+        { "id": "2", "texto": "Modo estricto de tipos", "esCorrecta": false },
+        { "id": "3", "texto": "Modo seguro", "esCorrecta": false },
+        { "id": "4", "texto": "Strict typing", "esCorrecta": false }
+      ]
+    }
+  ]
+}

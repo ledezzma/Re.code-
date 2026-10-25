@@ -39,18 +39,19 @@ export default function Registro() {
       Alert.alert("Las contraseñas no coinciden");
       return;
     }
+
     try {
-      await registrarUsuario(db, correo, password);
-      console.log(await db.getAllAsync("Select * from usuario"));
+      const registrado = await registrarUsuario(db, correo, password);
+
+      if (!registrado) {
+        Alert.alert("Error", "Ese correo ya está registrado");
+        return;
+      }
 
       router.replace("/home");
-    } catch (e: any) {
-      if (e.message === "CORREO_DUPLICADO") {
-        Alert.alert("Error", "Ese correo ya está registrado");
-      } else {
-        Alert.alert("Error", "No se pudo crear la cuenta. Intenta de nuevo.");
-        console.log(e);
-      }
+    } catch (e) {
+      Alert.alert("Error", "No se pudo crear la cuenta. Intenta de nuevo.");
+      console.log(e);
     }
   };
 

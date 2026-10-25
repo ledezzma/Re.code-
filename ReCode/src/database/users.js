@@ -18,9 +18,11 @@ export async function registrarUsuario(db, correo, contraseña) {
       correo.trim().toLowerCase(),
       passHash,
     );
+    return true;
   } catch (e) {
-    if (String(e.message).includes("UNIQUE"))
-      throw new Error(" Correo Duplicado");
+    if (String(e.message).includes("UNIQUE")) return false;
     throw e;
   }
 }
+
+//modificar para que devuelva true o false si se registro o no

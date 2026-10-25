@@ -1,0 +1,355 @@
+{
+  "lenguaje": "C++",
+  "preguntas": [
+    {
+      "id": "cpp-1",
+      "pregunta": "¿Cuál de estos no es un tipo de dato primitivo en C++?",
+      "opciones": [
+        { "id": "1", "texto": "int", "esCorrecta": false },
+        { "id": "2", "texto": "bool", "esCorrecta": false },
+        { "id": "3", "texto": "string", "esCorrecta": true },
+        { "id": "4", "texto": "double", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-2",
+      "pregunta": "¿Qué operador se usa para resolución de ámbito?",
+      "opciones": [
+        { "id": "1", "texto": "::", "esCorrecta": true },
+        { "id": "2", "texto": "->", "esCorrecta": false },
+        { "id": "3", "texto": ".", "esCorrecta": false },
+        { "id": "4", "texto": ":", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-3",
+      "pregunta": "¿Cuál es la forma correcta de declarar una referencia?",
+      "opciones": [
+        { "id": "1", "texto": "int &ref = var;", "esCorrecta": true },
+        { "id": "2", "texto": "int ref = &var;", "esCorrecta": false },
+        { "id": "3", "texto": "ref int = var;", "esCorrecta": false },
+        { "id": "4", "texto": "int *ref = var;", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-4",
+      "pregunta": "¿Qué hace 'new' en C++?",
+      "opciones": [
+        { "id": "1", "texto": "Reserva memoria dinámicamente y llama al constructor", "esCorrecta": true },
+        { "id": "2", "texto": "Crea una nueva variable en la pila", "esCorrecta": false },
+        { "id": "3", "texto": "Define una nueva clase", "esCorrecta": false },
+        { "id": "4", "texto": "Importa un módulo", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-5",
+      "pregunta": "¿Cuál es la diferencia entre 'struct' y 'class' en C++?",
+      "opciones": [
+        { "id": "1", "texto": "Por defecto, struct es public y class es private", "esCorrecta": true },
+        { "id": "2", "texto": "struct no puede tener métodos", "esCorrecta": false },
+        { "id": "3", "texto": "class no puede heredar", "esCorrecta": false },
+        { "id": "4", "texto": "No hay diferencia", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-6",
+      "pregunta": "¿Qué es un destructor?",
+      "opciones": [
+        { "id": "1", "texto": "Método especial que se llama al destruir un objeto", "esCorrecta": true },
+        { "id": "2", "texto": "Función para borrar archivos", "esCorrecta": false },
+        { "id": "3", "texto": "Operador para liberar memoria", "esCorrecta": false },
+        { "id": "4", "texto": "Constructor inverso", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-7",
+      "pregunta": "¿Cómo se declara un destructor?",
+      "opciones": [
+        { "id": "1", "texto": "~Clase()", "esCorrecta": true },
+        { "id": "2", "texto": "destructor()", "esCorrecta": false },
+        { "id": "3", "texto": "delete Clase()", "esCorrecta": false },
+        { "id": "4", "texto": "Clase::~()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-8",
+      "pregunta": "¿Qué es la herencia múltiple?",
+      "opciones": [
+        { "id": "1", "texto": "Una clase que hereda de más de una clase base", "esCorrecta": true },
+        { "id": "2", "texto": "Herencia de una clase que ya hereda", "esCorrecta": false },
+        { "id": "3", "texto": "Múltiples objetos de la misma clase", "esCorrecta": false },
+        { "id": "4", "texto": "Herencia de interfacesのみ", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-9",
+      "pregunta": "¿Qué es 'virtual' en una función miembro?",
+      "opciones": [
+        { "id": "1", "texto": "Permite polimorfismo (sobrescritura en clases derivadas)", "esCorrecta": true },
+        { "id": "2", "texto": "Hace la función más rápida", "esCorrecta": false },
+        { "id": "3", "texto": "Hace la función privada", "esCorrecta": false },
+        { "id": "4", "texto": "Reserva memoria virtual", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-10",
+      "pregunta": "¿Qué es una función virtual pura?",
+      "opciones": [
+        { "id": "1", "texto": "virtual void func() = 0;", "esCorrecta": true },
+        { "id": "2", "texto": "virtual void func() {}", "esCorrecta": false },
+        { "id": "3", "texto": "void virtual func()", "esCorrecta": false },
+        { "id": "4", "texto": "pure virtual func()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-11",
+      "pregunta": "¿Qué es una clase abstracta?",
+      "opciones": [
+        { "id": "1", "texto": "Clase con al menos una función virtual pura", "esCorrecta": true },
+        { "id": "2", "texto": "Clase sin constructor", "esCorrecta": false },
+        { "id": "3", "texto": "Clase que no se puede instanciar directamente", "esCorrecta": false },
+        { "id": "4", "texto": "Clase solo con miembros estáticos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-12",
+      "pregunta": "¿Para qué sirve 'std::vector'?",
+      "opciones": [
+        { "id": "1", "texto": "Array dinámico que cambia de tamaño automáticamente", "esCorrecta": true },
+        { "id": "2", "texto": "Vector matemático de 3D", "esCorrecta": false },
+        { "id": "3", "texto": "Puntero inteligente", "esCorrecta": false },
+        { "id": "4", "texto": "Tipo de dato primitivo", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-13",
+      "pregunta": "¿Qué es 'std::unique_ptr'?",
+      "opciones": [
+        { "id": "1", "texto": "Puntero inteligente con propiedad única (no copiable)", "esCorrecta": true },
+        { "id": "2", "texto": "Puntero a único elemento", "esCorrecta": false },
+        { "id": "3", "texto": "Puntero nulo", "esCorrecta": false },
+        { "id": "4", "texto": "Puntero a función", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-14",
+      "pregunta": "¿Qué es 'std::shared_ptr'?",
+      "opciones": [
+        { "id": "1", "texto": "Puntero inteligente con propiedad compartida (conteo de referencias)", "esCorrecta": true },
+        { "id": "2", "texto": "Puntero compartido entre hilos", "esCorrecta": false },
+        { "id": "3", "texto": "Puntero a memoria compartida", "esCorrecta": false },
+        { "id": "4", "texto": "Puntero a objeto compartido", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-15",
+      "pregunta": "¿Qué es 'move semantics' (semántica de movimiento)?",
+      "opciones": [
+        { "id": "1", "texto": "Transferir recursos en lugar de copiarlos (C++11)", "esCorrecta": true },
+        { "id": "2", "texto": "Mover objetos en memoria", "esCorrecta": false },
+        { "id": "3", "texto": "Semántica de punteros", "esCorrecta": false },
+        { "id": "4", "texto": "Movimiento de arrays", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-16",
+      "pregunta": "¿Qué es 'rvalue reference' (&&)?",
+      "opciones": [
+        { "id": "1", "texto": "Referencia a un objeto temporal (permite move semantics)", "esCorrecta": true },
+        { "id": "2", "texto": "Referencia a referencia", "esCorrecta": false },
+        { "id": "3", "texto": "Doble puntero", "esCorrecta": false },
+        { "id": "4", "texto": "Referencia constante", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-17",
+      "pregunta": "¿Qué hace 'std::move'?",
+      "opciones": [
+        { "id": "1", "texto": "Convierte un lvalue a rvalue (permite movimiento)", "esCorrecta": true },
+        { "id": "2", "texto": "Mueve un objeto en memoria", "esCorrecta": false },
+        { "id": "3", "texto": "Intercambia dos objetos", "esCorrecta": false },
+        { "id": "4", "texto": "Elimina un objeto", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-18",
+      "pregunta": "¿Qué es 'constexpr'?",
+      "opciones": [
+        { "id": "1", "texto": "Indica que el valor se puede evaluar en tiempo de compilación", "esCorrecta": true },
+        { "id": "2", "texto": "Constante de expresión regular", "esCorrecta": false },
+        { "id": "3", "texto": "Expresión constante de caracteres", "esCorrecta": false },
+        { "id": "4", "texto": "Constructor constante", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-19",
+      "pregunta": "¿Qué es 'auto' en C++11?",
+      "opciones": [
+        { "id": "1", "texto": "Deducción automática de tipo de variable", "esCorrecta": true },
+        { "id": "2", "texto": "Variable automática (local)", "esCorrecta": false },
+        { "id": "3", "texto": "Tipo de dato automático", "esCorrecta": false },
+        { "id": "4", "texto": "Variable que se inicializa sola", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-20",
+      "pregunta": "¿Qué es una expresión lambda?",
+      "opciones": [
+        { "id": "1", "texto": "Función anónima inline: [](){ }", "esCorrecta": true },
+        { "id": "2", "texto": "Expresión matemática lambda", "esCorrecta": false },
+        { "id": "3", "texto": "Función recursiva", "esCorrecta": false },
+        { "id": "4", "texto": "Plantilla de función", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-21",
+      "pregunta": "¿Qué captura '[=]' en una lambda?",
+      "opciones": [
+        { "id": "1", "texto": "Captura todas las variables locales por valor", "esCorrecta": true },
+        { "id": "2", "texto": "Captura por referencia", "esCorrecta": false },
+        { "id": "3", "texto": "No captura nada", "esCorrecta": false },
+        { "id": "4", "texto": "Captura this", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-22",
+      "pregunta": "¿Qué es 'override'?",
+      "opciones": [
+        { "id": "1", "texto": "Especificador que indica que una función sobrescribe una virtual", "esCorrecta": true },
+        { "id": "2", "texto": "Sobrescribe una variable", "esCorrecta": false },
+        { "id": "3", "texto": "Forza herencia", "esCorrecta": false },
+        { "id": "4", "texto": "Sobrecarga operador", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-23",
+      "pregunta": "¿Qué es 'final' en una clase?",
+      "opciones": [
+        { "id": "1", "texto": "Impide que la clase sea heredada", "esCorrecta": true },
+        { "id": "2", "texto": "Última versión de la clase", "esCorrecta": false },
+        { "id": "3", "texto": "Clase constante", "esCorrecta": false },
+        { "id": "4", "texto": "Clase abstracta", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-24",
+      "pregunta": "¿Qué header se necesita para 'std::string'?",
+      "opciones": [
+        { "id": "1", "texto": "<string>", "esCorrecta": true },
+        { "id": "2", "texto": "<cstring>", "esCorrecta": false },
+        { "id": "3", "texto": "<string.h>", "esCorrecta": false },
+        { "id": "4", "texto": "<stdlib.h>", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-25",
+      "pregunta": "¿Qué es 'namespace std'?",
+      "opciones": [
+        { "id": "1", "texto": "Espacio de nombres de la biblioteca estándar", "esCorrecta": true },
+        { "id": "2", "texto": "Clase estándar", "esCorrecta": false },
+        { "id": "3", "texto": "Función estándar", "esCorrecta": false },
+        { "id": "4", "texto": "Directiva de preprocesador", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-26",
+      "pregunta": "¿Qué hace 'std::sort'?",
+      "opciones": [
+        { "id": "1", "texto": "Ordena elementos en un rango (introsort)", "esCorrecta": true },
+        { "id": "2", "texto": "Ordena un string alfabéticamente", "esCorrecta": false },
+        { "id": "3", "texto": "Crea un array ordenado", "esCorrecta": false },
+        { "id": "4", "texto": "Ordena punteros", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-27",
+      "pregunta": "¿Qué es 'template'?",
+      "opciones": [
+        { "id": "1", "texto": "Plantilla para código genérico (programación genérica)", "esCorrecta": true },
+        { "id": "2", "texto": "Plantilla de archivo", "esCorrecta": false },
+        { "id": "3", "texto": "Patrón de diseño", "esCorrecta": false },
+        { "id": "4", "texto": "Tipo de dato especial", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-28",
+      "pregunta": "¿Cómo se especializa una plantilla?",
+      "opciones": [
+        { "id": "1", "texto": "template<> void func<int>() {}", "esCorrecta": true },
+        { "id": "2", "texto": "template<int> void func() {}", "esCorrecta": false },
+        { "id": "3", "texto": "specialized func<int>() {}", "esCorrecta": false },
+        { "id": "4", "texto": "template<specialize> func<int>() {}", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-29",
+      "pregunta": "¿Qué es SFINAE?",
+      "opciones": [
+        { "id": "1", "texto": "Substitution Failure Is Not An Error (fallo de sustitución no es error)", "esCorrecta": true },
+        { "id": "2", "texto": "Error de plantilla", "esCorrecta": false },
+        { "id": "3", "texto": "Nueva característica C++20", "esCorrecta": false },
+        { "id": "4", "texto": "Tipo de excepción", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-30",
+      "pregunta": "¿Qué es 'std::optional' (C++17)?",
+      "opciones": [
+        { "id": "1", "texto": "Contenedor que puede o no contener un valor", "esCorrecta": true },
+        { "id": "2", "texto": "Parámetro opcional de función", "esCorrecta": false },
+        { "id": "3", "texto": "Puntero opcional", "esCorrecta": false },
+        { "id": "4", "texto": "Valor por defecto", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-31",
+      "pregunta": "¿Qué es 'std::variant' (C++17)?",
+      "opciones": [
+        { "id": "1", "texto": "Unión tipada segura (uno de varios tipos)", "esCorrecta": true },
+        { "id": "2", "texto": "Variable variante", "esCorrecta": false },
+        { "id": "3", "texto": "Tipo de dato variable", "esCorrecta": false },
+        { "id": "4", "texto": "Plantilla variable", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-32",
+      "pregunta": "¿Qué es 'structured binding' (C++17)?",
+      "opciones": [
+        { "id": "1", "texto": "auto [a, b] = pair; desempaca tuplas/structs", "esCorrecta": true },
+        { "id": "2", "texto": "Enlace estructurado de clases", "esCorrecta": false },
+        { "id": "3", "texto": "Binding de estructuras", "esCorrecta": false },
+        { "id": "4", "texto": "Enlace de punteros", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-33",
+      "pregunta": "¿Qué es 'if constexpr' (C++17)?",
+      "opciones": [
+        { "id": "1", "texto": "If evaluado en tiempo de compilación (descarta rama)", "esCorrecta": true },
+        { "id": "2", "texto": "If constante", "esCorrecta": false },
+        { "id": "3", "texto": "If con expresión constante", "esCorrecta": false },
+        { "id": "4", "texto": "If para plantillas", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-34",
+      "pregunta": "¿Qué son 'concepts' (C++20)?",
+      "opciones": [
+        { "id": "1", "texto": "Restricciones nombradas para parámetros de plantilla", "esCorrecta": true },
+        { "id": "2", "texto": "Nuevos tipos de datos", "esCorrecta": false },
+        { "id": "3", "texto": "Conceptos de POO", "esCorrecta": false },
+        { "id": "4", "texto": "Plantillas conceptuales", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "cpp-35",
+      "pregunta": "¿Qué es 'std::format' (C++20)?",
+      "opciones": [
+        { "id": "1", "texto": "Formateo de strings tipo Python ({})", "esCorrecta": true },
+        { "id": "2", "texto": "Formato de archivo", "esCorrecta": false },
+        { "id": "3", "texto": "Formateo de memoria", "esCorrecta": false },
+        { "id": "4", "texto": "Formato de fecha", "esCorrecta": false }
+      ]
+    }
+  ]
+}

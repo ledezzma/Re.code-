@@ -1,0 +1,355 @@
+{
+  "lenguaje": "Python",
+  "preguntas": [
+    {
+      "id": "py-1",
+      "pregunta": "¿Cuál de estos no es un tipo de dato primitivo en Python?",
+      "opciones": [
+        { "id": "1", "texto": "int", "esCorrecta": false },
+        { "id": "2", "texto": "float", "esCorrecta": false },
+        { "id": "3", "texto": "array", "esCorrecta": true },
+        { "id": "4", "texto": "bool", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-2",
+      "pregunta": "¿Cómo se define una función en Python?",
+      "opciones": [
+        { "id": "1", "texto": "def mi_funcion():", "esCorrecta": true },
+        { "id": "2", "texto": "function mi_funcion():", "esCorrecta": false },
+        { "id": "3", "texto": "func mi_funcion():", "esCorrecta": false },
+        { "id": "4", "texto": "define mi_funcion():", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-3",
+      "pregunta": "¿Qué operador se usa para potencia en Python?",
+      "opciones": [
+        { "id": "1", "texto": "**", "esCorrecta": true },
+        { "id": "2", "texto": "^", "esCorrecta": false },
+        { "id": "3", "texto": "pow", "esCorrecta": false },
+        { "id": "4", "texto": "^^", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-4",
+      "pregunta": "¿Cuál es la salida de: print(3 // 2)?",
+      "opciones": [
+        { "id": "1", "texto": "1.5", "esCorrecta": false },
+        { "id": "2", "texto": "1", "esCorrecta": true },
+        { "id": "3", "texto": "2", "esCorrecta": false },
+        { "id": "4", "texto": "Error", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-5",
+      "pregunta": "¿Qué hace 'len()' en Python?",
+      "opciones": [
+        { "id": "1", "texto": "Devuelve la longitud de un objeto (lista, string, etc.)", "esCorrecta": true },
+        { "id": "2", "texto": "Convierte a lista", "esCorrecta": false },
+        { "id": "3", "texto": "Crea una lista vacía", "esCorrecta": false },
+        { "id": "4", "texto": "Ordena una lista", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-6",
+      "pregunta": "¿Cómo se crea una lista vacía?",
+      "opciones": [
+        { "id": "1", "texto": "[] o list()", "esCorrecta": true },
+        { "id": "2", "texto": "{}", "esCorrecta": false },
+        { "id": "3", "texto": "()", "esCorrecta": false },
+        { "id": "4", "texto": "list[]", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-7",
+      "pregunta": "¿Cuál es la diferencia entre lista y tupla?",
+      "opciones": [
+        { "id": "1", "texto": "Las tuplas son inmutables, las listas mutables", "esCorrecta": true },
+        { "id": "2", "texto": "Las listas son más rápidas", "esCorrecta": false },
+        { "id": "3", "texto": "Las tuplas solo guardan enteros", "esCorrecta": false },
+        { "id": "4", "texto": "No hay diferencia", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-8",
+      "pregunta": "¿Cómo se accede al último elemento de una lista?",
+      "opciones": [
+        { "id": "1", "texto": "lista[-1]", "esCorrecta": true },
+        { "id": "2", "texto": "lista[last]", "esCorrecta": false },
+        { "id": "3", "texto": "lista[len(lista)]", "esCorrecta": false },
+        { "id": "4", "texto": "lista.end()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-9",
+      "pregunta": "¿Qué hace 'append()' en una lista?",
+      "opciones": [
+        { "id": "1", "texto": "Añade un elemento al final", "esCorrecta": true },
+        { "id": "2", "texto": "Elimina el último elemento", "esCorrecta": false },
+        { "id": "3", "texto": "Ordena la lista", "esCorrecta": false },
+        { "id": "4", "texto": "Invierte la lista", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-10",
+      "pregunta": "¿Cómo se crea un diccionario?",
+      "opciones": [
+        { "id": "1", "texto": "{} o dict()", "esCorrecta": true },
+        { "id": "2", "texto": "[]", "esCorrecta": false },
+        { "id": "3", "texto": "()", "esCorrecta": false },
+        { "id": "4", "texto": "dictionary()", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-11",
+      "pregunta": "¿Qué es 'None' en Python?",
+      "opciones": [
+        { "id": "1", "texto": "Valor nulo (ausencia de valor)", "esCorrecta": true },
+        { "id": "2", "texto": "Cero", "esCorrecta": false },
+        { "id": "3", "texto": "Cadena vacía", "esCorrecta": false },
+        { "id": "4", "texto": "Falso", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-12",
+      "pregunta": "¿Cómo se manejan excepciones en Python?",
+      "opciones": [
+        { "id": "1", "texto": "try: ... except: ...", "esCorrecta": true },
+        { "id": "2", "texto": "try { } catch { }", "esCorrecta": false },
+        { "id": "3", "texto": "catch (Exception e)", "esCorrecta": false },
+        { "id": "4", "texto": "handle exception", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-13",
+      "pregunta": "¿Qué es 'self' en una clase?",
+      "opciones": [
+        { "id": "1", "texto": "Referencia a la instancia actual (primer parámetro)", "esCorrecta": true },
+        { "id": "2", "texto": "Palabra clave para variables estáticas", "esCorrecta": false },
+        { "id": "3", "texto": "Método constructor", "esCorrecta": false },
+        { "id": "4", "texto": "Variable global", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-14",
+      "pregunta": "¿Cómo se define el constructor en Python?",
+      "opciones": [
+        { "id": "1", "texto": "__init__(self)", "esCorrecta": true },
+        { "id": "2", "texto": "constructor(self)", "esCorrecta": false },
+        { "id": "3", "texto": "__construct__(self)", "esCorrecta": false },
+        { "id": "4", "texto": "init(self)", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-15",
+      "pregunta": "¿Qué es una 'list comprehension'?",
+      "opciones": [
+        { "id": "1", "texto": "Forma concisa de crear listas: [x*2 for x in range(10)]", "esCorrecta": true },
+        { "id": "2", "texto": "Comprensión de listas (documentación)", "esCorrecta": false },
+        { "id": "3", "texto": "Función para comprimir listas", "esCorrecta": false },
+        { "id": "4", "texto": "Método de lista", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-16",
+      "pregunta": "¿Qué hace 'enumerate()'?",
+      "opciones": [
+        { "id": "1", "texto": "Devuelve índice y valor al iterar", "esCorrecta": true },
+        { "id": "2", "texto": "Enumera elementos de un set", "esCorrecta": false },
+        { "id": "3", "texto": "Crea una enumeración", "esCorrecta": false },
+        { "id": "4", "texto": "Cuenta elementos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-17",
+      "pregunta": "¿Qué es 'zip()'?",
+      "opciones": [
+        { "id": "1", "texto": "Combina iterables elemento a elemento", "esCorrecta": true },
+        { "id": "2", "texto": "Comprime archivos", "esCorrecta": false },
+        { "id": "3", "texto": "Une dos strings", "esCorrecta": false },
+        { "id": "4", "texto": "Crea una tupla", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-18",
+      "pregunta": "¿Qué diferencia hay entre 'is' y '=='?",
+      "opciones": [
+        { "id": "1", "texto": "'is' compara identidad (misma objeto), '==' compara valor", "esCorrecta": true },
+        { "id": "2", "texto": "Son iguales", "esCorrecta": false },
+        { "id": "3", "texto": "'is' es para enteros, '==' para strings", "esCorrecta": false },
+        { "id": "4", "texto": "'==' es más rápido", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-19",
+      "pregunta": "¿Qué es un generador en Python?",
+      "opciones": [
+        { "id": "1", "texto": "Función que usa 'yield' para producir valores bajo demanda", "esCorrecta": true },
+        { "id": "2", "texto": "Generador de números aleatorios", "esCorrecta": false },
+        { "id": "3", "texto": "Clase que genera objetos", "esCorrecta": false },
+        { "id": "4", "texto": "Función que retorna lista", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-20",
+      "pregunta": "¿Qué hace 'map()'?",
+      "opciones": [
+        { "id": "1", "texto": "Aplica una función a cada elemento de un iterable", "esCorrecta": true },
+        { "id": "2", "texto": "Crea un diccionario", "esCorrecta": false },
+        { "id": "3", "texto": "Mapea teclas a valores", "esCorrecta": false },
+        { "id": "4", "texto": "Transforma una lista en tupla", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-21",
+      "pregunta": "¿Qué es 'filter()'?",
+      "opciones": [
+        { "id": "1", "texto": "Filtra elementos de un iterable según una función", "esCorrecta": true },
+        { "id": "2", "texto": "Filtra archivos", "esCorrecta": false },
+        { "id": "3", "texto": "Elimina duplicados", "esCorrecta": false },
+        { "id": "4", "texto": "Ordena elementos", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-22",
+      "pregunta": "¿Qué es 'lambda'?",
+      "opciones": [
+        { "id": "1", "texto": "Función anónima de una línea", "esCorrecta": true },
+        { "id": "2", "texto": "Función recursiva", "esCorrecta": false },
+        { "id": "3", "texto": "Expresión matemática", "esCorrecta": false },
+        { "id": "4", "texto": "Variable lambda", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-23",
+      "pregunta": "¿Cómo se importa un módulo?",
+      "opciones": [
+        { "id": "1", "texto": "import modulo", "esCorrecta": true },
+        { "id": "2", "texto": "include modulo", "esCorrecta": false },
+        { "id": "3", "texto": "require modulo", "esCorrecta": false },
+        { "id": "4", "texto": "using modulo", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-24",
+      "pregunta": "¿Qué es '__name__ == \"__main__\"'?",
+      "opciones": [
+        { "id": "1", "texto": "Verifica si el script se ejecuta directamente (no importado)", "esCorrecta": true },
+        { "id": "2", "texto": "Nombre del módulo principal", "esCorrecta": false },
+        { "id": "3", "texto": "Variable de entorno", "esCorrecta": false },
+        { "id": "4", "texto": "Función main", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-25",
+      "pregunta": "¿Qué es 'pip'?",
+      "opciones": [
+        { "id": "1", "texto": "Gestor de paquetes de Python", "esCorrecta": true },
+        { "id": "2", "texto": "Paquete de Python", "esCorrecta": false },
+        { "id": "3", "texto": "Python Installation Program", "esCorrecta": false },
+        { "id": "4", "texto": "Pipe de Python", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-26",
+      "pregunta": "¿Qué hace 'with open()'?",
+      "opciones": [
+        { "id": "1", "texto": "Manejo de archivos con cierre automático (context manager)", "esCorrecta": true },
+        { "id": "2", "texto": "Abre archivo en modo escritura", "esCorrecta": false },
+        { "id": "3", "texto": "Crea un archivo", "esCorrecta": false },
+        { "id": "4", "texto": "Lee todo el archivo", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-27",
+      "pregunta": "¿Qué es 'pickle'?",
+      "opciones": [
+        { "id": "1", "texto": "Serialización de objetos Python", "esCorrecta": true },
+        { "id": "2", "texto": "Formato de archivo", "esCorrecta": false },
+        { "id": "3", "texto": "Tipo de dato", "esCorrecta": false },
+        { "id": "4", "texto": "Método de lista", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-28",
+      "pregunta": "¿Qué son los decoradores (@)?",
+      "opciones": [
+        { "id": "1", "texto": "Funciones que modifican otras funciones/clases", "esCorrecta": true },
+        { "id": "2", "texto": "Comentarios especiales", "esCorrecta": false },
+        { "id": "3", "texto": "Etiquetas para variables", "esCorrecta": false },
+        { "id": "4", "texto": "Importaciones especiales", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-29",
+      "pregunta": "¿Qué es 'async/await'?",
+      "opciones": [
+        { "id": "1", "texto": "Programación asíncrona (corrutinas)", "esCorrecta": true },
+        { "id": "2", "texto": "Espera sincrónica", "esCorrecta": false },
+        { "id": "3", "texto": "Nuevos tipos de datos", "esCorrecta": false },
+        { "id": "4", "texto": "Manejo de errores", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-30",
+      "pregunta": "¿Qué es 'f-string' (formatted string)?",
+      "opciones": [
+        { "id": "1", "texto": "f\"Hola {nombre}\" - interpolación de variables", "esCorrecta": true },
+        { "id": "2", "texto": "String de función", "esCorrecta": false },
+        { "id": "3", "texto": "Formato de archivo", "esCorrecta": false },
+        { "id": "4", "texto": "String rápido", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-31",
+      "pregunta": "¿Qué es 'set' en Python?",
+      "opciones": [
+        { "id": "1", "texto": "Colección no ordenada de elementos únicos", "esCorrecta": true },
+        { "id": "2", "texto": "Lista ordenada", "esCorrecta": false },
+        { "id": "3", "texto": "Diccionario", "esCorrecta": false },
+        { "id": "4", "texto": "Tupla mutable", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-32",
+      "pregunta": "¿Qué hace 'sorted()' vs 'list.sort()'?",
+      "opciones": [
+        { "id": "1", "texto": "sorted() devuelve nueva lista, sort() modifica in-place", "esCorrecta": true },
+        { "id": "2", "texto": "Son iguales", "esCorrecta": false },
+        { "id": "3", "texto": "sorted() es para strings", "esCorrecta": false },
+        { "id": "4", "texto": "sort() devuelve nueva lista", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-33",
+      "pregunta": "¿Qué es 'collections.Counter'?",
+      "opciones": [
+        { "id": "1", "texto": "Cuenta ocurrencias de elementos en un iterable", "esCorrecta": true },
+        { "id": "2", "texto": "Contador de bucles", "esCorrecta": false },
+        { "id": "3", "texto": "Contador de archivos", "esCorrecta": false },
+        { "id": "4", "texto": "Cuenta líneas de código", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-34",
+      "pregunta": "¿Qué es 'typing' (type hints)?",
+      "opciones": [
+        { "id": "1", "texto": "Anotaciones de tipo opcionales para mejor documentación", "esCorrecta": true },
+        { "id": "2", "texto": "Tipado estático obligatorio", "esCorrecta": false },
+        { "id": "3", "texto": "Nuevo sistema de tipos", "esCorrecta": false },
+        { "id": "4", "texto": "Módulo de escritura", "esCorrecta": false }
+      ]
+    },
+    {
+      "id": "py-35",
+      "pregunta": "¿Qué es 'venv'?",
+      "opciones": [
+        { "id": "1", "texto": "Entorno virtual aislado para dependencias", "esCorrecta": true },
+        { "id": "2", "texto": "Versión de Python", "esCorrecta": false },
+        { "id": "3", "texto": "Entorno de variables", "esCorrecta": false },
+        { "id": "4", "texto": "Variable de entorno", "esCorrecta": false }
+      ]
+    }
+  ]
+}
