@@ -3,6 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import Feather from "@expo/vector-icons/Feather";
+import Logo from "../components/Logo";
 import { useSQLiteContext } from "expo-sqlite";
 import * as FileSystem from "expo-file-system/legacy";
 import * as Sharing from "expo-sharing";
@@ -35,12 +36,7 @@ export default function Home() {
 
   return (
     <LinearGradient colors={["#0C0C14", "#2f224b"]} style={styles.container}>
-      <View style={styles.logoWrap}>
-        <Text style={styles.logo}>
-          Re<Text style={styles.logoAccent}>.code()</Text>
-        </Text>
-      </View>
-
+      <Logo size={50} marginTop={Constants.statusBarHeight + 40} />
       <View style={[styles.formContainer, { marginVertical: 20, padding: 20 }]}>
         <Pressable
           style={[
@@ -130,15 +126,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingHorizontal: 24,
-  },
-  logoWrap: {
-    marginTop: Constants.statusBarHeight + 40,
-  },
-  logo: {
-    fontFamily: "PixelifySans_700Bold",
-    fontSize: 50,
-    letterSpacing: 1,
-    color: "#D9D9DE",
   },
   logoAccent: {
     color: "#7C5CFF",

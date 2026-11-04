@@ -2,18 +2,14 @@ import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import Boton from "../components/Boton";
+import Logo from "../components/Logo";
 import Constants from "expo-constants";
 
 export default function WelcomeScreen() {
   const router = useRouter();
   return (
     <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
-      <View style={styles.logoWrap}>
-        <Text style={styles.logo}>
-          Re<Text style={styles.logoAccent}>.code()</Text>
-        </Text>
-      </View>
-
+      <Logo marginTop={Constants.statusBarHeight + 200} />
       <View style={styles.textBlock}>
         <Text style={styles.title}>
           Practica código{"\n"}
@@ -50,18 +46,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 24,
   },
-  logoWrap: {
-    marginTop: Constants.statusBarHeight + 200,
-  },
-  logo: {
-    fontFamily: "PixelifySans_700Bold",
-    fontSize: 65,
-    letterSpacing: 1,
-    color: "#D9D9DE",
-  },
-  logoAccent: {
-    color: "#7C5CFF",
-  },
+
   textBlock: {
     marginTop: 48,
     alignItems: "center",

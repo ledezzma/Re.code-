@@ -12,15 +12,19 @@ import { useRouter } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
 import Constants from "expo-constants";
 import Boton from "../components/Boton";
+import Logo from "../components/Logo";
 import { registrarUsuario } from "../database/users";
+import * as SecureStore from "expo-secure-store";
 
 export default function Registro() {
   const router = useRouter();
   const db = useSQLiteContext();
 
+  //estados para cada uno de los campos del registro
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
   const [confirmar, setConfirmar] = useState("");
+  // en cada uno de los inputs se actualiza el estado y al presionar el boton se ejecutan cada una de las funciones de validacion y registro del usuario
 
   const registrar = async () => {
     if (!correo.trim() || !password || !confirmar) {
@@ -40,29 +44,32 @@ export default function Registro() {
       return;
     }
 
-    try {
-      const registrado = await registrarUsuario(db, correo, password);
+    const res = await registrarUsuario(db, correo, password);
 
-      if (!registrado) {
-        Alert.alert("Error", "Ese correo ya está registrado");
-        return;
-      }
+    const ERROR_MESSAGES = {
+      EMAIL_EXISTS: "El correo ya está registrado",
+      WEAK_PASSWORD: "La contraseña debe tener al menos 8 caracteres",
+      INVALID_EMAIL: "Correo ivalido",
+    } as const; //infiere los vavlores exactos, porque se hace readonly, para que no se pueda modificar
 
-      router.replace("/home");
-    } catch (e) {
-      Alert.alert("Error", "No se pudo crear la cuenta. Intenta de nuevo.");
-      console.log(e);
+    if (!res.ok) {
+      const message =
+        ERROR_MESSAGES[res.error as keyof typeof ERROR_MESSAGES] ?? // sino encuentra el error, muestra el mensaje
+        "No se pudo crear la cuenta";
+      Alert.alert("Error", message);
+      return;
     }
+
+    await SecureStore.setItemAsync("userId", String(res.userId)); // almacena el id del usuario en el secure store para mantener la sesion iniciada
+    router.replace("/home");
   };
 
   return (
     <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
-      <View style={styles.logoWrap}>
-        <Text style={styles.logo}>
-          Re<Text style={styles.logoAccent}>.code()</Text>
-        </Text>
-      </View>
-
+      <Logo
+        marginTop={Constants.statusBarHeight + 100}
+        style={{ marginBottom: 20 }}
+      />
       <View style={styles.formContainer}>
         <Text style={styles.title}>Crea tu cuenta</Text>
         <Text style={styles.subtitle}>
@@ -101,7 +108,6 @@ export default function Registro() {
 
         {/*Boton*/}
         <Boton texto="Crear Cuenta" onPress={registrar} />
-
         <View style={styles.loginRow}>
           <Text style={styles.subtitle}>¿Ya tienes cuenta?</Text>
           <Pressable onPress={() => router.push("/login")}>
@@ -118,7 +124,7 @@ const styles = StyleSheet.create({
     padding: 28,
     backgroundColor: "#1A1A28",
     width: "93%",
-    borderRadius: 30,
+    borderRadius: 40,
     borderColor: "#2c2c33",
     borderWidth: 1,
   },
@@ -126,19 +132,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingHorizontal: 24,
-  },
-  logoWrap: {
-    marginTop: Constants.statusBarHeight + 100,
-    marginBottom: 20,
-  },
-  logo: {
-    fontFamily: "PixelifySans_700Bold",
-    fontSize: 65,
-    letterSpacing: 1,
-    color: "#D9D9DE",
-  },
-  logoAccent: {
-    color: "#7C5CFF",
   },
   title: {
     fontFamily: "SourceSans3_600SemiBold",

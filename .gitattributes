@@ -1,0 +1,5 @@
+# Excluir de estadísticas de lenguaje
+node_modules/* linguist-vendored
+.git_old/* linguist-vendored
+*.db linguist-vendored
+*.lock linguist-vendored
