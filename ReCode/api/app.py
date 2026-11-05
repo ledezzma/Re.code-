@@ -1,11 +1,8 @@
-# pip install fastapi uvicorn mariadb
-# Ejecutar con: uvicorn main:app --reload
-
 import secrets
 from datetime import datetime
 
 import mariadb
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -52,16 +49,10 @@ class Historial(BaseModel):
 
 
 def get_db():
-    #Abre una conexión nueva. Cada endpoint se encarga de cerrarla.
     try:
-        return mariadb.connect(host="127.0.0.1", port=3306, user="root", password="", database="servidor")
+        return mariadb.connect(host="127.0.0.1", port=3306, user="root", password="", database="datosusuarios")
     except mariadb.Error:
-        raise HTTPException(503, "La conexión con la base de datos ha fallado")
-
-
-def fallar(conn, codigo_http, mensaje):
-    conn.commit()  #Guarda el intento fallido que se acaba de sumar
-    raise HTTPException(codigo_http, mensaje)
+        return {"message": "La conexión con la base de datos ha fallado"}
 
 
 def enviar_codigo(email, codigo):
@@ -85,23 +76,23 @@ def iniciar_sesion(datos: Login):
         )
         fila = cur.fetchone()
         if fila is None:
-            raise HTTPException(401, "Correo o contraseña incorrectos")
+            return {"message": "Correo o contraseña incorrectos"}
 
         id_usuario, contrasena, bloqueado = fila
 
         if bloqueado:
-            raise HTTPException(429, "Demasiados intentos. Prueba en unos minutos")
+            return {"message": "Demasiados intentos, prueba en unos minutos"}
 
         if contrasena != datos.password:
-            #Suma el fallo si las contraseñas no coinciden, en caso de que se llegue al máximo bloquea la cuenta por 15 minutos
             cur.execute(
                 "UPDATE Usuarios SET "
+                #Comprobar si ya no quedan intentos disponibles, y bloquear si es el caso
                 "bloqueado_hasta = IF(intentos_fallidos + 1 >= ?, DATE_ADD(NOW(), INTERVAL ? MINUTE), bloqueado_hasta), "
                 "intentos_fallidos = IF(intentos_fallidos + 1 >= ?, 0, intentos_fallidos + 1) "
                 "WHERE id_usuario = ?",
                 (maximo_intentos_login, bloqueo_minutos, maximo_intentos_login, id_usuario),
             )
-            fallar(conn, 401, "Correo o contraseña incorrectos")
+            return {"message": "Correo o contraseña incorrectos"}
 
         cur.execute(
             "UPDATE Usuarios SET intentos_fallidos = 0, bloqueado_hasta = NULL WHERE id_usuario = ?",
@@ -124,7 +115,7 @@ def registrar(datos: Login):
                 (datos.email.lower(), datos.password),
             )
         except mariadb.IntegrityError:
-            raise HTTPException(409, "Ese correo ya está registrado")
+            return {"message": "Ese correo ya está registrado"}
         conn.commit()
         return {"message": "Cuenta creada", "id_usuario": cur.lastrowid}
     finally:
@@ -134,7 +125,7 @@ def registrar(datos: Login):
 @app.post("/intentoCambiarPw")
 def intento_cambiar_pw(datos: Correo):
     mensaje = "Si la cuenta existe, se ha enviado un código al correo"
-    #Si el correo no existe devolvemos lo mismo, con un token falso
+    #Si el correo no existe s devuelve lo mismo, con un token falso
     respuesta_falsa = {"message": mensaje, "token": secrets.token_urlsafe(32)}
 
     conn = get_db()
@@ -149,22 +140,21 @@ def intento_cambiar_pw(datos: Correo):
             return respuesta_falsa
         id_usuario = fila[0]
 
-        #Se limpian los tokens caducados y, si queda uno vigente, no se crea otro, así no se pueden pedir códigos sin fin para seguir probando.
+        #Se limpian los tokens caducados y, si queda uno vigente, no se crea otro, así no se pueden pedir códigos sin fin para seguir probando
         cur.execute("DELETE FROM Tokens WHERE id_usuario = ? AND fecha_hora_expiracion <= NOW()", (id_usuario,))
-        cur.execute("SELECT 1 FROM Tokens WHERE id_usuario = ?", (id_usuario,))
+        cur.execute("SELECT * FROM Tokens WHERE id_usuario = ?", (id_usuario,))
         if cur.fetchone():
             conn.commit()
             return respuesta_falsa
 
         token = secrets.token_urlsafe(32)
         cur.execute(
-            "INSERT INTO Tokens (id_usuario, token, fecha_hora_expiracion) "
-            "VALUES (?, ?, DATE_ADD(NOW(), INTERVAL ? MINUTE))",
+            "INSERT INTO Tokens (id_usuario, token, fecha_hora_expiracion) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL ? MINUTE))",
             (id_usuario, token, codigo_minutos),
         )
         id_token = cur.lastrowid
 
-        codigo = f"{secrets.randbelow(1000000):06d}"
+        codigo = f"{secrets.randbelow(1000000)}"
         cur.execute(
             "INSERT INTO Codigo (id_token, codigo, fecha_hora_expiracion) "
             "VALUES (?, ?, DATE_ADD(NOW(), INTERVAL ? MINUTE))",
@@ -191,7 +181,7 @@ def cambiar_contrasena(datos: CambioPw):
         )
         fila = cur.fetchone()
         if fila is None:
-            raise HTTPException(400, error)
+            return {"message": error}
         id_token, id_usuario = fila
 
         cur.execute(
@@ -201,7 +191,7 @@ def cambiar_contrasena(datos: CambioPw):
         )
         fila = cur.fetchone()
         if fila is None:
-            raise HTTPException(400, error)
+            return {"message": error}
         id_codigo, codigo_guardado = fila
 
         #Se gasta el intento ANTES de comparar
@@ -210,14 +200,13 @@ def cambiar_contrasena(datos: CambioPw):
             (id_codigo, maximo_intentos_codigo),
         )
         if cur.rowcount == 0 or codigo_guardado != datos.codigo:
-            fallar(conn, 400, error)
+            return {"message": error}
 
         cur.execute(
-            "UPDATE Usuarios SET contrasena = ?, intentos_fallidos = 0, bloqueado_hasta = NULL "
-            "WHERE id_usuario = ?",
+            "UPDATE Usuarios SET contrasena = ?, intentos_fallidos = 0, bloqueado_hasta = NULL WHERE id_usuario = ?",
             (datos.nueva_contrasena, id_usuario),
         )
-        cur.execute("DELETE FROM Tokens WHERE id_usuario = ?", (id_usuario,))  #Borra también el código
+        cur.execute("DELETE FROM Tokens WHERE id_usuario = ?", (id_usuario,))  #Borra también el código de recuperacion
         conn.commit()
         return {"message": "Contraseña actualizada"}
     finally:
@@ -234,7 +223,7 @@ def eliminar_cuenta(id_usuario: int):
             (id_usuario,),
         )
         if cur.rowcount == 0:
-            raise HTTPException(404, "No existe esa cuenta")
+            return {"message": "No existe esa cuenta"}
         cur.execute("DELETE FROM Tokens WHERE id_usuario = ?", (id_usuario,))
         conn.commit()
         return {"message": "Cuenta eliminada"}
@@ -249,7 +238,7 @@ def cargar_historial(id_usuario: int, datos: Historial):
         cur = conn.cursor()
         cur.execute("SELECT * FROM Usuarios WHERE id_usuario = ? AND estado = 'activa'", (id_usuario,))
         if cur.fetchone() is None:
-            raise HTTPException(404, "No existe esa cuenta")
+            return {"message": "No existe esa cuenta"}
 
         filas = [
             (id_usuario, p.id_pregunta, p.fecha.replace(tzinfo=None), p.correcta)
