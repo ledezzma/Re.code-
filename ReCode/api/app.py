@@ -2,7 +2,7 @@ import secrets
 from datetime import datetime
 
 import mariadb
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -50,7 +50,7 @@ class Historial(BaseModel):
 
 def get_db():
     try:
-        return mariadb.connect(host="127.0.0.1", port=3306, user="root", password="", database="datosusuarios")
+        return mariadb.connect(host="127.0.0.1", port=3306, user="root", password="", database="servidor")
     except mariadb.Error:
         return {"message": "La conexión con la base de datos ha fallado"}
 
@@ -76,12 +76,13 @@ def iniciar_sesion(datos: Login):
         )
         fila = cur.fetchone()
         if fila is None:
-            return {"message": "Correo o contraseña incorrectos"}
+            #return {"message": "Correo o contraseña incorrectos"} si los dejo como return, siempre devuelve 200
+            raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
 
         id_usuario, contrasena, bloqueado = fila
 
         if bloqueado:
-            return {"message": "Demasiados intentos, prueba en unos minutos"}
+            raise HTTPException(status_code=429, detail="Demasiados intentos, prueba en unos minutos")
 
         if contrasena != datos.password:
             cur.execute(
@@ -92,7 +93,7 @@ def iniciar_sesion(datos: Login):
                 "WHERE id_usuario = ?",
                 (maximo_intentos_login, bloqueo_minutos, maximo_intentos_login, id_usuario),
             )
-            return {"message": "Correo o contraseña incorrectos"}
+            raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos")
 
         cur.execute(
             "UPDATE Usuarios SET intentos_fallidos = 0, bloqueado_hasta = NULL WHERE id_usuario = ?",
@@ -111,7 +112,7 @@ def registrar(datos: Login):
         cur = conn.cursor()
         try:
             cur.execute(
-                "INSERT INTO Usuarios (correo_electronico, contrasena) VALUES (?, ?)",
+                "INSERT INTO Usuarios(correo_electronico, contrasena) VALUES (?, ?)",
                 (datos.email.lower(), datos.password),
             )
         except mariadb.IntegrityError:

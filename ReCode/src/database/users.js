@@ -1,4 +1,3 @@
-// src/database/users.js
 import * as Crypto from "expo-crypto";
 
 const PEPPER = "recode_2026";
@@ -7,19 +6,21 @@ const PEPPER = "recode_2026";
 async function hashWithSalt(password, salt) {
   return Crypto.digestStringAsync(
     Crypto.CryptoDigestAlgorithm.SHA256,
-    password + salt + PEPPER
+    password + salt + PEPPER,
   );
 }
 
 async function randomSalt() {
   const bytes = await Crypto.getRandomBytesAsync(16);
-  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 // ---------- API pública ----------
 export async function registrarUsuario(db, correo, contraseña) {
   const email = correo.trim().toLowerCase();
-  if (!email.includes('@')) return { ok: false, error: "INVALID_EMAIL" };
+  if (!email.includes("@")) return { ok: false, error: "INVALID_EMAIL" };
   if (contraseña.length < 8) return { ok: false, error: "WEAK_PASSWORD" };
 
   const salt = await randomSalt();
@@ -28,12 +29,14 @@ export async function registrarUsuario(db, correo, contraseña) {
 
   try {
     const result = await db.runAsync(
-      "INSERT INTO usuarios (correo_electronico, contrasena) VALUES (?, ?)",
-      email, stored
+      "INSERT INTO usuarios (correo_electronico, contraseña) VALUES (?, ?)",
+      email,
+      stored,
     );
     return { ok: true, userId: result.lastInsertRowId };
   } catch (e) {
-    if (String(e.message).includes("UNIQUE")) return { ok: false, error: "EMAIL_EXISTS" };
+    if (String(e.message).includes("UNIQUE"))
+      return { ok: false, error: "EMAIL_EXISTS" };
     throw e;
   }
 }
@@ -41,12 +44,12 @@ export async function registrarUsuario(db, correo, contraseña) {
 export async function loginUsuario(db, correo, contraseña) {
   const email = correo.trim().toLowerCase();
   const row = await db.getFirstAsync(
-    "SELECT id_usuario, contrasena FROM usuarios WHERE correo_electronico = ?",
-    email
+    "SELECT id_usuario, contraseña FROM usuarios WHERE correo_electronico = ?",
+    email,
   );
   if (!row) return { ok: false, error: "INVALID_CREDENTIALS" };
 
-  const [salt, hash] = row.contrasena.split(':');
+  const [salt, hash] = row.contraseña.split(":");
   if (!salt || !hash) return { ok: false, error: "INVALID_CREDENTIALS" };
 
   const testHash = await hashWithSalt(contraseña, salt);

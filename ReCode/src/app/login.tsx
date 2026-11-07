@@ -13,13 +13,10 @@ import Constants from "expo-constants";
 import Zocial from "@expo/vector-icons/Zocial";
 import Boton from "../components/Boton";
 import Logo from "../components/Logo";
-import { useSQLiteContext } from "expo-sqlite";
-import { loginUsuario } from "../database/users";
 import * as SecureStore from "expo-secure-store";
 
 export default function Login() {
   const router = useRouter();
-  const db = useSQLiteContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,14 +26,26 @@ export default function Login() {
       return;
     }
 
-    const res = await loginUsuario(db, email, password);
+    // solicitud POST al backend para el inicio de sesion
+    const response = await fetch("http://192.168.1.75:8000/iniciarsesion", {
+      // la IP va a variar dependiendo de la red
+      method: "POST",
+      headers: { "Content-Type": "application/json" }, // se indica que se enviara un objeto de tipo JSON
+      body: JSON.stringify({ email, password }), // se envia el objeto de correo y contraseña al backend para que lo valide
+    });
 
-    if (!res.ok) {
-      Alert.alert("Error", "Credenciales incorrectas");
+    if (!response.ok) {
+      const err = await response.json();
+      Alert.alert(
+        "Error",
+        err.detail || err.message || "Credenciales incorrectas",
+      );
       return;
     }
 
-    await SecureStore.setItemAsync("userId", String(res.userId));
+    const res = await response.json(); // { message, id_usuario }
+
+    await SecureStore.setItemAsync("userId", String(res.id_usuario));
     router.replace("/home");
   };
 
