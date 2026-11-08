@@ -15,16 +15,15 @@ import Boton from "../components/Boton";
 import Logo from "../components/Logo";
 import { registrarUsuario } from "../database/users";
 import * as SecureStore from "expo-secure-store";
+import { getAPIUrl } from "../../utils/networkConnection";
 
 export default function Registro() {
   const router = useRouter();
   const db = useSQLiteContext();
-
-  //estados para cada uno de los campos del registro
+  // estados para cada uno de los campos del registro
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
   const [confirmar, setConfirmar] = useState("");
-  // en cada uno de los inputs se actualiza el estado y al presionar el boton se ejecutan cada una de las funciones de validacion y registro del usuario
 
   const registrar = async () => {
     if (!correo.trim() || !password || !confirmar) {
@@ -44,26 +43,39 @@ export default function Registro() {
       return;
     }
 
-    const res = await registrarUsuario(db, correo, password);
+    // 1. Registrar en BACKEND (source of truth)
+    try {
+      const API_URL = await getAPIUrl();
+      const apiRes = await fetch(`${API_URL}/registrar`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: correo, password }),
+      });
 
-    const ERROR_MESSAGES = {
-      EMAIL_EXISTS: "El correo ya está registrado",
-      WEAK_PASSWORD: "La contraseña debe tener al menos 8 caracteres",
-      INVALID_EMAIL: "Correo ivalido",
-    } as const; //infiere los vavlores exactos, porque se hace readonly, para que no se pueda modificar
+      if (!apiRes.ok) {
+        const error = await apiRes.json();
+        Alert.alert("Error", error.detail || "No se pudo crear la cuenta");
+        return;
+      }
 
-    if (!res.ok) {
-      const message =
-        ERROR_MESSAGES[res.error as keyof typeof ERROR_MESSAGES] ?? // sino encuentra el error, muestra el mensaje
-        "No se pudo crear la cuenta";
-      Alert.alert("Error", message);
-      return;
+      const apiData = await apiRes.json(); // { message, id_usuario }
+
+      // 2. Guardar en LOCAL (cache para offline)
+      try {
+        const res = await registrarUsuario(db, correo, password);
+        if (!res.ok) {
+          console.warn("Cache local falló:", res.error);
+        }
+      } catch (e) {
+        console.warn("Cache local falló:", e);
+      }
+
+      await SecureStore.setItemAsync("userId", String(apiData.id_usuario));
+      router.replace("/login");
+    } catch {
+      Alert.alert("Error", "No se pudo conectar al servidor");
     }
-
-    await SecureStore.setItemAsync("userId", String(res.userId)); // almacena el id del usuario en el secure store para mantener la sesion iniciada
-    router.replace("/home");
   };
-
   return (
     <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
       <Logo

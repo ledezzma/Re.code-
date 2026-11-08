@@ -14,6 +14,7 @@ import Zocial from "@expo/vector-icons/Zocial";
 import Boton from "../components/Boton";
 import Logo from "../components/Logo";
 import * as SecureStore from "expo-secure-store";
+import { getAPIUrl } from "../../utils/networkConnection";
 
 export default function Login() {
   const router = useRouter();
@@ -26,27 +27,27 @@ export default function Login() {
       return;
     }
 
-    // solicitud POST al backend para el inicio de sesion
-    const response = await fetch("http://192.168.1.75:8000/iniciarsesion", {
-      // la IP va a variar dependiendo de la red
-      method: "POST",
-      headers: { "Content-Type": "application/json" }, // se indica que se enviara un objeto de tipo JSON
-      body: JSON.stringify({ email, password }), // se envia el objeto de correo y contraseña al backend para que lo valide
-    });
+    try {
+      const API_URL = await getAPIUrl();
+      console.log("API_URL:", API_URL);
+      const response = await fetch(`${API_URL}/iniciarsesion`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!response.ok) {
-      const err = await response.json();
-      Alert.alert(
-        "Error",
-        err.detail || err.message || "Credenciales incorrectas",
-      );
-      return;
+      if (!response.ok) {
+        const err = await response.json();
+        Alert.alert("Error", err.detail || "Credenciales incorrectas");
+        return;
+      }
+
+      const res = await response.json();
+      await SecureStore.setItemAsync("userId", String(res.id_usuario));
+      router.replace("/home");
+    } catch {
+      Alert.alert("Error", "No se pudo conectar al servidor");
     }
-
-    const res = await response.json(); // { message, id_usuario }
-
-    await SecureStore.setItemAsync("userId", String(res.id_usuario));
-    router.replace("/home");
   };
 
   return (

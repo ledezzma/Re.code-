@@ -1,10 +1,15 @@
+import os
 import secrets
 from datetime import datetime
+from dotenv import load_dotenv
 
 import mariadb
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
+load_dotenv()  # Carga las variables de entorno desde el archivo .env
+#host = os.getenv("DB_HOST", "127.0.0.1")
 
 maximo_intentos_login = 5   #Fallos antes de bloquear la cuenta
 bloqueo_minutos = 15
@@ -50,7 +55,13 @@ class Historial(BaseModel):
 
 def get_db():
     try:
-        return mariadb.connect(host="127.0.0.1", port=3306, user="root", password="", database="servidor")
+        return mariadb.connect(
+            host = os.getenv("DB_HOST", "127.0.0.1"),
+            port = int(os.getenv("DB_PORT", 3306)),
+            user = os.getenv("DB_USER", "root"),
+            password = os.getenv("DB_PASSWORD", ""),
+            database = os.getenv("DB_NAME", "servidor"),
+        )
     except mariadb.Error:
         return {"message": "La conexión con la base de datos ha fallado"}
 
