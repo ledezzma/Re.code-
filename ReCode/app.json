@@ -7,6 +7,9 @@
     "icon": "./assets/images/icon.png",
     "scheme": "recode",
     "userInterfaceStyle": "automatic",
+    "androidNavigationBar": {
+      "visible": "sticky-immersive"
+    },
     "ios": {
       "icon": "./assets/expo.icon"
     },
@@ -37,7 +40,14 @@
       "expo-font",
       "expo-sqlite",
       "expo-sharing",
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-navigation-bar",
+        {
+          "hidden": true,
+          "style": "dark"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

@@ -7,6 +7,7 @@ import Logo from "../components/Logo";
 import { useSQLiteContext } from "expo-sqlite";
 import * as FileSystem from "expo-file-system/legacy";
 import * as Sharing from "expo-sharing";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
   const router = useRouter();
@@ -109,6 +110,7 @@ export default function Home() {
       >
         <Text style={styles.subtitle}>Exportar base de datos (debug)</Text>
       </Pressable>
+      <NavBar pantallaActual="home"></NavBar>
     </LinearGradient>
   );
 }
