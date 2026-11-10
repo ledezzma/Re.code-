@@ -14,7 +14,7 @@ export default function Home() {
   const db = useSQLiteContext();
 
   // Función temporal de depuración: exporta la BD del celular para verla en DBeaver
-  const exportarBD = async () => {
+  /*const exportarBD = async () => {
     try {
       // Vuelca los cambios pendientes al archivo principal
       await db.execAsync("PRAGMA wal_checkpoint(TRUNCATE);");
@@ -33,7 +33,7 @@ export default function Home() {
       Alert.alert("Error", "No se pudo exportar la base de datos");
       console.log(e);
     }
-  };
+  };*/
 
   return (
     <LinearGradient colors={["#0C0C14", "#2f224b"]} style={styles.container}>
@@ -101,15 +101,7 @@ export default function Home() {
       </View>
 
       {/* Botón temporal de depuración (quitar al terminar) */}
-      <Pressable
-        style={[
-          styles.formContainer,
-          { marginTop: 18, padding: 14, alignItems: "center" },
-        ]}
-        onPress={exportarBD}
-      >
-        <Text style={styles.subtitle}>Exportar base de datos (debug)</Text>
-      </Pressable>
+
       <NavBar pantallaActual="home"></NavBar>
     </LinearGradient>
   );
@@ -128,6 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingHorizontal: 24,
+    paddingBottom: Constants.statusBarHeight + 22 + 20,
   },
   logoAccent: {
     color: "#7C5CFF",
