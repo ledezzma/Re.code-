@@ -8,51 +8,56 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 export default function Pregunta() {
   const router = useRouter();
   return (
-    <LinearGradient colors={["#0C0C14", "#0C0C14"]}>
+    <LinearGradient colors={["#0C0C14", "#1a1a2e"]} style={styles.gradient}>
       <View style={styles.tabBar}>
         <View style={styles.tabBarContent}>
           <Pressable onPress={() => router.back()}>
             <Ionicons name="chevron-back-sharp" size={38} color="white" />
           </Pressable>
-          <Text style={[{ color: "white", fontSize: 22, marginLeft: 8 }]}>
-            Pregunta
-          </Text>
+          <Text style={styles.tabTitle}>Pregunta</Text>
         </View>
       </View>
 
-      <ScrollView style={[{}]}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+      >
         <View style={styles.container}>
-          <Text style={styles.textBlock}>Lenguaje: C {"\n"}</Text>
-          <Text style={styles.title}>
+          <View style={styles.languageRow}>
+            <Text style={styles.languageLabel}>Lenguaje</Text>
+            <Text style={styles.languageValue}>C</Text>
+          </View>
+
+          <Text style={styles.questionTitle}>
             ¿Cuál de estos no es un tipo de dato primitivo?
           </Text>
 
-          <Pressable style={styles.answerBlock}>
-            <Text style={styles.textBlock}>int</Text>
-          </Pressable>
+          <View style={styles.answersContainer}>
+            <Pressable style={styles.answerBlock}>
+              <Text style={styles.answerText}>int</Text>
+            </Pressable>
 
-          <Pressable style={styles.answerBlock}>
-            <Text style={styles.textBlock}>char</Text>
-          </Pressable>
+            <Pressable style={styles.answerBlock}>
+              <Text style={styles.answerText}>char</Text>
+            </Pressable>
 
-          <Pressable style={styles.answerBlock}>
-            <Text style={styles.textBlock}>float</Text>
-          </Pressable>
+            <Pressable style={styles.answerBlock}>
+              <Text style={styles.answerText}>float</Text>
+            </Pressable>
 
-          <Pressable style={styles.answerBlock}>
-            <Text style={styles.textBlock}>struct</Text>
-          </Pressable>
+            <Pressable style={styles.answerBlock}>
+              <Text style={styles.answerText}>struct</Text>
+            </Pressable>
+          </View>
 
           <View style={styles.bottomSection}>
             <Pressable style={styles.hintButton}>
-              <FontAwesome5 name="lightbulb" size={32} color="white" />
-              <Text style={[styles.textBlock, { fontSize: 32 }]}> 3</Text>
+              <FontAwesome5 name="lightbulb" size={24} color="white" />
+              <Text style={styles.hintText}>Pistas: 3</Text>
             </Pressable>
 
             <Pressable style={styles.nextButton}>
-              <Text style={[styles.textBlock, { fontSize: 32 }]}>
-                Confirmar
-              </Text>
+              <Text style={styles.nextButtonText}>Confirmar</Text>
             </Pressable>
           </View>
         </View>
@@ -61,69 +66,125 @@ export default function Pregunta() {
   );
 }
 const styles = StyleSheet.create({
-  bottomSection: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 15,
-    marginBottom: Constants.statusBarHeight + 110,
-  },
-  hintButton: {
-    backgroundColor: "#353b1d",
-    flexDirection: "row",
-    alignContent: "center",
-    paddingVertical: 18,
-    paddingHorizontal: 24,
-    alignItems: "center",
-    borderRadius: 20,
-  },
-
-  nextButton: {
-    alignContent: "center",
-    backgroundColor: "#1c381f",
-    paddingVertical: 18,
-    paddingHorizontal: 24,
-    borderRadius: 20,
-  },
-  container: {
+  gradient: {
     flex: 1,
-    padding: 36,
   },
-  textBlock: {
-    fontSize: 24,
-    color: "rgb(255, 255, 255)",
+  scrollView: {
+    flex: 1,
   },
-  title: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 29,
-    lineHeight: 44,
-    marginBottom: 20,
-    color: "#F2F2F7",
-  },
-  answerBlock: {
-    marginBottom: 18,
-    padding: 18,
-    width: "100%",
-    backgroundColor: "#1A2235",
-    borderRadius: 20,
-  },
-  answerText: {
-    marginTop: 14,
-    padding: 16,
-    width: "100%",
-    backgroundColor: "#fff",
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: Constants.statusBarHeight + 140,
   },
   tabBar: {
-    color: "white",
     width: "100%",
-    height: Constants.statusBarHeight + 60,
+    height: Constants.statusBarHeight + 64,
     backgroundColor: "#0F0F16",
     borderBottomWidth: 1,
     borderColor: "#2c2c33",
   },
   tabBarContent: {
-    marginHorizontal: 10,
-    marginTop: Constants.statusBarHeight + 6,
+    marginHorizontal: 20,
+    marginTop: Constants.statusBarHeight + 8,
     flexDirection: "row",
     alignItems: "center",
+  },
+  tabTitle: {
+    color: "white",
+    fontSize: 22,
+    fontWeight: "600",
+    marginLeft: 10,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 32,
+    paddingBottom: 24,
+  },
+  languageRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 28,
+    paddingBottom: 20,
+    borderBottomWidth: 1,
+    borderColor: "#2c2c33",
+  },
+  languageLabel: {
+    color: "#6B6B7A",
+    fontSize: 14,
+    fontWeight: "600",
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    marginRight: 10,
+  },
+  languageValue: {
+    color: "#7C5CFF",
+    fontSize: 18,
+    fontWeight: "700",
+  },
+  questionTitle: {
+    fontFamily: "SourceSans3_600SemiBold",
+    fontSize: 26,
+    lineHeight: 36,
+    color: "#F2F2F7",
+    marginBottom: 32,
+  },
+  answersContainer: {
+    marginBottom: 40,
+  },
+  answerBlock: {
+    backgroundColor: "#1A1A28",
+    borderWidth: 1,
+    borderColor: "#767684",
+    borderRadius: 16,
+    paddingVertical: 18,
+    paddingHorizontal: 20,
+    marginBottom: 14,
+    width: "100%",
+  },
+  answerText: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "#E8E8ED",
+    textAlign: "center",
+  },
+  bottomSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: 8,
+  },
+  hintButton: {
+    backgroundColor: "#e7d512",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#3a3a4a",
+  },
+  hintText: {
+    color: "#F2F2F7",
+    fontSize: 16,
+    fontWeight: "600",
+    marginLeft: 8,
+  },
+  nextButton: {
+    backgroundColor: "#67c767",
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 14,
+    shadowColor: "#7C5CFF",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  nextButtonText: {
+    color: "#FFFFFF",
+    fontSize: 17,
+    fontWeight: "700",
+    letterSpacing: 0.3,
   },
 });

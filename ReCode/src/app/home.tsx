@@ -1,112 +1,97 @@
-import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import { StyleSheet, Text, View, Pressable, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { NavigationBar } from "expo-navigation-bar";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import Feather from "@expo/vector-icons/Feather";
-import Logo from "../components/Logo";
-import { useSQLiteContext } from "expo-sqlite";
-import * as FileSystem from "expo-file-system/legacy";
-import * as Sharing from "expo-sharing";
-import NavBar from "@/components/NavBar";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
   const router = useRouter();
-  const db = useSQLiteContext();
-
-  // Función temporal de depuración: exporta la BD del celular para verla en DBeaver
-  /*const exportarBD = async () => {
-    try {
-      // Vuelca los cambios pendientes al archivo principal
-      await db.execAsync("PRAGMA wal_checkpoint(TRUNCATE);");
-
-      const ruta = FileSystem.documentDirectory + "SQLite/cliente.db";
-
-      if (!(await Sharing.isAvailableAsync())) {
-        Alert.alert(
-          "Error",
-          "Compartir no está disponible en este dispositivo",
-        );
-        return;
-      }
-      await Sharing.shareAsync(ruta);
-    } catch (e) {
-      Alert.alert("Error", "No se pudo exportar la base de datos");
-      console.log(e);
-    }
-  };*/
-
   return (
-    <LinearGradient colors={["#0C0C14", "#2f224b"]} style={styles.container}>
-      <Logo size={50} marginTop={Constants.statusBarHeight + 40} />
-      <View style={[styles.formContainer, { marginVertical: 20, padding: 20 }]}>
-        <Pressable
-          style={[
-            styles.subtitle,
-            { flexDirection: "row", justifyContent: "space-between" },
-          ]}
-          onPress={() => router.push("/")}
-        >
-          <Text style={styles.subtitle}>Configura tus preguntas</Text>
-          <Feather name="arrow-right" size={24} color="#8A8AA3" />
-        </Pressable>
-      </View>
+    <LinearGradient
+      colors={["#0C0C14", "#2f224b"]}
+      style={[{ height: "100%", alignItems: "center" }]}
+    >
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <View style={styles.logoWrap}>
+          <Text style={styles.logo}>
+            Re<Text style={styles.logoAccent}>.code()</Text>
+          </Text>
+        </View>
 
-      <View>
-        <Text
-          style={[
-            styles.logoAccent,
-            { fontSize: 24, marginTop: 20, textAlign: "center" },
-          ]}
+        <View
+          style={[styles.formContainer, { marginVertical: 20, padding: 20 }]}
         >
-          Modos de Juego{"\n"}
-        </Text>
+          <Pressable
+            style={[{ flexDirection: "row", justifyContent: "space-between" }]}
+            onPress={() => router.push("/")}
+          >
+            <Text style={styles.subtitle}>Configura tus preguntas</Text>
+            <Feather name="arrow-right" size={24} color="#8A8AA3" />
+          </Pressable>
+        </View>
 
-        <Pressable
-          style={styles.formContainer}
-          onPress={() => router.push("/pregunta")}
-        >
-          <View style={{ flexDirection: "row" }}>
-            <Text style={{ color: "white", fontSize: 18 }}>Contrareloj</Text>
-            <Text
-              style={{
-                color: "#e2b544",
-                marginTop: 3,
-                marginLeft: 15,
-                fontWeight: "condensed",
-              }}
-            >
-              VELOCIDAD{"\n"}
+        <View>
+          <Text style={styles.separator}>Modos de Juego{"\n"}</Text>
+
+          <Pressable
+            style={styles.formContainer}
+            onPress={() => router.push("/pregunta")}
+          >
+            <View style={[{ flexDirection: "row" }]}>
+              <Text style={styles.sectionTitle}>Contrarreloj</Text>
+              <Text
+                style={[
+                  {
+                    color: "#e2b544",
+                    marginTop: 3,
+                    marginLeft: 15,
+                    fontWeight: "condensed",
+                  },
+                ]}
+              >
+                VELOCIDAD{"\n"}
+              </Text>
+            </View>
+            <Text style={styles.subtitle}>
+              15 preguntas al azar, 30 segundos para cada una. Pon a prueba tus
+              conocimientos
+            </Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.formContainer}
+            onPress={() => router.push("/pregunta")}
+          >
+            <View style={[{ flexDirection: "row" }]}>
+              <Text style={styles.sectionTitle}>Previsor</Text>
+              <Text
+                style={[{ color: "#71ec66", marginTop: 3, marginLeft: 15 }]}
+              >
+                CONTROL{"\n"}
+              </Text>
+            </View>
+            <Text style={styles.subtitle}>
+              10 preguntas, elige entre 3, conociendo el lenguaje y la
+              dificultad
+            </Text>
+          </Pressable>
+
+          <View style={styles.formContainer}>
+            <Text style={styles.subtitle}>
+              Más modos de juego próximamente...
             </Text>
           </View>
-          <Text style={styles.subtitle}>
-            15 preguntas al azar, 30 segundos para cada una. Pon a prueba tus
-            conocimientos
-          </Text>
-        </Pressable>
-
-        <Pressable
-          style={[styles.formContainer, { marginTop: 18 }]}
-          onPress={() => router.push("/pregunta")}
-        >
-          <View style={{ flexDirection: "row" }}>
-            <Text style={{ color: "white", fontSize: 18 }}>Previsor</Text>
-            <Text style={{ color: "#71ec66", marginTop: 3, marginLeft: 15 }}>
-              CONTROL{"\n"}
-            </Text>
-          </View>
-          <Text style={styles.subtitle}>
-            10 preguntas, elige entre 3, conociendo el lenguaje y la dificultad
-          </Text>
-        </Pressable>
-      </View>
-
-      {/* Botón temporal de depuración (quitar al terminar) */}
+        </View>
+      </ScrollView>
 
       <NavBar pantallaActual="home"></NavBar>
     </LinearGradient>
   );
 }
-
 const styles = StyleSheet.create({
   formContainer: {
     padding: 26,
@@ -115,12 +100,27 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderColor: "#2c2c33",
     borderWidth: 1,
+    marginBottom: 18,
+  },
+  separator: {
+    color: "#7C5CFF",
+    fontSize: 24,
+    marginTop: 20,
+    textAlign: "center",
   },
   container: {
     flex: 1,
-    alignItems: "center",
     paddingHorizontal: 24,
-    paddingBottom: Constants.statusBarHeight + 22 + 20,
+  },
+  logoWrap: {
+    marginTop: Constants.statusBarHeight + 40,
+    alignItems: "center",
+  },
+  logo: {
+    fontFamily: "PixelifySans_700Bold",
+    fontSize: 50,
+    letterSpacing: 1,
+    color: "#D9D9DE",
   },
   logoAccent: {
     color: "#7C5CFF",
@@ -136,33 +136,17 @@ const styles = StyleSheet.create({
     lineHeight: 44,
     color: "#F2F2F7",
   },
+  sectionTitle: {
+    color: "white",
+    fontSize: 18,
+  },
   titleAccent: {
     color: "#7C5CFF",
   },
   subtitle: {
-    marginTop: 2,
     fontFamily: "SourceSans3_400Regular",
     fontSize: 18,
     lineHeight: 22,
     color: "#8A8AA3",
-    maxWidth: 320,
-  },
-  button: {
-    marginVertical: 8,
-    alignItems: "center",
-    backgroundColor: "#8567ff",
-    borderRadius: 10,
-  },
-  input: {
-    marginTop: 5,
-    backgroundColor: "#13131E",
-    color: "#ababc0",
-    marginBottom: 10,
-    borderRadius: 10,
-    height: 45,
-    fontSize: 16,
-    paddingHorizontal: 12,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
   },
 });
