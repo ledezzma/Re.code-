@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
@@ -16,6 +15,7 @@ import Logo from "../components/Logo";
 import { registrarUsuario } from "../database/users";
 import * as SecureStore from "expo-secure-store";
 import { getAPIUrl } from "../../utils/networkConnection";
+import { registroStyles } from "../styles";
 
 export default function Registro() {
   const router = useRouter();
@@ -77,20 +77,20 @@ export default function Registro() {
     }
   };
   return (
-    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
+    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={registroStyles.container}>
       <Logo
         marginTop={Constants.statusBarHeight + 100}
         style={{ marginBottom: 20 }}
       />
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>Crea tu cuenta</Text>
-        <Text style={styles.subtitle}>
+      <View style={registroStyles.formContainer}>
+        <Text style={registroStyles.title}>Crea tu cuenta</Text>
+        <Text style={registroStyles.subtitle}>
           Únete a la plataforma Re.code(){"\n"}
         </Text>
 
-        <Text style={styles.subtitle}>CORREO ELECTRÓNICO</Text>
+        <Text style={registroStyles.subtitle}>CORREO ELECTRÓNICO</Text>
         <TextInput
-          style={styles.input}
+          style={registroStyles.input}
           placeholder="tu@correo.com"
           value={correo}
           onChangeText={setCorreo}
@@ -98,9 +98,9 @@ export default function Registro() {
           placeholderTextColor={"#ababc0"}
         />
 
-        <Text style={styles.subtitle}>CONTRASEÑA</Text>
+        <Text style={registroStyles.subtitle}>CONTRASEÑA</Text>
         <TextInput
-          style={styles.input}
+          style={registroStyles.input}
           placeholder="Mínimo 8 caracteres"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}
@@ -108,9 +108,9 @@ export default function Registro() {
           onChangeText={setPassword}
         />
 
-        <Text style={styles.subtitle}>CONFIRMAR CONTRASEÑA</Text>
+        <Text style={registroStyles.subtitle}>CONFIRMAR CONTRASEÑA</Text>
         <TextInput
-          style={styles.input}
+          style={registroStyles.input}
           placeholder="Repite tu contraseña"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}
@@ -120,78 +120,13 @@ export default function Registro() {
 
         {/*Boton*/}
         <Boton texto="Crear Cuenta" onPress={registrar} />
-        <View style={styles.loginRow}>
-          <Text style={styles.subtitle}>¿Ya tienes cuenta?</Text>
+        <View style={registroStyles.loginRow}>
+          <Text style={registroStyles.subtitle}>¿Ya tienes cuenta?</Text>
           <Pressable onPress={() => router.push("/login")}>
-            <Text style={styles.loginLink}> Inicia sesión</Text>
+            <Text style={registroStyles.loginLink}> Inicia sesión</Text>
           </Pressable>
         </View>
       </View>
     </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  formContainer: {
-    padding: 28,
-    backgroundColor: "#1A1A28",
-    width: "93%",
-    borderRadius: 40,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 24,
-  },
-  title: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 30,
-    lineHeight: 44,
-    color: "#F2F2F7",
-  },
-  subtitle: {
-    marginTop: 2,
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 16,
-    lineHeight: 22,
-    color: "#8A8AA3",
-    maxWidth: 320,
-  },
-  button: {
-    marginVertical: 8,
-    alignItems: "center",
-    backgroundColor: "#8567ff",
-    borderRadius: 10,
-  },
-  buttonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontFamily: "SourceSans3_600SemiBold",
-    paddingVertical: 12,
-  },
-  input: {
-    marginVertical: 5,
-    backgroundColor: "#13131E",
-    color: "#ababc0",
-    marginBottom: 13,
-    borderRadius: 10,
-    height: 45,
-    fontSize: 16,
-    paddingHorizontal: 12,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-  },
-  loginRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 8,
-  },
-  loginLink: {
-    color: "#8567ff",
-    fontSize: 16,
-    fontFamily: "SourceSans3_400Regular",
-  },
-});

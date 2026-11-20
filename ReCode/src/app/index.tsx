@@ -13,7 +13,7 @@ export default function Index() {
       console.log(tablas);
     }
     probar();
-  }, []);
+  }, [db]);
 
   return <WelcomeScreen />;
 }

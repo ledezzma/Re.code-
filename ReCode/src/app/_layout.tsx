@@ -7,8 +7,7 @@ import {
   SourceSans3_600SemiBold,
 } from "@expo-google-fonts/source-sans-3";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
-import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
-import { useEffect } from "react";
+import { SQLiteProvider } from "expo-sqlite";
 
 export default function RootLayout() {
   // lista de fuentes que se van a cargar

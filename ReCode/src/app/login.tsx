@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
@@ -15,6 +14,7 @@ import Boton from "../components/Boton";
 import Logo from "../components/Logo";
 import * as SecureStore from "expo-secure-store";
 import { getAPIUrl } from "../../utils/networkConnection";
+import { loginStyles } from "../styles";
 
 export default function Login() {
   const router = useRouter();
@@ -51,18 +51,18 @@ export default function Login() {
   };
 
   return (
-    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
+    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={loginStyles.container}>
       <Logo
         marginTop={Constants.statusBarHeight + 100}
         style={{ marginBottom: 20 }}
       />
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>Bienvenido de nuevo</Text>
-        <Text style={styles.subtitle}>Ingresa a tu cuenta para continuar</Text>
+      <View style={loginStyles.formContainer}>
+        <Text style={loginStyles.title}>Bienvenido de nuevo</Text>
+        <Text style={loginStyles.subtitle}>Ingresa a tu cuenta para continuar</Text>
 
-        <Text style={styles.subtitle}>CORREO ELECTRÓNICO</Text>
+        <Text style={loginStyles.subtitle}>CORREO ELECTRÓNICO</Text>
         <TextInput
-          style={styles.input}
+          style={loginStyles.input}
           placeholder="tu@correo.com"
           placeholderTextColor={"#ababc0"}
           value={email}
@@ -71,9 +71,9 @@ export default function Login() {
           keyboardType="email-address"
         />
 
-        <Text style={styles.subtitle}>CONTRASEÑA</Text>
+        <Text style={loginStyles.subtitle}>CONTRASEÑA</Text>
         <TextInput
-          style={styles.input}
+          style={loginStyles.input}
           placeholder="·····················"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}
@@ -81,7 +81,7 @@ export default function Login() {
           onChangeText={setPassword}
         />
 
-        <View style={styles.buttons}>
+        <View style={loginStyles.buttons}>
           <Boton texto="Iniciar sesión" onPress={handleLogin} />
           <Boton
             texto="Ingresar como invitado"
@@ -91,74 +91,15 @@ export default function Login() {
           />
         </View>
 
-        <View style={styles.loginRow}>
-          <Text style={[styles.subtitle, { marginTop: 0 }]}>
+        <View style={loginStyles.loginRow}>
+          <Text style={[loginStyles.subtitle, { marginTop: 0 }]}>
             ¿No tienes cuenta?
           </Text>
           <Pressable onPress={() => router.push("/registro")}>
-            <Text style={styles.loginLink}> Regístrate</Text>
+            <Text style={loginStyles.loginLink}> Regístrate</Text>
           </Pressable>
         </View>
       </View>
     </LinearGradient>
   );
 }
-const styles = StyleSheet.create({
-  formContainer: {
-    padding: 28,
-    backgroundColor: "#1A1A28",
-    width: "93%",
-    borderRadius: 30,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 24,
-  },
-  title: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 29,
-    lineHeight: 44,
-    color: "#F2F2F7",
-  },
-  titleAccent: {
-    color: "#7C5CFF",
-  },
-  subtitle: {
-    marginTop: 6,
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 16,
-    lineHeight: 22,
-    color: "#8A8AA3",
-    maxWidth: 320,
-  },
-  buttons: {
-    gap: 8,
-    marginVertical: 8,
-  },
-  loginRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 0,
-  },
-  input: {
-    marginTop: 6,
-    backgroundColor: "#13131E",
-    color: "#ababc0",
-    marginBottom: 10,
-    borderRadius: 10,
-    height: 45,
-    fontSize: 16,
-    paddingHorizontal: 12,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-  },
-  loginLink: {
-    color: "#8567ff",
-    fontSize: 16,
-    fontFamily: "SourceSans3_400Regular",
-  },
-});

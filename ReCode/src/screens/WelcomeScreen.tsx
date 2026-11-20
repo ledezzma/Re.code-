@@ -1,28 +1,29 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import Boton from "../components/Boton";
 import Logo from "../components/Logo";
 import Constants from "expo-constants";
+import { welcomeStyles } from "../styles";
 
 export default function WelcomeScreen() {
   const router = useRouter();
   return (
-    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={styles.container}>
+    <LinearGradient colors={["#0C0C14", "#0C0C14"]} style={welcomeStyles.container}>
       <Logo marginTop={Constants.statusBarHeight + 200} />
-      <View style={styles.textBlock}>
-        <Text style={styles.title}>
+      <View style={welcomeStyles.textBlock}>
+        <Text style={welcomeStyles.title}>
           Practica código{"\n"}
-          <Text style={styles.titleAccent}>como un juego</Text>
+          <Text style={welcomeStyles.titleAccent}>como un juego</Text>
         </Text>
 
-        <Text style={styles.subtitle}>
+        <Text style={welcomeStyles.subtitle}>
           Evalúa tus conocimientos técnicos en rondas rápidas. Intenta, falla,
           aprende y vuelve a intentarlo.
         </Text>
       </View>
 
-      <View style={styles.botones}>
+      <View style={welcomeStyles.botones}>
         {/*Inicio de sesion*/}
         <Boton
           texto="Iniciar Sesión"
@@ -40,39 +41,3 @@ export default function WelcomeScreen() {
     </LinearGradient>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 24,
-  },
-
-  textBlock: {
-    marginTop: 48,
-    alignItems: "center",
-  },
-  title: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 39,
-    lineHeight: 44,
-    textAlign: "center",
-    color: "#F2F2F7",
-  },
-  titleAccent: {
-    color: "#7C5CFF",
-  },
-  subtitle: {
-    marginTop: 16,
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 18,
-    lineHeight: 22,
-    textAlign: "center",
-    color: "#8A8AA3",
-    maxWidth: 300,
-  },
-  botones: {
-    width: "80%",
-    marginTop: 40,
-    gap: 25,
-  },
-});
