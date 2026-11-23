@@ -14,7 +14,10 @@ import Boton from "../components/Boton";
 import Logo from "../components/Logo";
 import { useSQLiteContext } from "expo-sqlite";
 import { getAPIUrl } from "../../utils/networkConnection";
+<<<<<<< HEAD
 import { cerrarSesion, guardarSesion } from "../database/usuarios";
+=======
+>>>>>>> 08a2d70f69989fdafc95546a996817ef4c09dd2b
 import { loginStyles } from "../styles";
 
 export default function Login() {
