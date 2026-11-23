@@ -28,6 +28,13 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-navigation-bar",
+        {
+          "hidden": true,
+          "style": "dark"
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -40,21 +47,14 @@
       "expo-font",
       "expo-sqlite",
       "expo-sharing",
-      "expo-secure-store",
-      [
-        "expo-navigation-bar",
-        {
-          "hidden": true,
-          "style": "dark"
-        }
-      ]
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
     },
     "extra": {
-      "apiUrl": "http://192.168.1.75:8001"
+      "apiUrl": "http://192.168.1.71:8001"
     }
   }
 }

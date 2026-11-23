@@ -166,7 +166,7 @@ def intento_cambiar_pw(datos: Correo):
         )
         id_token = cur.lastrowid
 
-        codigo = f"{secrets.randbelow(1000000)}"
+        codigo = f"{secrets.randbelow(1000000):06d}"  # siempre 6 dígitos (la columna es varchar(6))
         cur.execute(
             "INSERT INTO Codigo (id_token, codigo, fecha_hora_expiracion) "
             "VALUES (?, ?, DATE_ADD(NOW(), INTERVAL ? MINUTE))",
@@ -265,5 +265,29 @@ def cargar_historial(id_usuario: int, datos: Historial):
             )
         conn.commit()
         return {"message": "Historial cargado correctamente", "recibidos": len(filas)}
+    finally:
+        conn.close()
+
+
+@app.get("/descargarHistorial/{id_usuario}")
+def descargar_historial(id_usuario: int):
+    conn = get_db()
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT 1 FROM Usuarios WHERE id_usuario = ? AND estado = 'activa'", (id_usuario,))
+        if cur.fetchone() is None:
+            raise HTTPException(status_code=404, detail="No existe esa cuenta")
+
+        cur.execute(
+            "SELECT id_pregunta, fecha, correcta FROM HistorialGlobal "
+            "WHERE id_usuario = ? ORDER BY fecha",
+            (id_usuario,),
+        )
+        #Misma forma que recibe /cargarHistorial; la fecha va como 'YYYY-MM-DD HH:MM:SS' (UTC), como la guarda la app
+        historial = [
+            {"id_pregunta": id_pregunta, "fecha": fecha.strftime("%Y-%m-%d %H:%M:%S"), "correcta": bool(correcta)}
+            for id_pregunta, fecha, correcta in cur.fetchall()
+        ]
+        return {"historial": historial}
     finally:
         conn.close()

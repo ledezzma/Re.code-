@@ -7,8 +7,7 @@ import {
   SourceSans3_600SemiBold,
 } from "@expo-google-fonts/source-sans-3";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
-import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
-import { useEffect } from "react";
+import { SQLiteProvider } from "expo-sqlite";
 
 export default function RootLayout() {
   // lista de fuentes que se van a cargar
@@ -23,7 +22,10 @@ export default function RootLayout() {
 
   return (
     <SQLiteProvider
-      databaseName="cliente.db"
+      // Expo copia assets/cliente.db solo si no existe una base con este nombre. Si cambias el
+      // esquema o el banco de preguntas del asset, sube el número (v2 -> v3...) para que los
+      // dispositivos reciban la copia nueva sin necesidad de migraciones.
+      databaseName="cliente_v2.db"
       assetSource={{ assetId: require("../../assets/cliente.db") }}
     >
       <StatusBar style="light" />

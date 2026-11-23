@@ -1,80 +1,55 @@
-import { View, Pressable, StyleSheet, Text } from "react-native";
-import Constants from 'expo-constants';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import { View, Pressable, Text } from "react-native";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { useRouter } from "expo-router";
+import { navBarStyles } from "../styles";
 
+type Props = {
+  pantallaActual: string;
+};
 
+const NAV_ITEMS = [
+  { key: "home", label: "Home", icon: "house", IconComp: FontAwesome6 },
+  { key: "historial", label: "Historial", icon: "history", IconComp: AntDesign },
+  { key: "config", label: "Config", icon: "gear", IconComp: FontAwesome6 },
+] as const;
 
-export default function NavBar({
-  pantallaActual
-  
-}: Props) {
-  const router = useRouter()
+export default function NavBar({ pantallaActual }: Props) {
+  const router = useRouter();
 
   return (
-    <View style={styles.navBar}>
-      {
-        pantallaActual == "home" ?
-          <View style={styles.navBarContent}>
-            <FontAwesome6 name="house" size={24} color="#cfcfd1" />
-            <Text style={[styles.subtitle, {color:"#cfcfd1"}]}>Home</Text>
-          </View> 
-        :
-          <Pressable style={styles.navBarContent} onPress={() => router.push("/home")}>
-            <FontAwesome6 name="house" size={24} color="#8A8AA3" />
-            <Text style={styles.subtitle}>Home</Text>
+    <View style={navBarStyles.navBar}>
+      {NAV_ITEMS.map(({ key, label, icon, IconComp }) => {
+        const isActive = pantallaActual === key;
+        return (
+          <Pressable
+            key={key}
+            style={({ pressed }) => [
+              navBarStyles.navItem,
+              isActive && navBarStyles.navItemActive,
+              pressed && navBarStyles.navItemPressed,
+            ]}
+            onPress={() => router.replace(`/${key}`)}
+            accessibilityRole="button"
+            accessibilityLabel={label}
+            accessibilityState={{ selected: isActive }}
+          >
+            <IconComp
+              name={icon}
+              size={22}
+              color={isActive ? "#7C5CFF" : "#8A8AA3"}
+            />
+            <Text
+              style={[
+                navBarStyles.navLabel,
+                isActive ? navBarStyles.navLabelActive : navBarStyles.navLabelInactive,
+              ]}
+            >
+              {label}
+            </Text>
           </Pressable>
-      }
-
-      {
-        pantallaActual == "historial" ?
-          <View style={styles.navBarContent}>
-            <AntDesign name="history" size={24} color="#cfcfd1" />
-            <Text style={[styles.subtitle, {color:"#cfcfd1"}]}>Historial</Text>
-          </View>
-        :
-          <Pressable style={styles.navBarContent} onPress={() => router.push("/historial")}>
-            <AntDesign name="history" size={24} color="#8A8AA3" />
-            <Text style={styles.subtitle}>Historial</Text>
-          </Pressable>
-      }
-
-      {
-        pantallaActual == "config" ?
-          <View style={styles.navBarContent}>
-            <FontAwesome6 name="gear" size={24} color="#cfcfd1" />
-            <Text style={[styles.subtitle, {color:"#cfcfd1"}]}>Config</Text>
-          </View>
-        :
-          <Pressable style={styles.navBarContent} onPress={() => router.push("/config")}>
-            <FontAwesome6 name="gear" size={24} color="#8A8AA3" />
-            <Text style={styles.subtitle}>Config</Text>
-          </Pressable>
-      }
+        );
+      })}
     </View>
   );
 }
-const styles = StyleSheet.create({
-  navBar: {
-    borderTopWidth: 1,
-    borderColor: "grey",
-    height: Constants.statusBarHeight + 22,
-    width: "100%",
-    flexDirection: "row",
-    backgroundColor: "#13111a",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 10,
-  },
-  navBarContent: {
-    alignItems: "center",
-    width: "25%"
-  },
-  subtitle: {
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 18,
-    lineHeight: 22,
-    color: "#8A8AA3",
-  }
-});

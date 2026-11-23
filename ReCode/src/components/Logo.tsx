@@ -1,5 +1,6 @@
-import { Text, StyleSheet } from "react-native";
+import { Text } from "react-native";
 import type { StyleProp, TextStyle } from "react-native";
+import { logoStyles } from "../styles";
 
 type Props = {
   size?: number;
@@ -9,19 +10,8 @@ type Props = {
 
 export default function Logo({ size = 65, marginTop = 0, style }: Props) {
   return (
-    <Text style={[{ ...styles.logo, fontSize: size, marginTop }, style]}>
-      Re<Text style={styles.logoAccent}>.code()</Text>
+    <Text style={[{ ...logoStyles.logo, fontSize: size, marginTop }, style]}>
+      Re<Text style={logoStyles.logoAccent}>.code()</Text>
     </Text>
   );
 }
-
-const styles = StyleSheet.create({
-  logo: {
-    fontFamily: "PixelifySans_700Bold",
-    letterSpacing: 1,
-    color: "#D9D9DE",
-  },
-  logoAccent: {
-    color: "#7C5CFF",
-  },
-});

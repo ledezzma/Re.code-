@@ -1,13 +1,15 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import type { ReactNode } from "react";
+import { botonStyles } from "../styles";
 
 type Props = {
   texto: string;
   onPress: () => void;
-  variante?: "primario" | "secundario";
+  variante?: "primario" | "secundario" | "peligro";
   conFlecha?: boolean;
   icono?: ReactNode;
+  deshabilitado?: boolean;
 };
 
 export default function Boton({
@@ -16,50 +18,24 @@ export default function Boton({
   variante = "primario",
   conFlecha = false,
   icono,
+  deshabilitado = false,
 }: Props) {
-  const esPrimario = variante === "primario";
+  const estiloVariante = botonStyles[variante];
 
   return (
     <Pressable
       onPress={onPress}
+      disabled={deshabilitado}
       style={({ pressed }) => [
-        styles.base,
-        esPrimario ? styles.primario : styles.secundario,
-        pressed && styles.presionado,
+        botonStyles.base,
+        estiloVariante,
+        pressed && botonStyles.presionado,
+        deshabilitado && botonStyles.deshabilitado,
       ]}
     >
       {icono}
-      <Text style={styles.texto}>{texto}</Text>
+      <Text style={botonStyles.texto}>{texto}</Text>
       {conFlecha && <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />}
     </Pressable>
   );
 }
-const styles = StyleSheet.create({
-  base: {
-    width: "100%",
-    height: 50,
-    borderRadius: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-  },
-  primario: {
-    backgroundColor: "#7C5CFF",
-    elevation: 20,
-  },
-  secundario: {
-    backgroundColor: "#252247",
-    borderWidth: 1,
-    //borderColor: "#3A2F7A",
-  },
-  presionado: {
-    opacity: 0.85,
-    transform: [{ scale: 0.98 }],
-  },
-  texto: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 15,
-    color: "#FFFFFF",
-  },
-});
