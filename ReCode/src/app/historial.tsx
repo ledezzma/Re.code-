@@ -3,7 +3,26 @@ import { LinearGradient } from "expo-linear-gradient";
 import NavBar from "../components/NavBar";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
-import { historialStyles } from "../styles";
+import { historialStyles, viewStyles } from "../styles";
+
+interface HistoryItem {
+  language: string;
+  date: string;
+  question: string;
+  correct: boolean;
+}
+
+const historyData: HistoryItem[] = [
+  { language: "Python", date: "09/11/2026", question: "¿Qué es una list comprehension en Python?", correct: true },
+  { language: "JavaScript", date: "08/11/2026", question: "Diferencia entre let, const y var", correct: true },
+  { language: "C++", date: "07/11/2026", question: "¿Qué es la herencia múltiple en C++?", correct: false },
+  { language: "Java", date: "06/11/2026", question: "Diferencia entre ArrayList y LinkedList", correct: true },
+  { language: "C", date: "05/09/2026", question: "¿Cuántos bytes ocupa un tipo de dato int?", correct: true },
+  { language: "C", date: "04/09/2026", question: "¿Cuántos bytes ocupa un tipo de dato int?", correct: false },
+  { language: "Rust", date: "03/09/2026", question: "¿Qué es el ownership en Rust?", correct: false },
+  { language: "Go", date: "02/09/2026", question: "¿Qué son las goroutines en Go?", correct: true },
+  { language: "TypeScript", date: "01/09/2026", question: "¿Qué son los generics en TypeScript?", correct: true },
+];
 
 export default function Historial() {
   return (
@@ -15,122 +34,28 @@ export default function Historial() {
         <View>
           <Text style={historialStyles.separator}>Historial</Text>
 
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: Python</Text>
-                <Text style={historialStyles.dateText}>09/11/2026</Text>
+          {historyData.map((item, index) => (
+            <View
+              key={index}
+              style={[
+                historialStyles.formContainer,
+                item.correct ? viewStyles.boxSuccessSubtle : viewStyles.boxErrorSubtle,
+              ]}
+            >
+              <View style={historialStyles.headerRow}>
+                <View style={historialStyles.headerLeft}>
+                  <Text style={historialStyles.sectionTitle}>Lenguaje: {item.language}</Text>
+                  <Text style={historialStyles.dateText}>{item.date}</Text>
+                </View>
+                {item.correct ? (
+                  <AntDesign name="check" size={32} color="#35a62d" />
+                ) : (
+                  <Feather name="x" size={34} color="#a62d2d" />
+                )}
               </View>
-              <AntDesign name="check" size={32} color="#35a62d" />
+              <Text style={historialStyles.questionText}>{item.question}</Text>
             </View>
-            <Text style={historialStyles.questionText}>
-              ¿Qué es una list comprehension en Python?
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: JavaScript</Text>
-                <Text style={historialStyles.dateText}>08/11/2026</Text>
-              </View>
-              <AntDesign name="check" size={32} color="#35a62d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              Diferencia entre let, const y var
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: C++</Text>
-                <Text style={historialStyles.dateText}>07/11/2026</Text>
-              </View>
-              <Feather name="x" size={34} color="#a62d2d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              ¿Qué es la herencia múltiple en C++?
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: Java</Text>
-                <Text style={historialStyles.dateText}>06/11/2026</Text>
-              </View>
-              <AntDesign name="check" size={32} color="#35a62d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              Diferencia entre ArrayList y LinkedList
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: C</Text>
-                <Text style={historialStyles.dateText}>05/09/2026</Text>
-              </View>
-              <AntDesign name="check" size={32} color="#35a62d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              ¿Cuántos bytes ocupa un tipo de dato int?
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: C</Text>
-                <Text style={historialStyles.dateText}>04/09/2026</Text>
-              </View>
-              <Feather name="x" size={34} color="#a62d2d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              ¿Cuántos bytes ocupa un tipo de dato int?
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: Rust</Text>
-                <Text style={historialStyles.dateText}>03/09/2026</Text>
-              </View>
-              <Feather name="x" size={34} color="#a62d2d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              ¿Qué es el ownership en Rust?
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: Go</Text>
-                <Text style={historialStyles.dateText}>02/09/2026</Text>
-              </View>
-              <AntDesign name="check" size={32} color="#35a62d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              ¿Qué son las goroutines en Go?
-            </Text>
-          </View>
-
-          <View style={historialStyles.formContainer}>
-            <View style={historialStyles.headerRow}>
-              <View style={historialStyles.headerLeft}>
-                <Text style={historialStyles.sectionTitle}>Lenguaje: TypeScript</Text>
-                <Text style={historialStyles.dateText}>01/09/2026</Text>
-              </View>
-              <AntDesign name="check" size={32} color="#35a62d" />
-            </View>
-            <Text style={historialStyles.questionText}>
-              ¿Qué son los generics en TypeScript?
-            </Text>
-          </View>
+          ))}
         </View>
       </ScrollView>
 

@@ -11,7 +11,9 @@
       "visible": "sticky-immersive"
     },
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "usesAppleSignIn": true,
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +23,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.ReCode"
+      "package": "Re_Code.v1",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "output": "static",
@@ -47,6 +50,16 @@
           "hidden": true,
           "style": "dark"
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#208AEF",
+          "sounds": [
+            "./assets/sounds/notification.wav"
+          ]
+        }
       ]
     ],
     "experiments": {
@@ -54,7 +67,14 @@
       "reactCompiler": true
     },
     "extra": {
-      "apiUrl": "http://192.168.1.71:8001"
+      "router": {},
+      "expo-navigation-bar": {
+        "style": "dark",
+        "hidden": true
+      },
+      "eas": {
+        "projectId": "29a61109-b590-4053-8cab-04104b3f166e"
+      }
     }
   }
 }

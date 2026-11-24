@@ -4,7 +4,6 @@ import {
   View,
   TextInput,
   Pressable,
-  Alert,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -14,16 +13,19 @@ import Boton from "../components/Boton";
 import Logo from "../components/Logo";
 import * as SecureStore from "expo-secure-store";
 import { getAPIUrl } from "../../utils/networkConnection";
+import { registerForPushNotificationsAsync } from "../../utils/pushToken";
 import { loginStyles } from "../styles";
+import { useAlerta } from "../components/Alerta";
 
 export default function Login() {
   const router = useRouter();
+  const { showError, showSuccess } = useAlerta();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     if (!email.includes("@") || !password) {
-      Alert.alert("Error", "Completa correo y contraseña");
+      showError("Campos incompletos", "Completa correo y contraseña");
       return;
     }
 
@@ -38,15 +40,18 @@ export default function Login() {
 
       if (!response.ok) {
         const err = await response.json();
-        Alert.alert("Error", err.detail || "Credenciales incorrectas");
+        showError("Error de autenticación", err.detail || "Credenciales incorrectas");
         return;
       }
 
       const res = await response.json();
       await SecureStore.setItemAsync("userId", String(res.id_usuario));
+      // Registrar push token con el userId y callbacks de alerta
+      registerForPushNotificationsAsync(String(res.id_usuario), true, { showError, showSuccess });
+      showSuccess("¡Bienvenido!", "Sesión iniciada correctamente");
       router.replace("/home");
     } catch {
-      Alert.alert("Error", "No se pudo conectar al servidor");
+      showError("Error de conexión", "No se pudo conectar al servidor");
     }
   };
 

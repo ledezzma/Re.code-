@@ -126,6 +126,35 @@ export const shadows = {
   buttonPrimary: {
     elevation: 20,
   },
+  // Colored glow shadows for status boxes
+  glowSuccess: {
+    shadowColor: "#35a62d",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  glowError: {
+    shadowColor: "#a62d2d",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  glowWarning: {
+    shadowColor: "#e7d512",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  glowInfo: {
+    shadowColor: "#7C5CFF",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
+  },
 };
 
 // Common VIEW styles (for View, ScrollView, Pressable, etc.)
@@ -172,6 +201,110 @@ export const viewStyles = StyleSheet.create({
     ...shadows.medium,
   } as ViewStyle,
 
+  // Cards / Boxes - Improved designs
+  // Base card with subtle gradient border effect
+  cardBase: {
+    backgroundColor: colors.surfacePrimary,
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: colors.borderPrimary,
+    ...shadows.medium,
+  } as ViewStyle,
+  // Elevated card with stronger shadow
+  cardElevated: {
+    backgroundColor: colors.surfacePrimary,
+    borderRadius: borderRadius.xl,
+    borderWidth: 1,
+    borderColor: colors.borderSecondary,
+    ...shadows.large,
+  } as ViewStyle,
+  // Compact card for lists
+  cardCompact: {
+    backgroundColor: colors.surfacePrimary,
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: colors.borderPrimary,
+    padding: spacing.md,
+    ...shadows.small,
+  } as ViewStyle,
+  // Interactive card (pressable)
+  cardInteractive: {
+    backgroundColor: colors.surfacePrimary,
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: colors.borderPrimary,
+    ...shadows.medium,
+  } as ViewStyle,
+  cardInteractivePressed: {
+    backgroundColor: colors.surfaceSecondary,
+    borderColor: colors.accentPurple,
+    opacity: 0.9,
+    transform: [{ scale: 0.98 }],
+  } as ViewStyle,
+
+  // Status-specific boxes (for alerts, results, etc.)
+  boxSuccess: {
+    backgroundColor: "#1a3a2e",
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: "#35a62d",
+    padding: spacing.lg,
+    ...shadows.glowSuccess,
+  } as ViewStyle,
+  boxError: {
+    backgroundColor: "#3a1a1a",
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: "#a62d2d",
+    padding: spacing.lg,
+    ...shadows.glowError,
+  } as ViewStyle,
+  boxWarning: {
+    backgroundColor: "#3a3a1a",
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: "#e7d512",
+    padding: spacing.lg,
+    ...shadows.glowWarning,
+  } as ViewStyle,
+  boxInfo: {
+    backgroundColor: "#1a2a3a",
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderColor: "#7C5CFF",
+    padding: spacing.lg,
+    ...shadows.glowInfo,
+  } as ViewStyle,
+  // Subtle status boxes (lighter backgrounds)
+  boxSuccessSubtle: {
+    backgroundColor: "rgba(53, 166, 45, 0.1)",
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: "rgba(53, 166, 45, 0.3)",
+    padding: spacing.md,
+  } as ViewStyle,
+  boxErrorSubtle: {
+    backgroundColor: "rgba(166, 45, 45, 0.1)",
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: "rgba(166, 45, 45, 0.3)",
+    padding: spacing.md,
+  } as ViewStyle,
+  boxWarningSubtle: {
+    backgroundColor: "rgba(231, 213, 18, 0.1)",
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: "rgba(231, 213, 18, 0.3)",
+    padding: spacing.md,
+  } as ViewStyle,
+  boxInfoSubtle: {
+    backgroundColor: "rgba(124, 92, 255, 0.1)",
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: "rgba(124, 92, 255, 0.3)",
+    padding: spacing.md,
+  } as ViewStyle,
+
   // Inputs (ViewStyle properties for TextInput container)
   inputBaseContainer: {
     marginTop: spacing.xs,
@@ -182,6 +315,14 @@ export const viewStyles = StyleSheet.create({
     borderColor: colors.borderInput,
     borderWidth: 1,
     backgroundColor: colors.surfaceInput,
+  } as ViewStyle,
+  inputFocused: {
+    borderColor: colors.borderFocus,
+    borderWidth: 2,
+  } as ViewStyle,
+  inputError: {
+    borderColor: colors.accentRed,
+    borderWidth: 2,
   } as ViewStyle,
 
   // Buttons
@@ -312,6 +453,70 @@ export const textStyles = StyleSheet.create({
     fontFamily: typography.fontFamilies.interSemiBold,
     fontSize: typography.fontSizes.md,
     color: colors.textWhite,
+  } as TextStyle,
+
+  // Status text colors
+  textSuccess: {
+    color: colors.accentGreenSuccess,
+  } as TextStyle,
+  textError: {
+    color: colors.accentRed,
+  } as TextStyle,
+  textWarning: {
+    color: colors.accentYellow,
+  } as TextStyle,
+  textInfo: {
+    color: colors.accentPurple,
+  } as TextStyle,
+  // Status title (bolder)
+  statusTitleSuccess: {
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.md,
+    color: colors.accentGreenSuccess,
+  } as TextStyle,
+  statusTitleError: {
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.md,
+    color: colors.accentRed,
+  } as TextStyle,
+  statusTitleWarning: {
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.md,
+    color: colors.accentYellow,
+  } as TextStyle,
+  statusTitleInfo: {
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.md,
+    color: colors.accentPurple,
+  } as TextStyle,
+  // Status message (regular)
+  statusMessageSuccess: {
+    fontFamily: typography.fontFamilies.sourceSansRegular,
+    fontSize: typography.fontSizes.sm,
+    color: colors.textSecondary,
+    lineHeight: typography.lineHeights.normal,
+    marginTop: spacing.xs,
+  } as TextStyle,
+  statusMessageError: {
+    fontFamily: typography.fontFamilies.sourceSansRegular,
+    fontSize: typography.fontSizes.sm,
+    color: colors.textSecondary,
+    lineHeight: typography.lineHeights.normal,
+    marginTop: spacing.xs,
+  } as TextStyle,
+  statusMessageWarning: {
+    fontFamily: typography.fontFamilies.sourceSansRegular,
+    fontSize: typography.fontSizes.sm,
+    color: colors.textSecondary,
+    lineHeight: typography.lineHeights.normal,
+    marginTop: spacing.xs,
+  } as TextStyle,
+  statusMessageInfo: {
+    fontFamily: typography.fontFamilies.sourceSansRegular,
+    fontSize: typography.fontSizes.sm,
+    color: colors.textSecondary,
+    lineHeight: typography.lineHeights.normal,
+    marginTop: spacing.xs,
   } as TextStyle,
 });
 

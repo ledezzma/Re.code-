@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import Feather from "@expo/vector-icons/Feather";
 import NavBar from "../components/NavBar";
-import { configStyles } from "../styles";
+import { configStyles, viewStyles } from "../styles";
 
 export default function Config() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function Config() {
           </Text>
         </View>
 
-        <View style={[configStyles.formContainer, { marginVertical: 20, padding: 20 }]}>
+        <View style={[viewStyles.cardElevated, { marginVertical: 20, padding: 20 }]}>
           <Pressable style={[{ flexDirection: "row", justifyContent: "space-between" }]} onPress={() => router.push("/")}>
             <Text style={configStyles.subtitle}>Configura tus preguntas</Text>
             <Feather name="arrow-right" size={24} color="#8A8AA3" />

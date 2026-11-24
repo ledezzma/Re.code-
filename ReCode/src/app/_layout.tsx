@@ -1,6 +1,8 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
+import { useEffect } from "react";
+import { router } from "expo-router";
 import { PixelifySans_700Bold } from "@expo-google-fonts/pixelify-sans";
 import {
   SourceSans3_400Regular,
@@ -8,6 +10,48 @@ import {
 } from "@expo-google-fonts/source-sans-3";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 import { SQLiteProvider } from "expo-sqlite";
+import { AlertaProvider, useAlerta } from "../components/Alerta";
+import * as Notifications from "expo-notifications";
+import * as SecureStore from "expo-secure-store";
+import { registerForPushNotificationsAsync, addNotificationResponseListener } from "../../utils/pushToken";
+
+// Configuración global de notificaciones en foreground
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
+  }),
+});
+
+// Componente interno para manejar listeners de notificaciones
+function NotificationListeners() {
+  const { showError } = useAlerta();
+
+  useEffect(() => {
+    // Listener: usuario toca notificación → navegar
+    const removeResponseListener = addNotificationResponseListener((data) => {
+      const pantalla = data?.pantalla as string | undefined;
+      if (pantalla) {
+        router.push(pantalla);
+      }
+    });
+
+    // Listener: notificación recibida en foreground (opcional)
+    const removeReceivedListener = Notifications.addNotificationReceivedListener((notification) => {
+      console.log('Notificación recibida:', notification.request.content.title);
+    });
+
+    return () => {
+      removeResponseListener();
+      removeReceivedListener();
+    };
+  }, [router, showError]);
+
+  return null;
+}
 
 export default function RootLayout() {
   // lista de fuentes que se van a cargar
@@ -25,13 +69,16 @@ export default function RootLayout() {
       databaseName="cliente.db"
       assetSource={{ assetId: require("../../assets/cliente.db") }}
     >
-      <StatusBar style="light" />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: "#0D0D14" },
-        }}
-      />
+      <AlertaProvider>
+        <StatusBar style="light" />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: "#0D0D14" },
+          }}
+        />
+        <NotificationListeners />
+      </AlertaProvider>
     </SQLiteProvider>
   );
 }

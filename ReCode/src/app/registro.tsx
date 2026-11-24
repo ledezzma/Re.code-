@@ -4,7 +4,6 @@ import {
   View,
   TextInput,
   Pressable,
-  Alert,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -15,11 +14,14 @@ import Logo from "../components/Logo";
 import { registrarUsuario } from "../database/users";
 import * as SecureStore from "expo-secure-store";
 import { getAPIUrl } from "../../utils/networkConnection";
+import { registerForPushNotificationsAsync } from "../../utils/pushToken";
 import { registroStyles } from "../styles";
+import { useAlerta } from "../components/Alerta";
 
 export default function Registro() {
   const router = useRouter();
   const db = useSQLiteContext();
+  const { showError, showSuccess } = useAlerta();
   // estados para cada uno de los campos del registro
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
@@ -27,19 +29,19 @@ export default function Registro() {
 
   const registrar = async () => {
     if (!correo.trim() || !password || !confirmar) {
-      Alert.alert("Datos incompletos", "Llena todos los campos");
+      showError("Datos incompletos", "Llena todos los campos");
       return;
     }
     if (!correo.includes("@")) {
-      Alert.alert("Correo invalido", "Revisa el formato de tu correo");
+      showError("Correo inválido", "Revisa el formato de tu correo");
       return;
     }
     if (password.length < 8) {
-      Alert.alert("La contraseña debe tener minimo 8 caracteres");
+      showError("Contraseña corta", "La contraseña debe tener mínimo 8 caracteres");
       return;
     }
     if (password !== confirmar) {
-      Alert.alert("Las contraseñas no coinciden");
+      showError("Error", "Las contraseñas no coinciden");
       return;
     }
 
@@ -54,7 +56,7 @@ export default function Registro() {
 
       if (!apiRes.ok) {
         const error = await apiRes.json();
-        Alert.alert("Error", error.detail || "No se pudo crear la cuenta");
+        showError("Error", error.detail || "No se pudo crear la cuenta");
         return;
       }
 
@@ -71,9 +73,12 @@ export default function Registro() {
       }
 
       await SecureStore.setItemAsync("userId", String(apiData.id_usuario));
+      // Registrar push token con el userId y callbacks de alerta
+      registerForPushNotificationsAsync(String(apiData.id_usuario), true, { showError, showSuccess });
+      showSuccess("¡Cuenta creada!", "Bienvenido a Re.code()");
       router.replace("/login");
     } catch {
-      Alert.alert("Error", "No se pudo conectar al servidor");
+      showError("Error de conexión", "No se pudo conectar al servidor");
     }
   };
   return (
