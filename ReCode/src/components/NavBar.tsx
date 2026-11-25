@@ -29,7 +29,7 @@ export default function NavBar({ pantallaActual }: Props) {
               isActive && navBarStyles.navItemActive,
               pressed && navBarStyles.navItemPressed,
             ]}
-            onPress={() => router.push(`/${key}`)}
+            onPress={() => router.replace(`/${key}`)}
             accessibilityRole="button"
             accessibilityLabel={label}
             accessibilityState={{ selected: isActive }}

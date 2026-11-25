@@ -66,7 +66,10 @@ export default function RootLayout() {
 
   return (
     <SQLiteProvider
-      databaseName="cliente.db"
+      // Expo copia assets/cliente.db solo si no existe una base con este nombre. Si cambias el
+      // esquema o el banco de preguntas del asset, sube el número (v2 -> v3...) para que los
+      // dispositivos reciban la copia nueva sin necesidad de migraciones.
+      databaseName="cliente_v2.db"
       assetSource={{ assetId: require("../../assets/cliente.db") }}
     >
       <AlertaProvider>

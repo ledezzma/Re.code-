@@ -1,4 +1,5 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import Constants from "expo-constants";
 
 interface NavBarViewStyles {
   navBar: ViewStyle;
@@ -25,6 +26,7 @@ const navBarViewStyles = StyleSheet.create<NavBarViewStyles>({
     borderTopColor: "#2c2c33",
     paddingHorizontal: 16,
     paddingVertical: 8,
+    // paddingBottom: Constants.statusBarHeight + 6,
     minHeight: 56,
   },
   navItem: {

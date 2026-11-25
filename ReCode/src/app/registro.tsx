@@ -11,7 +11,7 @@ import { useSQLiteContext } from "expo-sqlite";
 import Constants from "expo-constants";
 import Boton from "../components/Boton";
 import Logo from "../components/Logo";
-import { registrarUsuario } from "../database/users";
+import { registrarUsuario } from "@/database/usuarios";
 import * as SecureStore from "expo-secure-store";
 import { getAPIUrl } from "../../utils/networkConnection";
 import { registerForPushNotificationsAsync } from "../../utils/pushToken";
@@ -54,13 +54,13 @@ export default function Registro() {
         body: JSON.stringify({ email: correo, password }),
       });
 
-      if (!apiRes.ok) {
-        const error = await apiRes.json();
-        showError("Error", error.detail || "No se pudo crear la cuenta");
+      const apiData = await apiRes.json(); // { message, id_usuario }
+
+      // Validar respuesta: la API puede devolver 200 pero sin id_usuario si ya existe
+      if (!apiRes.ok || !apiData.id_usuario) {
+        showError("Error", apiData.detail || apiData.message || "No se pudo crear la cuenta");
         return;
       }
-
-      const apiData = await apiRes.json(); // { message, id_usuario }
 
       // 2. Guardar en LOCAL (cache para offline)
       try {
@@ -127,7 +127,7 @@ export default function Registro() {
         <Boton texto="Crear Cuenta" onPress={registrar} />
         <View style={registroStyles.loginRow}>
           <Text style={registroStyles.subtitle}>¿Ya tienes cuenta?</Text>
-          <Pressable onPress={() => router.push("/login")}>
+          <Pressable onPress={() => router.replace("/login")}>
             <Text style={registroStyles.loginLink}> Inicia sesión</Text>
           </Pressable>
         </View>

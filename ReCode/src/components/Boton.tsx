@@ -6,9 +6,10 @@ import { botonStyles } from "../styles";
 type Props = {
   texto: string;
   onPress: () => void;
-  variante?: "primario" | "secundario";
+  variante?: "primario" | "secundario" | "peligro";
   conFlecha?: boolean;
   icono?: ReactNode;
+  deshabilitado?: boolean;
 };
 
 export default function Boton({
@@ -17,16 +18,19 @@ export default function Boton({
   variante = "primario",
   conFlecha = false,
   icono,
+  deshabilitado = false,
 }: Props) {
-  const esPrimario = variante === "primario";
+  const estiloVariante = botonStyles[variante];
 
   return (
     <Pressable
       onPress={onPress}
+      disabled={deshabilitado}
       style={({ pressed }) => [
         botonStyles.base,
-        esPrimario ? botonStyles.primario : botonStyles.secundario,
+        estiloVariante,
         pressed && botonStyles.presionado,
+        deshabilitado && botonStyles.deshabilitado,
       ]}
     >
       {icono}

@@ -12,6 +12,7 @@ interface LoginTextStyles {
   title: TextStyle;
   subtitle: TextStyle;
   loginLink: TextStyle;
+  olvido: TextStyle;
   inputText: TextStyle;
   input: TextStyle; // combined style for TextInput (original)
 }
@@ -71,6 +72,13 @@ const loginTextStyles = StyleSheet.create<LoginTextStyles>({
     color: "#8567ff",
     fontSize: 16,
     fontFamily: "SourceSans3_400Regular",
+  },
+  olvido: {
+    color: "#8567ff",
+    fontSize: 15,
+    fontFamily: "SourceSans3_400Regular",
+    alignSelf: "flex-end",
+    paddingVertical: 6,
   },
   inputText: {
     color: "#ababc0",

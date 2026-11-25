@@ -19,3 +19,8 @@ export { navBarStyles } from "./components/navBar";
 export { logoStyles } from "./components/logo";
 export { botonStyles } from "./components/boton";
 export { preguntaStyles } from "./components/pregunta";
+export { encabezadoStyles } from "./components/encabezado";
+export { codigoStyles, ANCHO_CARACTER, FUENTE_CODIGO } from "./components/codigo";
+export { seleccionStyles } from "./components/seleccionPregunta";
+export { dificultadStyles } from "./screens/dificultad";
+export { pwdcodeStyles } from "./screens/pwdcode";

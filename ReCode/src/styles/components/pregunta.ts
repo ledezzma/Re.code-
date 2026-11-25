@@ -4,14 +4,19 @@ interface PreguntaViewStyles {
   gradient: ViewStyle;
   scrollView: ViewStyle;
   scrollContent: ViewStyle;
-  tabBar: ViewStyle;
-  tabBarContent: ViewStyle;
   container: ViewStyle;
   languageRow: ViewStyle;
   answersContainer: ViewStyle;
   answerBlock: ViewStyle;
   answerBlockSelected: ViewStyle;
   answerBlockDisabled: ViewStyle;
+  answerBlockCorrect: ViewStyle;
+  answerBlockWrong: ViewStyle;
+  hintButtonDisabled: ViewStyle;
+  timer: ViewStyle;
+  timerUrgente: ViewStyle;
+  centrado: ViewStyle;
+  resultadoTarjeta: ViewStyle;
   bottomSection: ViewStyle;
   hintButton: ViewStyle;
   nextButton: ViewStyle;
@@ -19,12 +24,20 @@ interface PreguntaViewStyles {
 }
 
 interface PreguntaTextStyles {
-  tabTitle: TextStyle;
   languageLabel: TextStyle;
   languageValue: TextStyle;
   questionTitle: TextStyle;
   answerText: TextStyle;
   answerTextSelected: TextStyle;
+  answerTextCorrect: TextStyle;
+  answerTextWrong: TextStyle;
+  languageLevel: TextStyle;
+  feedback: TextStyle;
+  timerText: TextStyle;
+  mensaje: TextStyle;
+  resultadoTitulo: TextStyle;
+  resultadoPuntaje: TextStyle;
+  resultadoDetalle: TextStyle;
   hintText: TextStyle;
   nextButtonText: TextStyle;
 }
@@ -38,20 +51,7 @@ const preguntaViewStyles = StyleSheet.create<PreguntaViewStyles>({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingBottom: 48 + 140, // statusBarHeight + 140
-  },
-  tabBar: {
-    width: "100%",
-    height: 48 + 64, // statusBarHeight + 64
-    backgroundColor: "#0F0F16",
-    borderBottomWidth: 1,
-    borderColor: "#2c2c33",
-  },
-  tabBarContent: {
-    marginHorizontal: 20,
-    marginTop: 48 + 8, // statusBarHeight + 8
-    flexDirection: "row",
-    alignItems: "center",
+    paddingBottom: 48
   },
   container: {
     flex: 1,
@@ -86,6 +86,49 @@ const preguntaViewStyles = StyleSheet.create<PreguntaViewStyles>({
   },
   answerBlockDisabled: {
     opacity: 0.5,
+  },
+  answerBlockCorrect: {
+    borderColor: "#35a62d",
+    backgroundColor: "#16301a",
+  },
+  answerBlockWrong: {
+    borderColor: "#a62d2d",
+    backgroundColor: "#361818",
+  },
+  hintButtonDisabled: {
+    opacity: 0.4,
+  },
+  timer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    marginRight: 6,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#3a3a4a",
+    backgroundColor: "#1A1A28",
+  },
+  timerUrgente: {
+    borderColor: "#a62d2d",
+    backgroundColor: "#361818",
+  },
+  centrado: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 24,
+  },
+  resultadoTarjeta: {
+    width: "100%",
+    padding: 28,
+    gap: 14,
+    alignItems: "center",
+    backgroundColor: "#1A1A28",
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "#2c2c33",
   },
   bottomSection: {
     flexDirection: "row",
@@ -122,12 +165,6 @@ const preguntaViewStyles = StyleSheet.create<PreguntaViewStyles>({
 });
 
 const preguntaTextStyles = StyleSheet.create<PreguntaTextStyles>({
-  tabTitle: {
-    color: "white",
-    fontSize: 22,
-    fontWeight: "600",
-    marginLeft: 10,
-  },
   languageLabel: {
     color: "#6B6B7A",
     fontSize: 14,
@@ -158,8 +195,57 @@ const preguntaTextStyles = StyleSheet.create<PreguntaTextStyles>({
     color: "#7C5CFF",
     fontWeight: "700",
   },
-  hintText: {
+  answerTextCorrect: {
+    color: "#71ec66",
+    fontWeight: "700",
+  },
+  answerTextWrong: {
+    color: "#ec6666",
+    fontWeight: "700",
+  },
+  languageLevel: {
+    marginLeft: 12,
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  feedback: {
+    fontSize: 18,
+    fontWeight: "700",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  timerText: {
     color: "#F2F2F7",
+    fontSize: 18,
+    fontWeight: "700",
+    fontVariant: ["tabular-nums"],
+  },
+  mensaje: {
+    color: "#8A8AA3",
+    fontFamily: "SourceSans3_400Regular",
+    fontSize: 18,
+    lineHeight: 24,
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  resultadoTitulo: {
+    color: "#F2F2F7",
+    fontFamily: "SourceSans3_600SemiBold",
+    fontSize: 26,
+  },
+  resultadoPuntaje: {
+    color: "#7C5CFF",
+    fontSize: 56,
+    fontWeight: "700",
+  },
+  resultadoDetalle: {
+    color: "#8A8AA3",
+    fontFamily: "SourceSans3_400Regular",
+    fontSize: 18,
+    marginBottom: 8,
+  },
+  hintText: {
+    color: "#0C0C14",
     fontSize: 16,
     fontWeight: "600",
     marginLeft: 8,

@@ -1,30 +1,43 @@
-import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { StyleSheet } from "react-native";
 
-interface ConfigViewStyles {
-  container: ViewStyle;
-  logoWrap: ViewStyle;
-  formContainer: ViewStyle;
-}
-
-interface ConfigTextStyles {
-  logo: TextStyle;
-  logoAccent: TextStyle;
-  separator: TextStyle;
-  subtitle: TextStyle;
-  sectionTitle: TextStyle;
-  accentSpeed: TextStyle;
-  accentControl: TextStyle;
-}
-
-const configViewStyles = StyleSheet.create<ConfigViewStyles>({
+// Pantalla de configuración / perfil (correo, cambiar contraseña, cerrar sesión).
+// Nota: 48 = Constants.statusBarHeight aproximado, igual que en el resto de /styles.
+export const configStyles = StyleSheet.create({
+  scroll: {
+    width: "100%",
+  },
   container: {
-    flex: 1,
     alignItems: "center",
     paddingHorizontal: 24,
+    paddingBottom: 120, // deja libre la barra de navegación inferior
   },
-  logoWrap: {
-    marginTop: 48 + 40,
+  profileWrap: {
+    marginTop: 48 + 60,
+    marginBottom: 30,
     alignItems: "center",
+  },
+  avatar: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: "#1A1A28",
+    borderColor: "#7C5CFF",
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 16,
+  },
+  email: {
+    fontFamily: "SourceSans3_600SemiBold",
+    fontSize: 24,
+    color: "#F2F2F7",
+  },
+  subtitle: {
+    marginTop: 4,
+    fontFamily: "SourceSans3_400Regular",
+    fontSize: 16,
+    lineHeight: 22,
+    color: "#8A8AA3",
   },
   formContainer: {
     padding: 26,
@@ -35,51 +48,20 @@ const configViewStyles = StyleSheet.create<ConfigViewStyles>({
     borderWidth: 1,
     marginBottom: 18,
   },
-});
-
-const configTextStyles = StyleSheet.create<ConfigTextStyles>({
-  logo: {
-    fontFamily: "PixelifySans_700Bold",
-    fontSize: 50,
-    letterSpacing: 1,
-    color: "#D9D9DE",
-  },
-  logoAccent: {
-    color: "#7C5CFF",
+  ayuda: {
+    fontFamily: "SourceSans3_400Regular",
+    fontSize: 15,
+    lineHeight: 21,
+    color: "#8A8AA3",
+    marginBottom: 14,
   },
   separator: {
     color: "#7C5CFF",
     fontSize: 24,
-    fontWeight: "700",
-    marginTop: 20,
     textAlign: "center",
-    letterSpacing: 0.5,
+    marginBottom: 16,
   },
-  subtitle: {
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 18,
-    lineHeight: 22,
-    color: "#8A8AA3",
-    maxWidth: 320,
-  },
-  sectionTitle: {
-    color: "white",
-    fontSize: 18,
-  },
-  accentSpeed: {
-    color: "#e2b544",
-    marginTop: 3,
-    marginLeft: 15,
-    fontWeight: "condensed",
-  },
-  accentControl: {
-    color: "#71ec66",
-    marginTop: 3,
-    marginLeft: 15,
+  buttons: {
+    gap: 10,
   },
 });
-
-export const configStyles = {
-  ...configViewStyles,
-  ...configTextStyles,
-};

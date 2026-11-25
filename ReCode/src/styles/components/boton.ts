@@ -4,7 +4,9 @@ interface BotonViewStyles {
   base: ViewStyle;
   primario: ViewStyle;
   secundario: ViewStyle;
+  peligro: ViewStyle;
   presionado: ViewStyle;
+  deshabilitado: ViewStyle;
 }
 
 interface BotonTextStyles {
@@ -29,9 +31,17 @@ const botonViewStyles = StyleSheet.create<BotonViewStyles>({
     backgroundColor: "#252247",
     borderWidth: 1,
   },
+  peligro: {
+    backgroundColor: "#3a1818",
+    borderWidth: 1,
+    borderColor: "#a62d2d",
+  },
   presionado: {
     opacity: 0.85,
     transform: [{ scale: 0.98 }],
+  },
+  deshabilitado: {
+    opacity: 0.45,
   },
 });
 

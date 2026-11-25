@@ -30,7 +30,7 @@ export default function Home() {
         >
           <Pressable
             style={[{ flexDirection: "row", justifyContent: "space-between" }]}
-            onPress={() => router.push("/")}
+            onPress={() => router.push("/dificultad")}
           >
             <Text style={homeStyles.subtitle}>Configura tus preguntas</Text>
             <Feather name="arrow-right" size={24} color="#8A8AA3" />
@@ -42,7 +42,7 @@ export default function Home() {
 
           <Pressable
             style={homeStyles.formContainer}
-            onPress={() => router.push("/pregunta")}
+            onPress={() => router.push({ pathname: "/pregunta", params: { modo: "contrarreloj" } })}
           >
             <View style={[{ flexDirection: "row" }]}>
               <Text style={homeStyles.sectionTitle}>Contrarreloj</Text>
@@ -56,7 +56,7 @@ export default function Home() {
 
           <Pressable
             style={homeStyles.formContainer}
-            onPress={() => router.push("/pregunta")}
+            onPress={() => router.push({ pathname: "/pregunta", params: { modo: "previsor" } })}
           >
             <View style={[{ flexDirection: "row" }]}>
               <Text style={homeStyles.sectionTitle}>Previsor</Text>
@@ -73,6 +73,8 @@ export default function Home() {
               Más modos de juego próximamente...
             </Text>
           </View>
+
+          <View style={[{marginBottom: 100}]}></View>
         </View>
       </ScrollView>
 

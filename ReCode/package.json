@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
+    "@expo-google-fonts/jetbrains-mono": "^0.4.1",
     "@expo-google-fonts/pixelify-sans": "^0.4.2",
     "@expo-google-fonts/silkscreen": "^0.4.2",
     "@expo-google-fonts/source-sans-3": "^0.4.2",

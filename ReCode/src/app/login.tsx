@@ -11,14 +11,17 @@ import Constants from "expo-constants";
 import Zocial from "@expo/vector-icons/Zocial";
 import Boton from "../components/Boton";
 import Logo from "../components/Logo";
-import * as SecureStore from "expo-secure-store";
+import { useSQLiteContext } from "expo-sqlite";
 import { getAPIUrl } from "../../utils/networkConnection";
 import { registerForPushNotificationsAsync } from "../../utils/pushToken";
+import { cerrarSesion, guardarSesion } from "../database/usuarios";
 import { loginStyles } from "../styles";
 import { useAlerta } from "../components/Alerta";
+import * as SecureStore from "expo-secure-store";
 
 export default function Login() {
   const router = useRouter();
+  const db = useSQLiteContext();
   const { showError, showSuccess } = useAlerta();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +49,8 @@ export default function Login() {
 
       const res = await response.json();
       await SecureStore.setItemAsync("userId", String(res.id_usuario));
+      // guarda la sesión (id + correo) y crea la fila local del usuario con su configuración
+      await guardarSesion(db, res.id_usuario, email);
       // Registrar push token con el userId y callbacks de alerta
       registerForPushNotificationsAsync(String(res.id_usuario), true, { showError, showSuccess });
       showSuccess("¡Bienvenido!", "Sesión iniciada correctamente");
@@ -86,13 +91,25 @@ export default function Login() {
           onChangeText={setPassword}
         />
 
+        <Pressable
+          onPress={() =>
+            router.push({ pathname: "/pwdcode", params: email.includes("@") ? { email } : {} })
+          }
+          accessibilityRole="button"
+        >
+          <Text style={loginStyles.olvido}>¿Olvidaste tu contraseña?</Text>
+        </Pressable>
+
         <View style={loginStyles.buttons}>
           <Boton texto="Iniciar sesión" onPress={handleLogin} />
           <Boton
             texto="Ingresar como invitado"
             variante="secundario"
             icono={<Zocial name="guest" size={24} color="white" />}
-            onPress={() => router.push("/home")}
+            onPress={async () => {
+              await cerrarSesion(); // invitado: no debe quedar una sesión anterior activa
+              router.replace("/home");
+            }}
           />
         </View>
 
@@ -100,7 +117,7 @@ export default function Login() {
           <Text style={[loginStyles.subtitle, { marginTop: 0 }]}>
             ¿No tienes cuenta?
           </Text>
-          <Pressable onPress={() => router.push("/registro")}>
+          <Pressable onPress={() => router.replace("/registro")}>
             <Text style={loginStyles.loginLink}> Regístrate</Text>
           </Pressable>
         </View>

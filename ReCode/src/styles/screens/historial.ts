@@ -5,6 +5,11 @@ interface HistorialViewStyles {
   formContainer: ViewStyle;
   headerRow: ViewStyle;
   headerLeft: ViewStyle;
+  contenido: ViewStyle;
+  paginacion: ViewStyle;
+  paginaBoton: ViewStyle;
+  paginaBotonOff: ViewStyle;
+  vacio: ViewStyle;
 }
 
 interface HistorialTextStyles {
@@ -12,6 +17,10 @@ interface HistorialTextStyles {
   sectionTitle: TextStyle;
   dateText: TextStyle;
   questionText: TextStyle;
+  nivelText: TextStyle;
+  totalText: TextStyle;
+  paginaTexto: TextStyle;
+  vacioTexto: TextStyle;
 }
 
 const historialViewStyles = StyleSheet.create<HistorialViewStyles>({
@@ -44,6 +53,38 @@ const historialViewStyles = StyleSheet.create<HistorialViewStyles>({
     alignItems: "center",
     flexWrap: "wrap",
   },
+  contenido: {
+    alignItems: "center",
+    paddingBottom: 120, // deja libre la barra de navegación inferior
+  },
+  paginacion: {
+    width: "96%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 4,
+  },
+  paginaBoton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 14,
+    backgroundColor: "#252247",
+    borderWidth: 1,
+    borderColor: "#2c2c33",
+  },
+  paginaBotonOff: {
+    opacity: 0.35,
+  },
+  vacio: {
+    width: "96%",
+    padding: 28,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: "#2c2c33",
+    backgroundColor: "#1A1A28",
+  },
 });
 
 const historialTextStyles = StyleSheet.create<HistorialTextStyles>({
@@ -66,6 +107,29 @@ const historialTextStyles = StyleSheet.create<HistorialTextStyles>({
     color: "#6B6B7A",
     fontSize: 13,
     fontWeight: "500",
+  },
+  nivelText: {
+    fontSize: 13,
+    fontWeight: "600",
+    marginLeft: 10,
+  },
+  totalText: {
+    color: "#8A8AA3",
+    fontSize: 15,
+    textAlign: "center",
+    marginTop: -12,
+    marginBottom: 20,
+  },
+  paginaTexto: {
+    color: "#F2F2F7",
+    fontSize: 15,
+    fontWeight: "600",
+  },
+  vacioTexto: {
+    color: "#8A8AA3",
+    fontSize: 17,
+    lineHeight: 24,
+    textAlign: "center",
   },
   questionText: {
     color: "#E8E8ED",
