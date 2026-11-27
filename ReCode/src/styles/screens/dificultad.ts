@@ -1,73 +1,92 @@
-import { StyleSheet } from "react-native";
-import Constants from "expo-constants";
+import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import {
+  colors,
+  spacing,
+  borderRadius,
+  typography,
+  viewStyles,
+  textStyles,
+} from "../common";
 
-export const dificultadStyles = StyleSheet.create({
+interface DificultadViewStyles {
+  container: ViewStyle;
+  formContainer: ViewStyle;
+  niveles: ViewStyle;
+  nivel: ViewStyle;
+  nivelActivo: ViewStyle;
+  guardar: ViewStyle;
+}
+
+interface DificultadTextStyles {
+  separator: TextStyle;
+  sectionTitle: TextStyle;
+  subtitle: TextStyle;
+  nivelTexto: TextStyle;
+  ayuda: TextStyle;
+  aviso: TextStyle;
+}
+
+const dificultadViewStyles = StyleSheet.create<DificultadViewStyles>({
   container: {
-    paddingHorizontal: 24,
-    alignItems: "center",
-  },
-  separator: {
-    color: "#7C5CFF",
-    fontSize: 24,
-    marginTop: 20,
-    textAlign: "center",
+    ...viewStyles.containerCentered,
   },
   formContainer: {
-    padding: 26,
-    backgroundColor: "#1A1A28",
-    width: "96%",
-    borderRadius: 30,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-    marginBottom: 18,
-  },
-  ayuda: {
-    color: "#8A8AA3",
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 16,
-    lineHeight: 22,
-    textAlign: "center",
-    marginTop: 6,
-    marginBottom: 16,
-  },
-  aviso: {
-    color: "#e2b544",
-  },
-  sectionTitle: {
-    color: "white",
-    fontSize: 18,
-  },
-  subtitle: {
-    marginTop: 2,
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 16,
-    lineHeight: 22,
-    color: "#8A8AA3",
+    ...viewStyles.formContainerWide,
+    marginBottom: spacing.md,
   },
   niveles: {
     flexDirection: "row",
-    gap: 8,
-    marginTop: 16,
+    gap: spacing.sm,
+    marginTop: spacing.lg,
   },
   nivel: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: spacing.md,
     alignItems: "center",
-    backgroundColor: "#13131E",
-    borderRadius: 14,
-    borderColor: "#2c2c33",
+    backgroundColor: colors.surfaceInput,
+    borderRadius: borderRadius.md,
+    borderColor: colors.borderPrimary,
     borderWidth: 1,
   },
   nivelActivo: {
     backgroundColor: "#1f1f31",
-  },
-  nivelTexto: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 16,
-    color: "#8A8AA3",
+    borderColor: colors.accentPurple,
   },
   guardar: {
     width: "96%",
-    marginBottom: Constants.statusBarHeight + 40,
+    marginBottom: spacing.statusBar + spacing.xl,
   },
 });
+
+const dificultadTextStyles = StyleSheet.create<DificultadTextStyles>({
+  separator: {
+    ...textStyles.separator,
+    marginTop: spacing.lg,
+    fontSize: typography.fontSizes.xxxl,
+  },
+  sectionTitle: {
+    ...textStyles.sectionTitle,
+  },
+  subtitle: {
+    ...textStyles.subtitle,
+  },
+  nivelTexto: {
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.md,
+    color: colors.textSecondary,
+  },
+  ayuda: {
+    ...textStyles.ayuda,
+    textAlign: "center",
+    marginTop: spacing.sm,
+    marginBottom: spacing.lg,
+  },
+  aviso: {
+    color: colors.accentYellow,
+  },
+});
+
+export const dificultadStyles = {
+  ...dificultadViewStyles,
+  ...dificultadTextStyles,
+};

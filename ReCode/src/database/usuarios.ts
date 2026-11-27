@@ -106,3 +106,31 @@ export async function guardarConfig(db: SQLiteDatabase, sesion: Sesion, config: 
     sesion.id,
   );
 }
+
+/** Crea la fila local del usuario (cache offline). Devuelve { ok: true } o { ok: false, error }. */
+export async function registrarUsuario(
+  db: SQLiteDatabase,
+  correo: string,
+  _password: string
+): Promise<{ ok: boolean; error?: string }> {
+  try {
+    const email = correo.trim().toLowerCase();
+    // Buscar si ya existe localmente
+    const existente = await db.getFirstAsync<{ id_usuario: number }>(
+      "SELECT id_usuario FROM usuario WHERE correo_electronico = ?",
+      email,
+    );
+    if (existente) {
+      return { ok: false, error: "Usuario ya existe localmente" };
+    }
+    // El id real viene del backend (se guarda en SecureStore), aquí solo creamos la fila
+    // con un id temporal que se actualizará al hacer login
+    await db.runAsync(
+      "INSERT INTO usuario (correo_electronico) VALUES (?)",
+      email,
+    );
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : "Error desconocido" };
+  }
+}

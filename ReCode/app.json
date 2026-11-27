@@ -56,9 +56,7 @@
         {
           "icon": "./assets/images/notification-icon.png",
           "color": "#208AEF",
-          "sounds": [
-            "./assets/sounds/notification.wav"
-          ]
+          "sounds": ["./assets/sounds/notification.wav"]
         }
       ]
     ],
@@ -74,7 +72,8 @@
       },
       "eas": {
         "projectId": "29a61109-b590-4053-8cab-04104b3f166e"
-      }
+      },
+      "apiUrl": "http://192.168.137.1:8001"
     }
   }
 }

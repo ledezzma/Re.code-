@@ -1,72 +1,95 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, ViewStyle, TextStyle } from "react-native";
 import Constants from "expo-constants";
+import {
+  colors,
+  spacing,
+  borderRadius,
+  typography,
+  viewStyles,
+  textStyles,
+  shadows,
+} from "../common";
 
-export const seleccionStyles = StyleSheet.create({
+interface SeleccionViewStyles {
+  container: ViewStyle;
+  formContainer: ViewStyle;
+  formActiva: ViewStyle;
+  fila: ViewStyle;
+  confirmButton: ViewStyle;
+  confirmDisabled: ViewStyle;
+}
+
+interface SeleccionTextStyles {
+  separator: TextStyle;
+  sectionTitle: TextStyle;
+  nivel: TextStyle;
+  subtitle: TextStyle;
+  confirmText: TextStyle;
+  ayuda: TextStyle;
+}
+
+const seleccionViewStyles = StyleSheet.create<SeleccionViewStyles>({
   container: {
-    paddingHorizontal: 24,
-    alignItems: "center",
-  },
-  separator: {
-    color: "#7C5CFF",
-    fontSize: 24,
-    marginTop: 20,
-    textAlign: "center",
-  },
-  ayuda: {
-    color: "#8A8AA3",
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 16,
-    textAlign: "center",
-    marginTop: 6,
-    marginBottom: 22,
+    ...viewStyles.containerCentered,
   },
   formContainer: {
-    padding: 26,
-    backgroundColor: "#1A1A28",
-    width: "96%",
-    borderRadius: 30,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-    marginBottom: 18,
+    ...viewStyles.formContainerWide,
+    marginBottom: spacing.md,
   },
   formActiva: {
-    borderColor: "#7C5CFF",
+    borderColor: colors.accentPurple,
     borderWidth: 2,
   },
   fila: {
     flexDirection: "row",
     alignItems: "center",
   },
-  sectionTitle: {
-    color: "white",
-    fontSize: 18,
-  },
-  nivel: {
-    marginLeft: 15,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  subtitle: {
-    marginTop: 6,
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 18,
-    lineHeight: 22,
-    color: "#8A8AA3",
-  },
   confirmButton: {
-    backgroundColor: "#1c381f",
-    paddingVertical: 18,
-    paddingHorizontal: 24,
-    borderRadius: 20,
+    backgroundColor: colors.successBg,
+    paddingVertical: spacing.lg,
+    paddingHorizontal: spacing.xl,
+    borderRadius: borderRadius.xl,
     width: "96%",
     alignItems: "center",
-    marginBottom: Constants.statusBarHeight + 40,
+    marginBottom: Constants.statusBarHeight + spacing.xl,
+    ...shadows.glowSuccess,
   },
   confirmDisabled: {
     opacity: 0.4,
   },
+});
+
+const seleccionTextStyles = StyleSheet.create<SeleccionTextStyles>({
+  separator: {
+    ...textStyles.separator,
+    marginTop: spacing.lg,
+    fontSize: typography.fontSizes.xxxl,
+  },
+  sectionTitle: {
+    ...textStyles.sectionTitle,
+  },
+  nivel: {
+    marginLeft: spacing.lg,
+    fontSize: typography.fontSizes.md,
+    fontWeight: typography.fontWeights.semiBold,
+  },
+  subtitle: {
+    ...textStyles.subtitle,
+  },
   confirmText: {
-    fontSize: 28,
-    color: "white",
+    fontSize: typography.fontSizes.xxxl,
+    color: colors.textWhite,
+    fontWeight: typography.fontWeights.bold,
+  },
+  ayuda: {
+    ...textStyles.ayuda,
+    textAlign: "center",
+    marginTop: spacing.sm,
+    marginBottom: spacing.xl,
   },
 });
+
+export const seleccionStyles = {
+  ...seleccionViewStyles,
+  ...seleccionTextStyles,
+};

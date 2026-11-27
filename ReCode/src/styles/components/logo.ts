@@ -1,4 +1,7 @@
 import { StyleSheet, TextStyle } from "react-native";
+import {
+  textStyles,
+} from "../common";
 
 interface LogoTextStyles {
   logo: TextStyle;
@@ -7,12 +10,10 @@ interface LogoTextStyles {
 
 const logoTextStyles = StyleSheet.create<LogoTextStyles>({
   logo: {
-    fontFamily: "PixelifySans_700Bold",
-    letterSpacing: 1,
-    color: "#D9D9DE",
+    ...textStyles.logo,
   },
   logoAccent: {
-    color: "#7C5CFF",
+    ...textStyles.logoAccent,
   },
 });
 

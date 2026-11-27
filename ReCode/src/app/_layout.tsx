@@ -1,8 +1,7 @@
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { router } from "expo-router";
 import { PixelifySans_700Bold } from "@expo-google-fonts/pixelify-sans";
 import {
   SourceSans3_400Regular,
@@ -12,8 +11,7 @@ import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 import { SQLiteProvider } from "expo-sqlite";
 import { AlertaProvider, useAlerta } from "../components/Alerta";
 import * as Notifications from "expo-notifications";
-import * as SecureStore from "expo-secure-store";
-import { registerForPushNotificationsAsync, addNotificationResponseListener } from "../../utils/pushToken";
+import { addNotificationResponseListener, addNotificationReceivedListener } from "../../utils/pushToken";
 
 // Configuración global de notificaciones en foreground
 Notifications.setNotificationHandler({
@@ -35,12 +33,12 @@ function NotificationListeners() {
     const removeResponseListener = addNotificationResponseListener((data) => {
       const pantalla = data?.pantalla as string | undefined;
       if (pantalla) {
-        router.push(pantalla);
+        router.push(pantalla as any);
       }
     });
 
     // Listener: notificación recibida en foreground (opcional)
-    const removeReceivedListener = Notifications.addNotificationReceivedListener((notification) => {
+    const removeReceivedListener = addNotificationReceivedListener((notification) => {
       console.log('Notificación recibida:', notification.request.content.title);
     });
 
@@ -48,21 +46,30 @@ function NotificationListeners() {
       removeResponseListener();
       removeReceivedListener();
     };
-  }, [router, showError]);
+  }, [showError]);
 
   return null;
 }
 
 export default function RootLayout() {
   // lista de fuentes que se van a cargar
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     PixelifySans_700Bold,
     SourceSans3_400Regular,
     SourceSans3_600SemiBold,
     Inter_600SemiBold,
   });
 
-  if (!fontsLoaded) return null; // si las fuentes no se han cargado, no renderiza nada
+  if (fontError) {
+    console.error('❌ Error cargando fuentes:', fontError);
+  }
+
+  if (!fontsLoaded) {
+    // Mostrar algo mientras carga para no quedar en blanco
+    return (
+      <StatusBar style="light" />
+    );
+  }
 
   return (
     <SQLiteProvider

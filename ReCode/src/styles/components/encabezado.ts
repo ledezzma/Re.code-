@@ -1,25 +1,48 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, ViewStyle, TextStyle } from "react-native";
 import Constants from "expo-constants";
+import {
+  colors,
+  spacing,
+  typography,
+} from "../common";
 
-export const encabezadoStyles = StyleSheet.create({
+interface EncabezadoViewStyles {
+  barra: ViewStyle;
+  contenido: ViewStyle;
+}
+
+interface EncabezadoTextStyles {
+  titulo: TextStyle;
+}
+
+const encabezadoViewStyles = StyleSheet.create<EncabezadoViewStyles>({
   barra: {
     width: "100%",
     height: Constants.statusBarHeight + 60,
-    backgroundColor: "#0F0F16",
+    backgroundColor: colors.gradientPrimary[0],
     borderBottomWidth: 1,
-    borderColor: "#2c2c33",
+    borderColor: colors.borderPrimary,
   },
   contenido: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
-    marginHorizontal: 10,
+    marginHorizontal: spacing.md,
     flexDirection: "row",
     alignItems: "center",
   },
+});
+
+const encabezadoTextStyles = StyleSheet.create<EncabezadoTextStyles>({
   titulo: {
     flex: 1,
-    color: "white",
-    fontSize: 22,
-    marginLeft: 8,
+    color: colors.textPrimary,
+    fontSize: typography.fontSizes.xl,
+    marginLeft: spacing.sm,
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
   },
 });
+
+export const encabezadoStyles = {
+  ...encabezadoViewStyles,
+  ...encabezadoTextStyles,
+};

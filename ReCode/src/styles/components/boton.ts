@@ -1,4 +1,9 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import {
+  colors,
+  typography,
+  viewStyles,
+} from "../common";
 
 interface BotonViewStyles {
   base: ViewStyle;
@@ -15,41 +20,30 @@ interface BotonTextStyles {
 
 const botonViewStyles = StyleSheet.create<BotonViewStyles>({
   base: {
-    width: "100%",
-    height: 50,
-    borderRadius: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
+    ...viewStyles.buttonBase,
   },
   primario: {
-    backgroundColor: "#7C5CFF",
-    elevation: 20,
+    ...viewStyles.buttonPrimary,
   },
   secundario: {
-    backgroundColor: "#252247",
-    borderWidth: 1,
+    ...viewStyles.buttonSecondary,
   },
   peligro: {
-    backgroundColor: "#3a1818",
-    borderWidth: 1,
-    borderColor: "#a62d2d",
+    ...viewStyles.buttonDanger,
   },
   presionado: {
-    opacity: 0.85,
-    transform: [{ scale: 0.98 }],
+    ...viewStyles.buttonPressed,
   },
   deshabilitado: {
-    opacity: 0.45,
+    ...viewStyles.buttonDisabled,
   },
 });
 
 const botonTextStyles = StyleSheet.create<BotonTextStyles>({
   texto: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 15,
-    color: "#FFFFFF",
+    fontFamily: typography.fontFamilies.interSemiBold,
+    fontSize: typography.fontSizes.md,
+    color: colors.textWhite,
   },
 });
 

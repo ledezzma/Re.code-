@@ -23,6 +23,7 @@ export const colors = {
   borderSecondary: "#3a3a4a",
   borderInput: "#2c2c33",
   borderFocus: "#7C5CFF",
+  borderAnswer: "#767684",
 
   // Text colors
   textPrimary: "#F2F2F7",
@@ -30,6 +31,10 @@ export const colors = {
   textMuted: "#6B6B7A",
   textPlaceholder: "#ababc0",
   textWhite: "#FFFFFF",
+  textAnswer: "#E8E8ED",
+  textAnswerSelected: "#7C5CFF",
+  textCorrect: "#71ec66",
+  textWrong: "#ec6666",
 
   // Accent colors
   accentPurple: "#7C5CFF",
@@ -39,8 +44,22 @@ export const colors = {
   accentGreenSuccess: "#35a62d",
   accentRed: "#a62d2d",
 
+  // Status colors (for semantic meaning)
+  success: "#35a62d",
+  successBg: "#1a3a2e",
+  successBorder: "#35a62d",
+  error: "#a62d2d",
+  errorBg: "#3a1a1a",
+  errorBorder: "#a62d2d",
+  warning: "#e7d512",
+  warningBg: "#3a3a1a",
+  warningBorder: "#e7d512",
+  info: "#7C5CFF",
+  infoBg: "#1a2a3a",
+  infoBorder: "#7C5CFF",
+
   // Status bar
-  statusBarLight: "light",
+  statusBarLight: "light" as const,
 };
 
 // Spacing
@@ -52,6 +71,11 @@ export const spacing = {
   xl: 32,
   xxl: 40,
   xxxl: 48,
+  // Additional spacing for specific use cases
+  navbar: 56,
+  statusBar: 48,
+  formPadding: 24,
+  cardPadding: 24,
 };
 
 // Border radius
@@ -61,7 +85,9 @@ export const borderRadius = {
   lg: 16,
   xl: 24,
   xxl: 30,
+  xxxl: 40,
   round: 40,
+  pill: 999,
 };
 
 // Typography - fontWeight values compatible with React Native TextStyle
@@ -84,6 +110,9 @@ export const typography = {
     logo: 50,
     title: 29,
     sectionTitle: 18,
+    // Additional sizes for specific use cases
+    avatar: 48,
+    score: 56,
   },
   lineHeights: {
     tight: 14,
@@ -91,6 +120,9 @@ export const typography = {
     relaxed: 26,
     title: 44,
     question: 36,
+    // Additional line heights
+    message: 24,
+    detail: 24,
   },
   fontWeights: {
     regular: "normal" as const,
@@ -154,6 +186,28 @@ export const shadows = {
     shadowOpacity: 0.25,
     shadowRadius: 12,
     elevation: 8,
+  },
+  // Timer/Navigation shadows
+  timer: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  card: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  nextButton: {
+    shadowColor: "#7C5CFF",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
   },
 };
 
@@ -342,10 +396,28 @@ export const viewStyles = StyleSheet.create({
   buttonSecondary: {
     backgroundColor: colors.surfaceDisabled,
     borderWidth: 1,
+    borderColor: colors.borderPrimary,
+  } as ViewStyle,
+  buttonDanger: {
+    backgroundColor: colors.errorBg,
+    borderWidth: 1,
+    borderColor: colors.errorBorder,
+  } as ViewStyle,
+  buttonWarning: {
+    backgroundColor: colors.warning,
+    borderWidth: 1,
+    borderColor: colors.warningBorder,
+  } as ViewStyle,
+  buttonSuccess: {
+    backgroundColor: colors.success,
+    ...shadows.nextButton,
   } as ViewStyle,
   buttonPressed: {
     opacity: 0.85,
     transform: [{ scale: 0.98 }],
+  } as ViewStyle,
+  buttonDisabled: {
+    opacity: 0.45,
   } as ViewStyle,
 
   // Login/Register links
@@ -365,6 +437,90 @@ export const viewStyles = StyleSheet.create({
     width: "80%",
     marginTop: spacing.xl,
     gap: spacing.xl,
+  } as ViewStyle,
+
+  // Timer
+  timerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.xs,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.md,
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: colors.borderSecondary,
+    backgroundColor: colors.surfacePrimary,
+    ...shadows.timer,
+  } as ViewStyle,
+  timerUrgent: {
+    borderColor: colors.error,
+    backgroundColor: colors.errorBg,
+  } as ViewStyle,
+
+  // Answer blocks
+  answerBlock: {
+    backgroundColor: colors.surfacePrimary,
+    borderWidth: 1,
+    borderColor: colors.borderAnswer,
+    borderRadius: borderRadius.lg,
+    paddingVertical: spacing.lg,
+    paddingHorizontal: spacing.lg,
+    marginBottom: spacing.md,
+    width: "100%",
+  } as ViewStyle,
+  answerBlockSelected: {
+    borderColor: colors.accentPurple,
+    backgroundColor: "#1E1E3A",
+  } as ViewStyle,
+  answerBlockDisabled: {
+    opacity: 0.5,
+  } as ViewStyle,
+  answerBlockCorrect: {
+    borderColor: colors.success,
+    backgroundColor: colors.successBg,
+  } as ViewStyle,
+  answerBlockWrong: {
+    borderColor: colors.error,
+    backgroundColor: colors.errorBg,
+  } as ViewStyle,
+
+  // Result card
+  resultCard: {
+    width: "100%",
+    padding: spacing.xl,
+    gap: spacing.md,
+    alignItems: "center",
+    backgroundColor: colors.surfacePrimary,
+    borderRadius: borderRadius.xxxl,
+    borderWidth: 1,
+    borderColor: colors.borderPrimary,
+    ...shadows.medium,
+  } as ViewStyle,
+
+  // Pagination
+  paginationButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.lg,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.surfaceDisabled,
+    borderWidth: 1,
+    borderColor: colors.borderPrimary,
+  } as ViewStyle,
+  paginationButtonOff: {
+    opacity: 0.35,
+  } as ViewStyle,
+
+  // Empty state
+  emptyState: {
+    width: "96%",
+    padding: spacing.xl,
+    borderRadius: borderRadius.xl,
+    borderWidth: 1,
+    borderColor: colors.borderPrimary,
+    backgroundColor: colors.surfacePrimary,
+    alignItems: "center",
   } as ViewStyle,
 });
 
@@ -517,6 +673,153 @@ export const textStyles = StyleSheet.create({
     color: colors.textSecondary,
     lineHeight: typography.lineHeights.normal,
     marginTop: spacing.xs,
+  } as TextStyle,
+
+  // Timer text
+  timerText: {
+    color: colors.textPrimary,
+    fontSize: typography.fontSizes.lg,
+    fontWeight: typography.fontWeights.bold,
+    fontVariant: ["tabular-nums"],
+  } as TextStyle,
+
+  // Answer text
+  answerText: {
+    fontSize: typography.fontSizes.lg,
+    fontWeight: typography.fontWeights.medium,
+    color: colors.textAnswer,
+    textAlign: "center",
+  } as TextStyle,
+  answerTextSelected: {
+    color: colors.textAnswerSelected,
+    fontWeight: typography.fontWeights.bold,
+  } as TextStyle,
+  answerTextCorrect: {
+    color: colors.textCorrect,
+    fontWeight: typography.fontWeights.bold,
+  } as TextStyle,
+  answerTextWrong: {
+    color: colors.textWrong,
+    fontWeight: typography.fontWeights.bold,
+  } as TextStyle,
+
+  // Question title
+  questionTitle: {
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.xxxl,
+    lineHeight: typography.lineHeights.question,
+    color: colors.textPrimary,
+    marginBottom: spacing.xl,
+  } as TextStyle,
+
+  // Language/Level
+  languageLabel: {
+    color: colors.textMuted,
+    fontSize: typography.fontSizes.sm,
+    fontWeight: typography.fontWeights.semiBold,
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    marginRight: spacing.md,
+  } as TextStyle,
+  languageValue: {
+    color: colors.accentPurple,
+    fontSize: typography.fontSizes.lg,
+    fontWeight: typography.fontWeights.bold,
+  } as TextStyle,
+  languageLevel: {
+    marginLeft: spacing.md,
+    fontSize: typography.fontSizes.md,
+    fontWeight: typography.fontWeights.semiBold,
+  } as TextStyle,
+
+  // Result screen
+  resultTitle: {
+    color: colors.textPrimary,
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.xxxl,
+  } as TextStyle,
+  resultScore: {
+    color: colors.accentPurple,
+    fontSize: 56,
+    fontWeight: typography.fontWeights.bold,
+  } as TextStyle,
+  resultDetail: {
+    color: colors.textSecondary,
+    fontFamily: typography.fontFamilies.sourceSansRegular,
+    fontSize: typography.fontSizes.lg,
+    marginBottom: spacing.sm,
+  } as TextStyle,
+
+  // Hint text
+  hintText: {
+    color: colors.gradientPrimary[0],
+    fontSize: typography.fontSizes.md,
+    fontWeight: typography.fontWeights.semiBold,
+    marginLeft: spacing.sm,
+  } as TextStyle,
+
+  // Next button text
+  nextButtonText: {
+    color: colors.textWhite,
+    fontSize: typography.fontSizes.lg,
+    fontWeight: typography.fontWeights.bold,
+    letterSpacing: 0.3,
+  } as TextStyle,
+
+  // Pagination text
+  paginationText: {
+    color: colors.textPrimary,
+    fontSize: typography.fontSizes.md,
+    fontWeight: typography.fontWeights.semiBold,
+  } as TextStyle,
+
+  // Empty state text
+  emptyText: {
+    color: colors.textSecondary,
+    fontSize: typography.fontSizes.lg,
+    lineHeight: typography.lineHeights.relaxed,
+    textAlign: "center",
+  } as TextStyle,
+
+  // Date text
+  dateText: {
+    color: colors.textMuted,
+    fontSize: typography.fontSizes.xs,
+    fontWeight: typography.fontWeights.medium,
+  } as TextStyle,
+
+  // Total text
+  totalText: {
+    color: colors.textSecondary,
+    fontSize: typography.fontSizes.sm,
+    textAlign: "center",
+  } as TextStyle,
+
+  // Feedback text
+  feedback: {
+    fontSize: typography.fontSizes.lg,
+    fontWeight: typography.fontWeights.bold,
+    textAlign: "center",
+    marginBottom: spacing.lg,
+  } as TextStyle,
+
+  // Mensaje text
+  mensaje: {
+    color: colors.textSecondary,
+    fontFamily: typography.fontFamilies.sourceSansRegular,
+    fontSize: typography.fontSizes.lg,
+    lineHeight: typography.lineHeights.relaxed,
+    textAlign: "center",
+    marginBottom: spacing.lg,
+  } as TextStyle,
+
+  // Ayuda text
+  ayuda: {
+    fontFamily: typography.fontFamilies.sourceSansRegular,
+    fontSize: typography.fontSizes.sm,
+    lineHeight: typography.lineHeights.normal,
+    color: colors.textSecondary,
+    marginBottom: spacing.md,
   } as TextStyle,
 });
 

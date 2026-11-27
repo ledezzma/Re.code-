@@ -3,6 +3,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useRouter } from "expo-router";
 import { navBarStyles } from "../styles";
+import { colors } from "../styles/common";
 
 type Props = {
   pantallaActual: string;
@@ -37,7 +38,7 @@ export default function NavBar({ pantallaActual }: Props) {
             <IconComp
               name={icon}
               size={22}
-              color={isActive ? "#7C5CFF" : "#8A8AA3"}
+              color={isActive ? colors.accentPurple : colors.textSecondary}
             />
             <Text
               style={[

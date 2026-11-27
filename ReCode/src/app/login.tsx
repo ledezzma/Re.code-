@@ -55,7 +55,8 @@ export default function Login() {
       registerForPushNotificationsAsync(String(res.id_usuario), true, { showError, showSuccess });
       showSuccess("¡Bienvenido!", "Sesión iniciada correctamente");
       router.replace("/home");
-    } catch {
+    } catch (error) {
+      console.log('❌ LOGIN ERROR:', error);
       showError("Error de conexión", "No se pudo conectar al servidor");
     }
   };
@@ -72,7 +73,7 @@ export default function Login() {
 
         <Text style={loginStyles.subtitle}>CORREO ELECTRÓNICO</Text>
         <TextInput
-          style={loginStyles.input}
+          style={loginStyles.input as any}
           placeholder="tu@correo.com"
           placeholderTextColor={"#ababc0"}
           value={email}
@@ -83,7 +84,7 @@ export default function Login() {
 
         <Text style={loginStyles.subtitle}>CONTRASEÑA</Text>
         <TextInput
-          style={loginStyles.input}
+          style={loginStyles.input as any}
           placeholder="·····················"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}

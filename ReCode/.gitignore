@@ -44,3 +44,6 @@ yarn-error.*
 
 # local env files
 .env
+
+# Google Services / Firebase
+google-services.json

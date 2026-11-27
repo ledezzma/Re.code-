@@ -1,0 +1,14 @@
+npm notice run recode@1.0.0 npx
+npm notice run expo start -c --clear --port 8081
+env: load .env
+env: export DB_HOST DB_NAME DB_PASSWORD DB_PORT DB_USER EXPO_PUBLIC_API_URL
+Starting project at C:\Users\ledez\Documents\Re.Code F\Re.code\ReCode
+Logs: C:\Users\ledez\Documents\Re.Code F\Re.code\ReCode\.expo\dev\logs\start.log
+Using src/app as the root directory for Expo Router.
+React Compiler enabled
+Starting Metro Bundler
+
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+Waiting on http://localhost:8081
+
+Logs for your project will appear below.

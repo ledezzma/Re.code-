@@ -1,4 +1,12 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import {
+  spacing,
+  borderRadius,
+  typography,
+  viewStyles,
+  textStyles,
+  textInputTextStyles,
+} from "../common";
 
 interface RegistroViewStyles {
   container: ViewStyle;
@@ -12,80 +20,55 @@ interface RegistroTextStyles {
   subtitle: TextStyle;
   loginLink: TextStyle;
   inputText: TextStyle;
-  input: TextStyle; // combined style for TextInput (original)
 }
 
 const registroViewStyles = StyleSheet.create<RegistroViewStyles>({
   container: {
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 24,
+    ...viewStyles.containerCentered,
+    paddingHorizontal: spacing.lg,
   },
   formContainer: {
-    padding: 28,
-    backgroundColor: "#1A1A28",
+    ...viewStyles.formContainer,
     width: "93%",
-    borderRadius: 40,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
+    borderRadius: borderRadius.xxxl,
   },
   inputContainer: {
-    marginVertical: 5,
-    backgroundColor: "#13131E",
-    marginBottom: 13,
-    borderRadius: 10,
-    height: 45,
-    paddingHorizontal: 12,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
+    ...viewStyles.inputBaseContainer,
+    marginVertical: spacing.xs,
   },
   loginRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 8,
+    ...viewStyles.loginRow,
+    marginTop: spacing.sm,
   },
 });
 
 const registroTextStyles = StyleSheet.create<RegistroTextStyles>({
   title: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 30,
-    lineHeight: 44,
-    color: "#F2F2F7",
+    ...textStyles.title,
+    fontSize: typography.fontSizes.xxxl,
   },
   subtitle: {
-    marginTop: 2,
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 16,
-    lineHeight: 22,
-    color: "#8A8AA3",
-    maxWidth: 320,
+    ...textStyles.subtitle,
   },
   loginLink: {
-    color: "#8567ff",
-    fontSize: 16,
-    fontFamily: "SourceSans3_400Regular",
+    ...textStyles.loginLink,
   },
   inputText: {
-    color: "#ababc0",
-    fontSize: 16,
-  },
-  input: {
-    marginVertical: 5,
-    backgroundColor: "#13131E",
-    color: "#ababc0",
-    marginBottom: 13,
-    borderRadius: 10,
-    height: 45,
-    fontSize: 16,
-    paddingHorizontal: 12,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
+    ...textInputTextStyles.inputText,
   },
 });
+
+// Combined input style for TextInput (using plain object to bypass ViewStyle/TextStyle conflict)
+const registroInputStyle = {
+  input: {
+    ...viewStyles.inputBaseContainer,
+    marginVertical: spacing.xs,
+    ...textInputTextStyles.inputText,
+  },
+} as const;
 
 export const registroStyles = {
   ...registroViewStyles,
   ...registroTextStyles,
+  ...registroInputStyle,
 };

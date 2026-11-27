@@ -77,7 +77,8 @@ export default function Registro() {
       registerForPushNotificationsAsync(String(apiData.id_usuario), true, { showError, showSuccess });
       showSuccess("¡Cuenta creada!", "Bienvenido a Re.code()");
       router.replace("/login");
-    } catch {
+    } catch (error) {
+      console.log('❌ REGISTRO ERROR:', error);
       showError("Error de conexión", "No se pudo conectar al servidor");
     }
   };
@@ -95,7 +96,7 @@ export default function Registro() {
 
         <Text style={registroStyles.subtitle}>CORREO ELECTRÓNICO</Text>
         <TextInput
-          style={registroStyles.input}
+          style={registroStyles.input as any}
           placeholder="tu@correo.com"
           value={correo}
           onChangeText={setCorreo}
@@ -105,7 +106,7 @@ export default function Registro() {
 
         <Text style={registroStyles.subtitle}>CONTRASEÑA</Text>
         <TextInput
-          style={registroStyles.input}
+          style={registroStyles.input as any}
           placeholder="Mínimo 8 caracteres"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}
@@ -115,7 +116,7 @@ export default function Registro() {
 
         <Text style={registroStyles.subtitle}>CONFIRMAR CONTRASEÑA</Text>
         <TextInput
-          style={registroStyles.input}
+          style={registroStyles.input as any}
           placeholder="Repite tu contraseña"
           placeholderTextColor={"#ababc0"}
           secureTextEntry={true}

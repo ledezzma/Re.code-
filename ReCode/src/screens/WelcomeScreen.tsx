@@ -4,7 +4,6 @@ import { useRouter } from "expo-router";
 import Boton from "../components/Boton";
 import Logo from "../components/Logo";
 import Constants from "expo-constants";
-import { cerrarSesion } from "../database/usuarios";
 import { welcomeStyles } from "../styles";
 
 export default function WelcomeScreen() {

@@ -1,4 +1,11 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import {
+  colors,
+  spacing,
+  typography,
+  viewStyles,
+  textStyles,
+} from "../common";
 
 interface HomeViewStyles {
   container: ViewStyle;
@@ -19,63 +26,47 @@ interface HomeTextStyles {
 const homeViewStyles = StyleSheet.create<HomeViewStyles>({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: spacing.lg,
   },
   logoWrap: {
-    marginTop: 48 + 40, // statusBarHeight + 40
+    marginTop: spacing.statusBar + spacing.xl,
     alignItems: "center",
   },
   formContainer: {
-    padding: 26,
-    backgroundColor: "#1A1A28",
-    width: "96%",
-    borderRadius: 30,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-    marginBottom: 18,
+    ...viewStyles.formContainerWide,
+    marginBottom: spacing.md,
   },
 });
 
 const homeTextStyles = StyleSheet.create<HomeTextStyles>({
   logo: {
-    fontFamily: "PixelifySans_700Bold",
-    fontSize: 50,
-    letterSpacing: 1,
-    color: "#D9D9DE",
+    ...textStyles.logo,
+    fontSize: typography.fontSizes.logo,
   },
   logoAccent: {
-    color: "#7C5CFF",
+    ...textStyles.logoAccent,
   },
   separator: {
-    color: "#7C5CFF",
-    fontSize: 24,
-    fontWeight: "700",
-    marginTop: 20,
-    marginBottom: 24,
-    textAlign: "center",
-    letterSpacing: 0.5,
+    ...textStyles.separator,
+    marginTop: spacing.xl,
+    marginBottom: spacing.lg,
   },
   subtitle: {
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 18,
-    lineHeight: 22,
-    color: "#8A8AA3",
-    maxWidth: 320,
+    ...textStyles.subtitle,
   },
   sectionTitle: {
-    color: "white",
-    fontSize: 18,
+    ...textStyles.sectionTitle,
   },
   accentSpeed: {
-    color: "#e2b544",
-    marginTop: 3,
-    marginLeft: 15,
-    fontWeight: "condensed",
+    color: colors.accentYellow,
+    marginTop: spacing.xs,
+    marginLeft: spacing.md,
+    fontWeight: typography.fontWeights.semiBold,
   },
   accentControl: {
-    color: "#71ec66",
-    marginTop: 3,
-    marginLeft: 15,
+    color: colors.accentGreen,
+    marginTop: spacing.xs,
+    marginLeft: spacing.md,
   },
 });
 

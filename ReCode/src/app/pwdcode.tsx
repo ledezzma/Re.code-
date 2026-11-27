@@ -104,7 +104,7 @@ export default function CambiarContrasena() {
 
               <Text style={[styles.subtitle, { marginTop: 18 }]}>CORREO ELECTRÓNICO</Text>
               <TextInput
-                style={[styles.input, correoFijo && styles.inputBloqueado]}
+                style={(correoFijo ? styles.inputBloqueado : styles.input) as any}
                 placeholder="tu@correo.com"
                 placeholderTextColor="#ababc0"
                 value={email}
@@ -129,7 +129,7 @@ export default function CambiarContrasena() {
 
               <Text style={[styles.subtitle, { marginTop: 18 }]}>CÓDIGO</Text>
               <TextInput
-                style={[styles.input, styles.inputCodigo]}
+                style={styles.inputCodigo as any}
                 placeholder="123456"
                 placeholderTextColor="#ababc0"
                 value={codigo}
@@ -141,7 +141,7 @@ export default function CambiarContrasena() {
 
               <Text style={styles.subtitle}>NUEVA CONTRASEÑA</Text>
               <TextInput
-                style={styles.input}
+                style={styles.input as any}
                 placeholder="Mínimo 8 caracteres"
                 placeholderTextColor="#ababc0"
                 secureTextEntry
@@ -151,7 +151,7 @@ export default function CambiarContrasena() {
 
               <Text style={styles.subtitle}>CONFIRMAR CONTRASEÑA</Text>
               <TextInput
-                style={styles.input}
+                style={styles.input as any}
                 placeholder="Repite tu contraseña"
                 placeholderTextColor="#ababc0"
                 secureTextEntry

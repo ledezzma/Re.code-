@@ -1,4 +1,10 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import {
+  spacing,
+  typography,
+  viewStyles,
+  textStyles,
+} from "../common";
 
 interface WelcomeViewStyles {
   container: ViewStyle;
@@ -14,40 +20,30 @@ interface WelcomeTextStyles {
 
 const welcomeViewStyles = StyleSheet.create<WelcomeViewStyles>({
   container: {
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 24,
+    ...viewStyles.containerCentered,
+    paddingHorizontal: spacing.lg,
   },
   textBlock: {
-    marginTop: 48,
+    marginTop: spacing.statusBar + spacing.xl,
     alignItems: "center",
   },
   botones: {
     width: "80%",
-    marginTop: 40,
-    gap: 25,
+    marginTop: spacing.xxxl,
+    gap: spacing.xl,
   },
 });
 
 const welcomeTextStyles = StyleSheet.create<WelcomeTextStyles>({
   title: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 39,
-    lineHeight: 44,
-    textAlign: "center",
-    color: "#F2F2F7",
+    ...textStyles.titleCentered,
+    fontSize: typography.fontSizes.display,
   },
   titleAccent: {
-    color: "#7C5CFF",
+    ...textStyles.logoAccent,
   },
   subtitle: {
-    marginTop: 16,
-    fontFamily: "SourceSans3_400Regular",
-    fontSize: 18,
-    lineHeight: 22,
-    textAlign: "center",
-    color: "#8A8AA3",
-    maxWidth: 300,
+    ...textStyles.subtitleCentered,
   },
 });
 

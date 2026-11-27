@@ -1,4 +1,12 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import {
+  colors,
+  spacing,
+  borderRadius,
+  typography,
+  viewStyles,
+  textStyles,
+} from "../common";
 
 interface HistorialViewStyles {
   container: ViewStyle;
@@ -26,21 +34,12 @@ interface HistorialTextStyles {
 const historialViewStyles = StyleSheet.create<HistorialViewStyles>({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: spacing.md,
   },
   formContainer: {
-    padding: 24,
-    backgroundColor: "#1A1A28",
-    width: "96%",
-    borderRadius: 24,
-    borderColor: "#2c2c33",
-    borderWidth: 1,
-    marginBottom: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
+    ...viewStyles.formContainerWide,
+    borderRadius: borderRadius.xl,
+    marginBottom: spacing.md,
   },
   headerRow: {
     flexDirection: "row",
@@ -55,88 +54,60 @@ const historialViewStyles = StyleSheet.create<HistorialViewStyles>({
   },
   contenido: {
     alignItems: "center",
-    paddingBottom: 120, // deja libre la barra de navegación inferior
+    paddingBottom: spacing.navbar + spacing.xl,
   },
   paginacion: {
     width: "96%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: 4,
+    marginTop: spacing.sm,
   },
   paginaBoton: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    borderRadius: 14,
-    backgroundColor: "#252247",
-    borderWidth: 1,
-    borderColor: "#2c2c33",
+    ...viewStyles.paginationButton,
   },
   paginaBotonOff: {
-    opacity: 0.35,
+    ...viewStyles.paginationButtonOff,
   },
   vacio: {
-    width: "96%",
-    padding: 28,
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: "#2c2c33",
-    backgroundColor: "#1A1A28",
+    ...viewStyles.emptyState,
   },
 });
 
 const historialTextStyles = StyleSheet.create<HistorialTextStyles>({
   separator: {
-    color: "#7C5CFF",
-    fontSize: 28,
-    fontWeight: "700",
-    marginTop: 100,
-    marginBottom: 24,
-    textAlign: "center",
-    letterSpacing: 0.5,
+    ...textStyles.separator,
+    marginTop: spacing.xxxl + spacing.xl,
+    marginBottom: spacing.xl,
   },
   sectionTitle: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "600",
-    marginRight: 10,
+    ...textStyles.sectionTitle,
   },
   dateText: {
-    color: "#6B6B7A",
-    fontSize: 13,
-    fontWeight: "500",
+    ...textStyles.dateText,
   },
   nivelText: {
-    fontSize: 13,
-    fontWeight: "600",
-    marginLeft: 10,
+    fontSize: typography.fontSizes.xs,
+    fontWeight: typography.fontWeights.semiBold,
+    marginLeft: spacing.md,
   },
   totalText: {
-    color: "#8A8AA3",
-    fontSize: 15,
-    textAlign: "center",
-    marginTop: -12,
-    marginBottom: 20,
+    ...textStyles.totalText,
+    marginTop: -spacing.md,
+    marginBottom: spacing.lg,
   },
   paginaTexto: {
-    color: "#F2F2F7",
-    fontSize: 15,
-    fontWeight: "600",
+    ...textStyles.paginationText,
   },
   vacioTexto: {
-    color: "#8A8AA3",
-    fontSize: 17,
-    lineHeight: 24,
-    textAlign: "center",
+    ...textStyles.emptyText,
   },
   questionText: {
-    color: "#E8E8ED",
-    fontSize: 17,
-    lineHeight: 26,
-    fontWeight: "400",
-    marginTop: 8,
+    color: colors.textAnswer,
+    fontSize: typography.fontSizes.md,
+    lineHeight: typography.lineHeights.relaxed,
+    fontWeight: typography.fontWeights.regular,
+    marginTop: spacing.sm,
   },
 });
 

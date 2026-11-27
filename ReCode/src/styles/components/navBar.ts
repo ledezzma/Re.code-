@@ -1,5 +1,10 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
-import Constants from "expo-constants";
+import {
+  colors,
+  spacing,
+  borderRadius,
+  typography,
+} from "../common";
 
 interface NavBarViewStyles {
   navBar: ViewStyle;
@@ -21,44 +26,43 @@ const navBarViewStyles = StyleSheet.create<NavBarViewStyles>({
     left: 0,
     right: 0,
     flexDirection: "row",
-    backgroundColor: "#13111a",
+    backgroundColor: colors.surfaceSecondary,
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: "#2c2c33",
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    // paddingBottom: Constants.statusBarHeight + 6,
-    minHeight: 56,
+    borderTopColor: colors.borderPrimary,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    minHeight: spacing.navbar,
   },
   navItem: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.sm,
     minWidth: 0,
   },
   navItemActive: {
-    backgroundColor: "rgba(124, 92, 255, 0.1)",
-    borderRadius: 12,
+    backgroundColor: `${colors.accentPurple}1A`, // 10% opacity
+    borderRadius: borderRadius.md,
   },
   navItemPressed: {
-    backgroundColor: "rgba(124, 92, 255, 0.06)",
+    backgroundColor: `${colors.accentPurple}0F`, // 6% opacity
   },
 });
 
 const navBarTextStyles = StyleSheet.create<NavBarTextStyles>({
   navLabel: {
-    fontFamily: "SourceSans3_600SemiBold",
-    fontSize: 11,
+    fontFamily: typography.fontFamilies.sourceSansSemiBold,
+    fontSize: typography.fontSizes.xs,
     textAlign: "center",
-    lineHeight: 14,
-    marginTop: 2,
+    lineHeight: typography.lineHeights.tight,
+    marginTop: spacing.xs / 2,
   },
   navLabelActive: {
-    color: "#7C5CFF",
+    color: colors.accentPurple,
   },
   navLabelInactive: {
-    color: "#8A8AA3",
+    color: colors.textSecondary,
   },
 });
 
