@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Alert, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
@@ -7,6 +7,7 @@ import Boton from "../components/Boton";
 import Encabezado from "../components/Encabezado";
 import Pregunta from "../components/Pregunta";
 import SeleccionPregunta from "../components/SeleccionPregunta";
+import { Modal, useModal } from "../components/Modal";
 import { armarPartida, type Ronda } from "../game/armarPartida";
 import {
   ID_INVITADO,
@@ -75,6 +76,7 @@ export default function PreguntaScreen() {
   const idUsuario = useRef(ID_INVITADO);
   /** Evita registrar dos veces la misma pregunta (doble toque / tiempo agotado a la vez) */
   const cerrada = useRef(false);
+  const { modalConfig, modalVisible, showModal, dismissModal } = useModal();
 
   const { fase, rondas, indice, elegida, seleccion, confirmada, ocultas, pistas, aciertos, limite } = estado;
 
@@ -121,8 +123,14 @@ export default function PreguntaScreen() {
       } catch (e) {
         console.warn("No se pudo guardar en el historial:", e);
       }
+      // Primero mostramos el modal, esperamos a que el usuario lo cierre, luego navegamos
+      await showModal({
+        title: "Tiempo agotado",
+        message: "La pregunta se marcó como fallida.",
+        type: "warning",
+        confirmText: "Entendido",
+      });
       volverAlHome();
-      Alert.alert("Tiempo agotado", "La pregunta se marcó como fallida.");
     };
   });
 
@@ -186,79 +194,124 @@ export default function PreguntaScreen() {
   // ---------- Pantallas ----------
   if (fase === "cargando") {
     return (
-      <LinearGradient colors={["#0C0C14", "#1a1a2e"]} style={preguntaStyles.gradient}>
-        <Encabezado titulo="Preparando partida" />
-        <View style={preguntaStyles.centrado}>
-          <ActivityIndicator size="large" color="#7C5CFF" />
-        </View>
-      </LinearGradient>
+      <>
+        <LinearGradient colors={["#0C0C14", "#1a1a2e"]} style={preguntaStyles.gradient}>
+          <Encabezado titulo="Preparando partida" />
+          <View style={preguntaStyles.centrado}>
+            <ActivityIndicator size="large" color="#7C5CFF" />
+          </View>
+        </LinearGradient>
+        {modalConfig && (
+          <Modal
+            visible={modalVisible}
+            config={modalConfig}
+            onDismiss={dismissModal}
+          />
+        )}
+      </>
     );
   }
 
   if (fase === "sinPreguntas" || fase === "error") {
     return (
-      <LinearGradient colors={["#0C0C14", "#1a1a2e"]} style={preguntaStyles.gradient}>
-        <Encabezado titulo="Partida" />
-        <View style={preguntaStyles.centrado}>
-          <Text style={preguntaStyles.mensaje}>
-            {fase === "error"
-              ? "No se pudo preparar la partida."
-              : "No hay preguntas con la configuración actual."}
-          </Text>
-          <Boton texto="Volver" onPress={volverAlHome} />
-        </View>
-      </LinearGradient>
+      <>
+        <LinearGradient colors={["#0C0C14", "#1a1a2e"]} style={preguntaStyles.gradient}>
+          <Encabezado titulo="Partida" />
+          <View style={preguntaStyles.centrado}>
+            <Text style={preguntaStyles.mensaje}>
+              {fase === "error"
+                ? "No se pudo preparar la partida."
+                : "No hay preguntas con la configuración actual."}
+            </Text>
+            <Boton texto="Volver" onPress={volverAlHome} />
+          </View>
+        </LinearGradient>
+        {modalConfig && (
+          <Modal
+            visible={modalVisible}
+            config={modalConfig}
+            onDismiss={dismissModal}
+          />
+        )}
+      </>
     );
   }
 
   if (fase === "fin") {
     return (
-      <LinearGradient colors={["#0C0C14", "#1a1a2e"]} style={preguntaStyles.gradient}>
-        <Encabezado titulo="Resultado" />
-        <View style={preguntaStyles.centrado}>
-          <View style={preguntaStyles.resultadoTarjeta}>
-            <Text style={preguntaStyles.resultadoTitulo}>Partida terminada</Text>
-            <Text style={preguntaStyles.resultadoPuntaje}>
-              {aciertos}/{rondas.length}
-            </Text>
-            <Text style={preguntaStyles.resultadoDetalle}>respuestas correctas</Text>
-            <Boton texto="Volver al inicio" onPress={volverAlHome} />
+      <>
+        <LinearGradient colors={["#0C0C14", "#1a1a2e"]} style={preguntaStyles.gradient}>
+          <Encabezado titulo="Resultado" />
+          <View style={preguntaStyles.centrado}>
+            <View style={preguntaStyles.resultadoTarjeta}>
+              <Text style={preguntaStyles.resultadoTitulo}>Partida terminada</Text>
+              <Text style={preguntaStyles.resultadoPuntaje}>
+                {aciertos}/{rondas.length}
+              </Text>
+              <Text style={preguntaStyles.resultadoDetalle}>respuestas correctas</Text>
+              <Boton texto="Volver al inicio" onPress={volverAlHome} />
+            </View>
           </View>
-        </View>
-      </LinearGradient>
+        </LinearGradient>
+        {modalConfig && (
+          <Modal
+            visible={modalVisible}
+            config={modalConfig}
+            onDismiss={dismissModal}
+          />
+        )}
+      </>
     );
   }
 
   if (!elegida) {
     return (
-      <SeleccionPregunta
-        key={indice}
-        opciones={rondas[indice]}
-        ronda={indice + 1}
-        total={rondas.length}
-        aciertos={aciertos}
-        onConfirmar={elegirCandidata}
-      />
+      <>
+        <SeleccionPregunta
+          key={indice}
+          opciones={rondas[indice]}
+          ronda={indice + 1}
+          total={rondas.length}
+          aciertos={aciertos}
+          onConfirmar={elegirCandidata}
+        />
+        {modalConfig && (
+          <Modal
+            visible={modalVisible}
+            config={modalConfig}
+            onDismiss={dismissModal}
+          />
+        )}
+      </>
     );
   }
 
   return (
-    <Pregunta
-      key={elegida.id}
-      pregunta={elegida}
-      numero={indice + 1}
-      total={rondas.length}
-      seleccion={seleccion}
-      confirmada={confirmada}
-      ocultas={ocultas}
-      pistas={pistas}
-      puedeUsarPista={!confirmada && pistas > 0 && elegida.respuestas.length - ocultas.length > 2}
-      segundos={modo === "contrarreloj" ? segundos : undefined}
-      esUltima={indice + 1 >= rondas.length}
-      onSeleccionar={seleccionar}
-      onPista={usarPista}
-      onConfirmar={confirmar}
-      onSiguiente={siguiente}
-    />
+    <>
+      <Pregunta
+        key={elegida.id}
+        pregunta={elegida}
+        numero={indice + 1}
+        total={rondas.length}
+        seleccion={seleccion}
+        confirmada={confirmada}
+        ocultas={ocultas}
+        pistas={pistas}
+        puedeUsarPista={!confirmada && pistas > 0 && elegida.respuestas.length - ocultas.length > 2}
+        segundos={modo === "contrarreloj" ? segundos : undefined}
+        esUltima={indice + 1 >= rondas.length}
+        onSeleccionar={seleccionar}
+        onPista={usarPista}
+        onConfirmar={confirmar}
+        onSiguiente={siguiente}
+      />
+      {modalConfig && (
+        <Modal
+          visible={modalVisible}
+          config={modalConfig}
+          onDismiss={dismissModal}
+        />
+      )}
+    </>
   );
 }

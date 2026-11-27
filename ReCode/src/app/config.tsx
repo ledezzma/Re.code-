@@ -1,11 +1,12 @@
 import { useCallback, useState } from "react";
-import { Alert, Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
 import Feather from "@expo/vector-icons/Feather";
 import Boton from "../components/Boton";
 import NavBar from "../components/NavBar";
+import { Modal, useModal } from "../components/Modal";
 import { configStyles, viewStyles, textStyles } from "../styles";
 import { MENSAJES_API, llamarAPI, mensajeDeError } from "../api/cliente";
 import {
@@ -22,6 +23,7 @@ export default function Config() {
   const db = useSQLiteContext();
   const [sesion, setSesion] = useState<Sesion | null>(null);
   const [ocupado, setOcupado] = useState<Operacion>(null);
+  const { modalConfig, modalVisible, showModal, dismissModal } = useModal();
 
   // Se relee al entrar: la sesión puede haber cambiado desde otra pantalla
   useFocusEffect(
@@ -47,17 +49,17 @@ export default function Config() {
   };
 
   const cerrar = () => {
-    Alert.alert("Cerrar sesión", "¿Seguro que quieres salir?", [
-      { text: "Cancelar", style: "cancel" },
-      {
-        text: "Cerrar sesión",
-        style: "destructive",
-        onPress: async () => {
-          await cerrarSesion();
-          router.replace("/login");
-        },
+    showModal({
+      title: "Cerrar sesión",
+      message: "¿Seguro que quieres salir?",
+      type: "warning",
+      confirmText: "Cerrar sesión",
+      cancelText: "Cancelar",
+      onConfirm: async () => {
+        await cerrarSesion();
+        router.replace("/login");
       },
-    ]);
+    });
   };
 
   // ---------- Cargar: local -> servidor ----------
@@ -67,17 +69,37 @@ export default function Config() {
     try {
       const historial = await exportarHistorial(db, sesion.id);
       if (historial.length === 0) {
-        Alert.alert("Sin datos", "Todavía no tienes historial en este dispositivo para cargar.");
+        showModal({
+          title: "Sin datos",
+          message: "Todavía no tienes historial en este dispositivo para cargar.",
+          type: "info",
+          confirmText: "Entendido",
+        });
         return;
       }
       const r = await llamarAPI(`/cargarHistorial/${sesion.id}`, { cuerpo: { historial } });
       if (!r.ok || r.data?.message !== MENSAJES_API.historialCargado) {
-        Alert.alert("Error", mensajeDeError(r, "No se pudieron cargar los datos"));
+        showModal({
+          title: "Error",
+          message: mensajeDeError(r, "No se pudieron cargar los datos"),
+          type: "danger",
+          confirmText: "Entendido",
+        });
         return;
       }
-      Alert.alert("Listo", `Se enviaron ${historial.length} registros a tu cuenta.`);
+      showModal({
+        title: "Listo",
+        message: `Se enviaron ${historial.length} registros a tu cuenta.`,
+        type: "success",
+        confirmText: "Entendido",
+      });
     } catch (e) {
-      Alert.alert("Error", e instanceof Error ? e.message : "No se pudieron cargar los datos");
+      showModal({
+        title: "Error",
+        message: e instanceof Error ? e.message : "No se pudieron cargar los datos",
+        type: "danger",
+        confirmText: "Entendido",
+      });
     } finally {
       setOcupado(null);
     }
@@ -93,18 +115,31 @@ export default function Config() {
         { metodo: "GET" },
       );
       if (!r.ok || !Array.isArray(r.data?.historial)) {
-        Alert.alert("Error", mensajeDeError(r, "No se pudieron descargar los datos"));
+        showModal({
+          title: "Error",
+          message: mensajeDeError(r, "No se pudieron descargar los datos"),
+          type: "danger",
+          confirmText: "Entendido",
+        });
         return;
       }
       const nuevos = await importarHistorial(db, sesion.id, r.data.historial);
-      Alert.alert(
-        "Listo",
-        nuevos === 0
-          ? "Tu historial de este dispositivo ya estaba al día."
-          : `Se agregaron ${nuevos} registros a este dispositivo.`,
-      );
+      showModal({
+        title: "Listo",
+        message:
+          nuevos === 0
+            ? "Tu historial de este dispositivo ya estaba al día."
+            : `Se agregaron ${nuevos} registros a este dispositivo.`,
+        type: "success",
+        confirmText: "Entendido",
+      });
     } catch (e) {
-      Alert.alert("Error", e instanceof Error ? e.message : "No se pudieron descargar los datos");
+      showModal({
+        title: "Error",
+        message: e instanceof Error ? e.message : "No se pudieron descargar los datos",
+        type: "danger",
+        confirmText: "Entendido",
+      });
     } finally {
       setOcupado(null);
     }
@@ -113,34 +148,46 @@ export default function Config() {
   // ---------- Eliminar cuenta ----------
   const eliminarCuenta = () => {
     if (!sesion) return;
-    Alert.alert(
-      "Eliminar cuenta",
-      "Tu cuenta se desactivará y se borrarán de este dispositivo tu historial y tu configuración. Esta acción no se puede deshacer.",
-      [
-        { text: "Cancelar", style: "cancel" },
-        {
-          text: "Eliminar",
-          style: "destructive",
-          onPress: async () => {
-            setOcupado("eliminar");
-            try {
-              const r = await llamarAPI(`/eliminarcuenta/${sesion.id}`);
-              if (!r.ok || r.data?.message !== MENSAJES_API.cuentaEliminada) {
-                Alert.alert("Error", mensajeDeError(r, "No se pudo eliminar la cuenta"));
-                return;
-              }
-              await eliminarUsuarioLocal(db, sesion.id);
-              router.replace("/");
-              Alert.alert("Cuenta eliminada", "Tu cuenta se eliminó correctamente.");
-            } catch (e) {
-              Alert.alert("Error", e instanceof Error ? e.message : "No se pudo eliminar la cuenta");
-            } finally {
-              setOcupado(null);
-            }
-          },
-        },
-      ],
-    );
+    showModal({
+      title: "Eliminar cuenta",
+      message: "Tu cuenta se desactivará y se borrarán de este dispositivo tu historial y tu configuración. Esta acción no se puede deshacer.",
+      type: "danger",
+      confirmText: "Eliminar",
+      cancelText: "Cancelar",
+      confirmLoading: ocupado === "eliminar",
+      onConfirm: async () => {
+        setOcupado("eliminar");
+        try {
+          const r = await llamarAPI(`/eliminarcuenta/${sesion.id}`);
+          if (!r.ok || r.data?.message !== MENSAJES_API.cuentaEliminada) {
+            showModal({
+              title: "Error",
+              message: mensajeDeError(r, "No se pudo eliminar la cuenta"),
+              type: "danger",
+              confirmText: "Entendido",
+            });
+            return;
+          }
+          await eliminarUsuarioLocal(db, sesion.id);
+          router.replace("/");
+          showModal({
+            title: "Cuenta eliminada",
+            message: "Tu cuenta se eliminó correctamente.",
+            type: "success",
+            confirmText: "Entendido",
+          });
+        } catch (e) {
+          showModal({
+            title: "Error",
+            message: e instanceof Error ? e.message : "No se pudo eliminar la cuenta",
+            type: "danger",
+            confirmText: "Entendido",
+          });
+        } finally {
+          setOcupado(null);
+        }
+      },
+    });
   };
 
   return (
@@ -271,6 +318,15 @@ export default function Config() {
       </ScrollView>
 
       <NavBar pantallaActual="config" />
+
+      {/* Custom Modal */}
+      {modalConfig && (
+        <Modal
+          visible={modalVisible}
+          config={modalConfig}
+          onDismiss={dismissModal}
+        />
+      )}
     </LinearGradient>
   );
 }
