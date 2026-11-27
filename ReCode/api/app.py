@@ -121,13 +121,24 @@ def registrar(datos: Login):
     conn = get_db()
     try:
         cur = conn.cursor()
+        correo = datos.email.lower()
+
+        # Comprobar si ya existe una cuenta activa con ese correo
+        cur.execute(
+            "SELECT * FROM Usuarios WHERE correo_electronico = ? AND estado = ? LIMIT 1",
+            (correo, "activa"),
+        )
+        if cur.fetchone():
+            raise HTTPException(status_code=409, detail="Ese correo ya está registrado")
+
         try:
             cur.execute(
-                "INSERT INTO Usuarios(correo_electronico, contrasena) VALUES (?, ?)",
-                (datos.email.lower(), datos.password),
+                "INSERT INTO Usuarios(correo_electronico, contrasena, estado) VALUES (?, ?, ?)",
+                (correo, datos.password, "activa"),
             )
         except mariadb.IntegrityError:
-            return {"message": "Ese correo ya está registrado"}
+            raise HTTPException(status_code=409, detail="Ese correo ya está registrado")
+
         conn.commit()
         return {"message": "Cuenta creada", "id_usuario": cur.lastrowid}
     finally:
